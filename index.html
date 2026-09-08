@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>반띵 - 공동비용 정산 서비스</title>
+  <!-- SUIT Variable Font -->
   <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -50,184 +51,53 @@
     </div>
   </section>
 
-  <!-- 3. Section 2: Question & Step Flow -->
+  <!-- 3. Section 2: Question & Step Flow (수정된 2번째 섹션) -->
   <section class="sec-chat-flow" id="why">
-    <h2 class="section-title text-center">
-      매달 반복되는 비용,<br />
-      왜 정산은 매번 처음부터 해야 할까?
-    </h2>
-    <div class="chat-rows">
-      <div class="chat-row">
-        <span class="chat-label">정산 요청</span>
-        <div class="chat-bubble left-bubble">이번 달은 47,980원 보내줘</div>
-      </div>
-      <div class="chat-row center-row">
-        <div class="chat-bubble dark-bubble">다 보냈나?</div>
-        <span class="chat-label-right">송금 확인 <span class="sub-orange">| 매달 반복되는 피로감...</span></span>
-      </div>
-      <div class="chat-row">
-        <span class="chat-label">다시 요청</span>
-        <div class="chat-bubble left-bubble">아직 안 보냈네...</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. Section 3: Dark Stress Section -->
-  <section class="sec-dark-stress">
-    <div class="container text-center">
-      <div class="receipt-visual">
-        <div class="speech-orange">언제 보낼 거야?<br />지난달 것도 안 보냈잖아...</div>
-        <div class="receipt-paper">
-          <p>이번 달 정산</p>
-          <h3>₩ 78,960</h3>
-        </div>
-        <div class="speech-blue">아 맞다, 깜빡하고 있었네...<br />곧 보낼게!</div>
-      </div>
+    <div class="container chat-flow-grid">
       
-      <p class="stress-sub-title">
-        ( 반복되는 정산 <span class="highlight-orange">다시 말하기가 부담</span>스럽고, <br />
-        친록은 파손되어 <span class="highlight-blue">불편해져요</span> )
-      </p>
+      <!-- 왼쪽: 말풍선 흐름 (4단계) -->
+      <div class="chat-list">
+        <!-- 1단계 (비활성화) -->
+        <div class="chat-item">
+          <span class="orange-dot"></span>
+          <span class="chat-label">확인&계산</span>
+          <div class="chat-bubble disabled">이번엔 얼마씩 나눠야 하지?</div>
+        </div>
+        
+        <!-- 2단계 (활성화 - 검은색 말풍선) -->
+        <div class="chat-item active">
+          <span class="orange-dot"></span>
+          <span class="chat-label">정산 요청</span>
+          <div class="chat-bubble active-bubble">이번 달은 47,980원 보내줘</div>
+        </div>
 
-      <div class="floating-chips">
-        <span class="chip">입금독촉</span>
-        <span class="chip">기다림</span>
-        <span class="chip">다시 말하기 부담</span>
-        <span class="chip">피로</span>
-        <span class="chip">눈치봄</span>
-        <span class="chip">어색함</span>
-        <span class="chip">깜빡함</span>
+        <!-- 3단계 (비활성화) -->
+        <div class="chat-item">
+          <span class="orange-dot"></span>
+          <span class="chat-label">송금 확인</span>
+          <div class="chat-bubble disabled">다 보냈나?</div>
+        </div>
+
+        <!-- 4단계 (비활성화) -->
+        <div class="chat-item">
+          <span class="orange-dot"></span>
+          <span class="chat-label">다시 요청</span>
+          <div class="chat-bubble disabled">아직 안 보냈네...</div>
+        </div>
       </div>
 
-      <div class="spotlight-box">
-        <h2 class="spotlight-title">
-          재촉하지 않고,<br />
-          머뭇거리지 않고
+      <!-- 오른쪽: 메인 질문 타이틀 -->
+      <div class="title-box">
+        <h2 class="section-title">
+          매달 반복되는 비용,<br />
+          왜 정산은 <span class="highlight-orange">매번 처음부터 해야 할까?</span>
         </h2>
-        <div class="spotlight-visual">
-          <div class="pill-blue-left">정산요청</div>
-          <div class="app-icon-center">%</div>
-          <div class="pill-blue-right">끝낼 수 있어요</div>
-        </div>
       </div>
+
     </div>
   </section>
 
-  <!-- 5. Section 4: Feature 1 (매번 확인하고 계산하지 않도록) -->
-  <section class="sec-feature-light" id="how">
-    <div class="container text-center">
-      <span class="sub-badge-orange">매달 달라지는 금액도 자동분할</span>
-      <h2 class="sec-title">매번 확인하고, <span class="spacer"></span> 계산하지 않도록</h2>
-      
-      <div class="feature-mockup-wrap">
-        <div class="phone-screen-card">
-          <div class="card-header">
-            <span class="status-live">● LIVE</span>
-            <h4>이번 달 공과금 정산</h4>
-          </div>
-          <div class="user-item">
-            <div class="avatar-circle"></div>
-            <span>나</span>
-            <strong class="price-text">14,230원</strong>
-          </div>
-          <div class="user-item">
-            <div class="avatar-circle"></div>
-            <span>룸메</span>
-            <strong class="price-text">14,230원</strong>
-          </div>
-          <button class="btn-card-action">1/N 정산하기</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. Section 5: Feature 2 (깜빡한 정산 / 잊어버린 정산) -->
-  <section class="sec-feature-dark" id="benefit">
-    <div class="container">
-      <div class="grid-card-row">
-        <div class="text-col">
-          <span class="sub-tag">깜빡하기 전에 알아서</span>
-          <h2>깜빡한 정산,<br />내가 말하기 전에</h2>
-        </div>
-        <div class="visual-col card-dark-bg">
-          <div class="toast-orange">반띵이 대신 정손을 받아드릴게요!</div>
-        </div>
-      </div>
-
-      <div class="grid-card-row reverse">
-        <div class="text-col">
-          <span class="sub-tag">기록으로 깔끔하게</span>
-          <h2>잊어버린 정산,<br />다시 떠올릴 수 있게</h2>
-        </div>
-        <div class="visual-col card-dark-bg">
-          <div class="list-white-box">
-            <div class="list-item"><span>7월 공과금 정산</span><strong>완료</strong></div>
-            <div class="list-item"><span>8월 월세 정산</span><strong>완료</strong></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7. Section 6: Benefit 3-Cards (정산은 가볍게, 우리는 단단하게) -->
-  <section class="sec-three-cards" id="together">
-    <div class="container text-center">
-      <div class="badge-head">
-        <span class="badge-pill orange">정산은 가볍게</span>
-        <span class="badge-pill blue">우리 사이는 단단하게</span>
-      </div>
-      
-      <div class="feature-card-grid">
-        <div class="benefit-card">
-          <div class="card-icon">⚡</div>
-          <h3>반복되는 정산<br />자동 템플릿</h3>
-          <p>월세, 인터넷비 등 반복되는 금액을 일일이 작성할 필요 없어요.</p>
-        </div>
-        <div class="benefit-card">
-          <div class="card-icon">📋</div>
-          <h3>이번 달 정산 리포트</h3>
-          <p>금액 변동 내역을 한눈에 파악하고 투명하게 공유해요.</p>
-        </div>
-        <div class="benefit-card">
-          <div class="card-icon">🔔</div>
-          <h3>부담 없는 정산 알림</h3>
-          <p>직접 말하기 어색할 때 반띵이 알아서 정중하게 챙겨줘요.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 8. Section 7: Bottom CTA -->
-  <section class="sec-bottom-cta" id="start">
-    <div class="container text-center">
-      <h2>다음 달 정산, <span class="highlight-orange">반띵!</span> 해볼까요?</h2>
-      <button class="btn-primary btn-cta-large">사전 신청하기</button>
-    </div>
-  </section>
-
-  <!-- 9. Footer -->
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div class="footer-left">
-        <p class="footer-sub">매달 함께 내는 비용을 위한 반띵</p>
-        <div class="footer-form">
-          <input type="email" placeholder="이메일을 적어주세요" />
-          <button class="btn-primary">사전신청하기</button>
-        </div>
-      </div>
-      <div class="footer-right">
-        <div class="footer-col">
-          <strong>ban dding</strong>
-          <a href="#">소개</a>
-          <a href="#">기능</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-logo-banner">
-      <h1>ban dding</h1>
-    </div>
-  </footer>
-
+  <!-- Toast UI -->
   <div class="toast" id="toast">이메일 알림 신청이 완료되었습니다! 🚀</div>
 
   <script src="app.js"></script>
