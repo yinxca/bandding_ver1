@@ -13,7 +13,8 @@
   <!-- 1. Header Navigation -->
   <header class="header">
     <div class="logo">
-      <a href="#"><img src="images/logo.svg" alt="반띵 로고" class="logo-img" /></a>
+      <!-- 이미지 대신 텍스트 로고 처리 -->
+      <a href="#" style="text-decoration:none; font-weight:800; font-size:24px; color:#1a1b1e;">ban dding</a>
     </div>
     <nav class="nav-pills">
       <a href="#why" class="nav-link active">왜 반띵</a>
@@ -27,6 +28,7 @@
 
   <!-- 2. Hero Section -->
   <section class="hero-section">
+    <!-- 왼쪽 카드 -->
     <div class="hero-card hero-card-left">
       <div class="pill-badge">
         <span class="badge-icon">💡</span>
@@ -42,15 +44,20 @@
         반띵이 이번달 금액에 맞춰 나눠주고, 정산을 챙겨드려요.
       </p>
       
+      <!-- 이메일 입력 Form -->
       <form class="email-form" id="emailForm">
         <input type="email" id="emailInput" placeholder="이메일을 적어주세요" required />
         <button type="submit" class="btn-primary">알림받기</button>
       </form>
     </div>
 
+    <!-- 오른쪽 카드 (이미지 대신 그래픽 박스 영역) -->
     <div class="hero-card hero-card-right">
       <div class="visual-container">
-        <img src="images/hero_visual.svg" alt="반띵 캐릭터 비주얼" class="hero-visual-img" />
+        <!-- 임시 그래픽 원형 플레이스홀더 -->
+        <div style="width:200px; height:200px; background:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; color:#ff4b11; box-shadow: 0 8px 24px rgba(0,0,0,0.06);">
+          ban dding
+        </div>
       </div>
     </div>
   </section>
@@ -77,6 +84,7 @@
     </div>
   </section>
 
+  <!-- 4. Toast Notification -->
   <div class="toast" id="toast">이메일 알림 신청이 완료되었습니다! 🚀</div>
 
   <script src="app.js"></script>
