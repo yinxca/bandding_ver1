@@ -1,3 +1,4 @@
+/* 기본 리셋 및 글로벌 스타일 */
 * {
   margin: 0;
   padding: 0;
@@ -13,8 +14,10 @@ body {
   align-items: center;
   overflow-x: hidden;
   min-height: 100vh;
+  width: 100%;
 }
 
+/* Common Components */
 .btn-primary {
   background-color: #ff4b11;
   color: #ffffff;
@@ -31,15 +34,17 @@ body {
   transform: translateY(-1px);
 }
 
+/* 1. Header Styles */
 .header {
   width: 100%;
   max-width: 1280px;
-  height: 80px;
+  min-height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 40px;
   margin-top: 10px;
+  flex-shrink: 0;
 }
 
 .logo-img {
@@ -78,24 +83,25 @@ body {
   padding: 12px 24px;
 }
 
+/* 2. Hero Section */
 .hero-section {
   width: 100%;
   max-width: 1280px;
   display: flex;
   gap: 24px;
   padding: 20px 40px 60px 40px;
+  flex-shrink: 0;
 }
 
 .hero-card {
   flex: 1;
-  height: 560px;
+  min-height: 520px;
   background-color: #f5f5f5;
   border-radius: 34px;
   padding: 48px;
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden;
 }
 
 .hero-card-left {
@@ -133,9 +139,10 @@ body {
   font-size: 16px;
   line-height: 1.6;
   color: #666;
-  margin-bottom: auto;
+  margin-bottom: 32px;
 }
 
+/* 이메일 입력 폼 */
 .email-form {
   background: #ffffff;
   border-radius: 100px;
@@ -145,6 +152,7 @@ body {
   align-items: center;
   box-shadow: 0 4px 20px rgba(0,0,0,0.06);
   border: 1px solid #eaeaea;
+  margin-top: auto;
 }
 
 .email-form input {
@@ -163,6 +171,7 @@ body {
   padding: 14px 32px;
 }
 
+/* 오른쪽 비주얼 영역 */
 .hero-card-right {
   background-color: #f0f0f0;
   display: flex;
@@ -190,6 +199,7 @@ body {
   transform: scale(1.03);
 }
 
+/* 3. Message Section */
 .message-section {
   width: 100%;
   background-color: #fff8ee;
@@ -198,6 +208,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 80px;
+  flex-shrink: 0;
 }
 
 .section-title {
@@ -255,6 +266,7 @@ body {
   background-color: #4a4644;
 }
 
+/* Toast UI */
 .toast {
   position: fixed;
   bottom: -60px;
@@ -275,13 +287,13 @@ body {
   bottom: 40px;
 }
 
+/* Responsive Web Design */
 @media (max-width: 1024px) {
   .hero-section {
     flex-direction: column;
   }
   .hero-card {
-    height: auto;
-    min-height: 420px;
+    min-height: 380px;
   }
   .message-section {
     flex-direction: column;
