@@ -5,7 +5,6 @@
   font-family: 'SUIT Variable', -apple-system, sans-serif;
 }
 
-/* 풀페이지 스크롤 설정 */
 html {
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
@@ -218,7 +217,6 @@ body {
 }
 
 .receipt-item { font-size: 13px; color: #888; line-height: 1.4; text-align: center; }
-.receipt-divider { display: none; }
 .receipt-label { font-size: 14px; font-weight: 700; color: #333; text-align: center; margin-top: 12px; }
 .receipt-price { font-size: 21px; font-weight: 800; color: #1a1b1e; margin-top: 4px; text-align: center; }
 
@@ -261,13 +259,12 @@ body {
 
 /* Section 4: Spotlight Logo */
 .sec-4-spotlight { background: #231f20; color: #fff; text-align: center; }
-.spotlight-bg {
-  max-width: 520px;
-  width: 100%;
+.spotlight-cone {
+  width: 520px;
   margin: 0 auto;
   background: linear-gradient(180deg, #dbeafe 0%, #231f20 100%);
-  padding: 50px 30px;
-  border-radius: 40px;
+  clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
+  padding: 60px 40px 40px 40px;
 }
 .spotlight-title { font-size: 32px; font-weight: 700; color: #1a1b1e; margin-bottom: 40px; line-height: 1.35; }
 .spotlight-app-icon { display: flex; align-items: center; justify-content: center; gap: 16px; }
