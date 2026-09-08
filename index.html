@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>알림 신청하기</title>
+  <link rel="stylesheet" href="main.css" />
+  <!-- SUIT 폰트 불러오기 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css" />
+</head>
+<body>
+  <main class="container">
+    <div class="card">
+      <header class="card-header">
+        <h1 class="title">오픈 알림 신청하기</h1>
+        <p class="subtitle">서비스가 출시되면 등록하신 이메일로 가장 먼저 소식을 전해드려요.</p>
+      </header>
+
+      <!-- 웹 표준 및 Accessibility, Enter키 지원을 위한 Form 구조 -->
+      <form class="subscribe-form" id="subscribeForm" action="#" method="POST">
+        <div class="input-wrapper">
+          <input 
+            type="email" 
+            id="emailInput" 
+            name="email" 
+            class="email-input" 
+            placeholder="이메일을 입력해 주세요 (예: user@example.com)" 
+            required 
+            autocomplete="email"
+          />
+        </div>
+        <button type="submit" class="submit-btn">
+          <span>알림받기</span>
+        </button>
+      </form>
+
+      <!-- 성공/알림 메시지 안내 영역 -->
+      <p class="form-notice" id="formNotice"></p>
+    </div>
+  </main>
+
+  <script>
+    // 폼 제출 이벤트 처리
+    document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('emailInput').value;
+      const notice = document.getElementById('formNotice');
+
+      if (email) {
+        notice.style.color = '#2563eb';
+        notice.textContent = `'${email}' 주소로 알림 신청이 완료되었습니다!`;
+        document.getElementById('emailInput').value = '';
+      }
+    });
+  </script>
+</body>
+</html>
