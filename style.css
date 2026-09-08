@@ -1,9 +1,8 @@
-/* 기본 리셋 및 글로벌 스타일 */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'SUIT Variable', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  font-family: 'SUIT Variable', -apple-system, sans-serif;
 }
 
 body {
@@ -13,11 +12,15 @@ body {
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
-  min-height: 100vh;
-  width: 100%;
 }
 
-/* Common Components */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 .btn-primary {
   background-color: #ff4b11;
   color: #ffffff;
@@ -31,26 +34,24 @@ body {
 
 .btn-primary:hover {
   background-color: #e03e0a;
-  transform: translateY(-1px);
 }
 
-/* 1. Header Styles */
+/* Header */
 .header {
   width: 100%;
   max-width: 1280px;
-  min-height: 80px;
+  height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 40px;
-  margin-top: 10px;
-  flex-shrink: 0;
 }
 
-.logo-img {
-  height: 36px;
-  width: auto;
-  display: block;
+.logo-text {
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 26px;
+  color: #1a1b1e;
 }
 
 .nav-pills {
@@ -59,171 +60,142 @@ body {
   border-radius: 100px;
   display: flex;
   gap: 4px;
-  backdrop-filter: blur(8px);
 }
 
 .nav-pills .nav-link {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.7);
-  padding: 8px 20px;
+  padding: 8px 18px;
   border-radius: 100px;
-  font-size: 15px;
-  font-weight: 500;
-  transition: all 0.25s ease;
+  font-size: 14px;
 }
 
-.nav-pills .nav-link.active,
-.nav-pills .nav-link:hover {
+.nav-pills .nav-link.active {
   background: #e6f4ff;
-  color: #000000;
+  color: #000;
   font-weight: 700;
 }
 
 .btn-header {
-  padding: 12px 24px;
+  padding: 10px 20px;
 }
 
-/* 2. Hero Section */
+/* Hero */
 .hero-section {
   width: 100%;
   max-width: 1280px;
   display: flex;
   gap: 24px;
   padding: 20px 40px 60px 40px;
-  flex-shrink: 0;
 }
 
 .hero-card {
   flex: 1;
-  min-height: 520px;
+  min-height: 500px;
   background-color: #f5f5f5;
   border-radius: 34px;
   padding: 48px;
   display: flex;
   flex-direction: column;
-  position: relative;
-}
-
-.hero-card-left {
-  justify-content: flex-start;
-  background-color: #f8f8f8;
 }
 
 .pill-badge {
-  display: inline-flex;
-  align-items: center;
-  background-color: #ffffff;
-  padding: 8px 18px;
+  background: #fff;
+  padding: 6px 16px;
   border-radius: 100px;
-  font-size: 15px;
-  font-weight: 500;
-  margin-bottom: 28px;
+  font-size: 14px;
   width: fit-content;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-}
-
-.badge-icon {
-  margin-right: 8px;
+  margin-bottom: 24px;
 }
 
 .hero-title {
-  font-size: 34px;
+  font-size: 32px;
   font-weight: 700;
   line-height: 1.35;
-  color: #1a1b1e;
-  margin-bottom: 18px;
-  letter-spacing: -0.5px;
+  margin-bottom: 16px;
 }
 
 .hero-desc {
-  font-size: 16px;
-  line-height: 1.6;
   color: #666;
-  margin-bottom: 32px;
+  line-height: 1.6;
+  margin-bottom: auto;
 }
 
-/* 이메일 입력 폼 */
 .email-form {
-  background: #ffffff;
+  background: #fff;
   border-radius: 100px;
-  padding: 6px 6px 6px 24px;
+  padding: 6px 6px 6px 20px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
   border: 1px solid #eaeaea;
-  margin-top: auto;
 }
 
 .email-form input {
   border: none;
   outline: none;
-  font-size: 16px;
+  font-size: 15px;
   width: 60%;
-  color: #333;
-}
-
-.email-form input::placeholder {
-  color: #a0a0a0;
 }
 
 .email-form button {
-  padding: 14px 32px;
+  padding: 12px 28px;
 }
 
-/* 오른쪽 비주얼 영역 */
 .hero-card-right {
-  background-color: #f0f0f0;
+  background-color: #ececec;
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 0;
-}
-
-.visual-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
   justify-content: center;
-  align-items: center;
 }
 
-.hero-visual-img {
-  width: 80%;
-  max-width: 380px;
-  height: auto;
-  transition: transform 0.3s ease;
+.visual-placeholder {
+  position: relative;
+  width: 200px;
+  height: 200px;
 }
 
-.hero-card-right:hover .hero-visual-img {
-  transform: scale(1.03);
+.circle-avatar {
+  position: absolute;
+  border-radius: 50%;
 }
 
-/* 3. Message Section */
+.circle-avatar.orange {
+  width: 120px;
+  height: 120px;
+  background: #ff8a65;
+  top: 0;
+  left: 0;
+}
+
+.circle-avatar.blue {
+  width: 100px;
+  height: 100px;
+  background: #90caf9;
+  bottom: 0;
+  right: 0;
+}
+
+/* Message Section */
 .message-section {
   width: 100%;
   background-color: #fff8ee;
-  padding: 90px 40px;
+  padding: 80px 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 80px;
-  flex-shrink: 0;
+  gap: 60px;
 }
 
 .section-title {
-  font-size: 30px;
-  font-weight: 700;
+  font-size: 28px;
   line-height: 1.4;
-  color: #1a1b1e;
-  letter-spacing: -0.5px;
 }
 
 .chat-flow {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  width: 360px;
+  gap: 16px;
+  width: 340px;
 }
 
 .chat-bubble {
@@ -231,55 +203,291 @@ body {
   align-items: center;
   gap: 16px;
   opacity: 0.5;
-  transition: all 0.3s ease;
-  cursor: pointer;
 }
 
 .chat-bubble.active {
   opacity: 1;
-  transform: translateX(6px);
 }
 
 .step-label {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   color: #ff4b11;
-  width: 75px;
-  flex-shrink: 0;
+  width: 70px;
 }
 
 .bubble-content {
-  background-color: #1a1b1e;
-  color: #ffffff;
-  padding: 14px 22px;
-  border-radius: 18px 18px 18px 0;
-  font-size: 16px;
+  background: #1a1b1e;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 16px 16px 16px 0;
+  font-size: 15px;
+}
+
+/* Dark Concept Section */
+.dark-section {
+  width: 100%;
+  background: #232020;
+  color: #fff;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.floating-tags {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: rgba(255,255,255,0.1);
+  padding: 8px 18px;
+  border-radius: 100px;
+  font-size: 14px;
+  color: #ccc;
+}
+
+.dark-title {
+  font-size: 36px;
+  line-height: 1.4;
+  margin-bottom: 40px;
+}
+
+.dark-title span {
+  color: #ff4b11;
+}
+
+.dark-card-box {
+  display: flex;
+  justify-content: center;
+}
+
+.app-icon-mock {
+  width: 120px;
+  height: 120px;
+  background: #ff4b11;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: 800;
+}
+
+/* Feature Sections */
+.feature-section {
+  width: 100%;
+  padding: 100px 0;
+}
+
+.feature-section.light-bg {
+  background: #fffbf5;
+}
+
+.feature-section.dark-bg {
+  background: #1c1a1a;
+  color: #fff;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.sub-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(255, 75, 17, 0.1);
+  color: #ff4b11;
+  border-radius: 100px;
+  font-size: 14px;
   font-weight: 600;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-bottom: 16px;
 }
 
-.chat-bubble:nth-child(2) .bubble-content {
-  background-color: #333130;
+.section-large-title {
+  font-size: 32px;
+  margin-bottom: 40px;
 }
 
-.chat-bubble:nth-child(3) .bubble-content {
-  background-color: #4a4644;
+.feature-mockup-card {
+  max-width: 500px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-/* Toast UI */
+.mockup-header {
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #ff4b11;
+}
+
+.user-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.grid-title {
+  font-size: 28px;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.grid-desc {
+  color: #aaa;
+  line-height: 1.6;
+}
+
+.mock-box {
+  height: 240px;
+  background: #2a2828;
+  border-radius: 24px;
+}
+
+/* 3-Cards Section */
+.three-cards-section {
+  width: 100%;
+  padding: 100px 0;
+  background: #fffcf7;
+}
+
+.section-center-head {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-center-head h2 {
+  font-size: 32px;
+  margin-top: 12px;
+}
+
+.pill-tag {
+  color: #ff4b11;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.info-card {
+  background: #fff;
+  padding: 36px 28px;
+  border-radius: 24px;
+  border: 1px solid #f0eee8;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+}
+
+.icon-wrap {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.info-card h4 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.info-card p {
+  color: #666;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* Bottom CTA */
+.cta-section {
+  width: 100%;
+  background: #1a1b1e;
+  color: #fff;
+  padding: 100px 0;
+}
+
+.cta-title {
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+.cta-title .highlight {
+  color: #ff4b11;
+}
+
+.btn-large {
+  padding: 18px 48px;
+  font-size: 18px;
+}
+
+/* Footer */
+.footer {
+  width: 100%;
+  background: #111214;
+  color: #888;
+  padding: 60px 0 30px 0;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.footer-logo {
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 60px;
+}
+
+.footer-links h5 {
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  display: block;
+  color: #888;
+  text-decoration: none;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #222;
+  padding-top: 20px;
+  font-size: 13px;
+}
+
+/* Toast */
 .toast {
   position: fixed;
   bottom: -60px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #1a1b1e;
-  color: #ffffff;
+  background: #1a1b1e;
+  color: #fff;
   padding: 14px 28px;
   border-radius: 100px;
-  font-size: 15px;
-  font-weight: 600;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-  transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: bottom 0.4s ease;
   z-index: 1000;
 }
 
@@ -287,20 +495,11 @@ body {
   bottom: 40px;
 }
 
-/* Responsive Web Design */
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .hero-section {
     flex-direction: column;
   }
-  .hero-card {
-    min-height: 380px;
-  }
-  .message-section {
-    flex-direction: column;
-    text-align: center;
-    gap: 40px;
-  }
-  .chat-bubble {
-    justify-content: center;
+  .grid-2col, .card-grid {
+    grid-template-columns: 1fr;
   }
 }
