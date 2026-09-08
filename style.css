@@ -30,11 +30,9 @@ body {
   transition: all 0.2s ease;
 }
 
-.btn-primary:hover {
-  background-color: #e03e0a;
-}
+.btn-primary:hover { background-color: #e03e0a; }
 
-/* Header Navigation */
+/* Header */
 .header {
   width: 100%;
   max-width: 1280px;
@@ -78,7 +76,7 @@ body {
 .btn-header { padding: 12px 24px; font-size: 15px; }
 
 /* Section 1: Hero */
-.sec-hero {
+.sec-1-hero {
   max-width: 1280px;
   margin: 0 auto;
   display: flex;
@@ -107,19 +105,8 @@ body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.03);
 }
 
-.hero-title {
-  font-size: 34px;
-  font-weight: 700;
-  line-height: 1.35;
-  margin-bottom: 18px;
-}
-
-.hero-desc {
-  color: #666;
-  font-size: 16px;
-  line-height: 1.6;
-  margin-bottom: auto;
-}
+.hero-title { font-size: 34px; font-weight: 700; line-height: 1.35; margin-bottom: 18px; }
+.hero-desc { color: #666; font-size: 16px; line-height: 1.6; margin-bottom: auto; }
 
 .email-form {
   background: #ffffff;
@@ -128,17 +115,12 @@ body {
   display: flex;
   justify-content: space-between;
   border: 1px solid #eaeaea;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
 }
 
 .email-form input { border: none; outline: none; font-size: 16px; width: 60%; }
 .email-form button { padding: 14px 32px; font-size: 16px; }
 
-.hero-right {
-  background-color: #f0f0f0;
-  align-items: center;
-  justify-content: center;
-}
+.hero-right { background-color: #f0f0f0; align-items: center; justify-content: center; }
 
 .phone-mockup {
   width: 220px;
@@ -164,106 +146,180 @@ body {
   justify-content: center;
 }
 
-/* Section 2: Question & Chat Flow (2번째 섹션 전용 CSS) */
-.sec-chat-flow {
-  width: 100%;
-  background-color: #fff8ee;
-  padding: 100px 0;
-  display: flex;
-  justify-content: center;
-}
-
-.chat-flow-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  align-items: center;
-  gap: 60px;
-}
-
-.chat-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.chat-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  opacity: 0.35;
-  transition: all 0.3s ease;
-}
-
+/* Section 2: Question Flow */
+.sec-2-chat { background-color: #fff8ee; padding: 100px 0; }
+.chat-flow-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 60px; }
+.chat-list { display: flex; flex-direction: column; gap: 20px; }
+.chat-item { display: flex; align-items: center; gap: 16px; opacity: 0.35; }
 .chat-item.active { opacity: 1; }
-
-.orange-dot {
-  width: 10px;
-  height: 10px;
-  background-color: #ff4b11;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.chat-label {
-  width: 85px;
-  font-size: 16px;
-  font-weight: 700;
-  color: #666;
-  flex-shrink: 0;
-}
-
+.orange-dot { width: 10px; height: 10px; background-color: #ff4b11; border-radius: 50%; }
+.chat-label { width: 85px; font-size: 16px; font-weight: 700; color: #666; }
 .chat-item.active .chat-label { color: #1a1b1e; }
-
-.chat-bubble {
-  padding: 14px 24px;
-  border-radius: 16px;
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.chat-bubble.disabled {
-  background-color: transparent;
-  color: #aaa;
-  border: 1px solid #e5dfd5;
-}
-
-.chat-bubble.active-bubble {
-  background-color: #1a1b1e;
-  color: #ffffff;
-  font-weight: 700;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-}
-
-.title-box { text-align: left; }
-
-.section-title {
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 1.45;
-  color: #1a1b1e;
-  letter-spacing: -0.5px;
-}
-
+.chat-bubble { padding: 14px 24px; border-radius: 16px; font-size: 16px; }
+.chat-bubble.disabled { border: 1px solid #e5dfd5; color: #aaa; }
+.chat-bubble.active-bubble { background-color: #1a1b1e; color: #ffffff; font-weight: 700; }
+.section-title { font-size: 32px; font-weight: 700; line-height: 1.45; }
 .highlight-orange { color: #ff4b11; }
 
-/* Toast UI */
-.toast {
-  position: fixed;
-  bottom: -60px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #1a1b1e;
-  color: #fff;
-  padding: 14px 28px;
-  border-radius: 100px;
-  transition: bottom 0.4s ease;
-  z-index: 1000;
+/* Section 3: Stress Receipts */
+.sec-3-stress { background-color: #2b2323; color: #ffffff; padding: 120px 0 100px 0; }
+.stress-visual-container { display: flex; justify-content: center; align-items: center; max-width: 800px; margin: 0 auto 60px auto; }
+.speech-box { padding: 20px 24px; border-radius: 20px; font-size: 15px; font-weight: 600; line-height: 1.4; text-align: left; }
+.speech-role { font-size: 12px; opacity: 0.8; display: block; margin-bottom: 4px; }
+.speech-orange { background-color: #ff4b11; color: #ffffff; margin-right: -25px; }
+.speech-blue { background-color: #e2f0fe; color: #1a1b1e; margin-left: -25px; }
+
+.receipt-card {
+  background-color: #ffffff;
+  color: #1a1b1e;
+  padding: 28px 24px;
+  width: 180px;
+  border-radius: 12px;
+  transform: rotate(-3deg);
 }
 
+.receipt-item { font-size: 13px; color: #888; }
+.receipt-divider { border-top: 2px dashed #e0e0e0; margin: 12px 0; }
+.receipt-label { font-size: 13px; font-weight: 700; }
+.receipt-price { font-size: 20px; font-weight: 800; }
+
+.bracket-message { display: flex; justify-content: center; align-items: center; gap: 16px; margin-bottom: 60px; }
+.bracket { font-size: 48px; color: #776e6e; }
+.bracket-message p { font-size: 24px; font-weight: 700; line-height: 1.5; }
+.text-orange { color: #ff5e2b; }
+.text-blue-light { color: #7cb5ec; }
+
+.chips-wrapper { display: flex; justify-content: space-between; max-width: 900px; margin: 0 auto; }
+.chips-left, .chips-right { display: flex; gap: 10px; flex-wrap: wrap; }
+.chip { padding: 10px 20px; border-radius: 100px; font-size: 14px; font-weight: 600; }
+.chip-orange { background-color: #ff4b11; color: #fff; }
+.chip-dark-orange { background-color: #923a22; color: #e8a593; }
+.chip-blue { background-color: #3b82f6; color: #fff; }
+.chip-blue-dark { background-color: #254b85; color: #9bbbe8; }
+.chip-muted { background-color: #3d3535; color: #998e8e; }
+
+/* Section 4: Spotlight Logo */
+.sec-4-spotlight { background: #231f20; padding: 120px 0; color: #fff; text-align: center; }
+.spotlight-bg {
+  width: 500px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #dbeafe 0%, #231f20 100%);
+  padding: 60px 40px;
+  border-radius: 40px;
+}
+.spotlight-title { font-size: 32px; font-weight: 700; color: #1a1b1e; margin-bottom: 50px; }
+.spotlight-app-icon { display: flex; align-items: center; justify-content: center; gap: 16px; }
+.bubble-left, .bubble-right { background: #93c5fd; color: #1a1b1e; padding: 12px 20px; border-radius: 18px; font-weight: 700; }
+.app-icon { width: 90px; height: 90px; background: #2b2323; border-radius: 24px; font-size: 40px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+
+/* Section 5: Auto Split */
+.sec-5-split { background: #fffbf5; padding: 120px 0; }
+.badge-pill-orange { background: #ff4b11; color: #fff; padding: 8px 20px; border-radius: 100px; font-weight: 700; display: inline-block; margin-bottom: 40px; }
+.split-layout { display: flex; align-items: center; justify-content: center; gap: 40px; }
+.split-title-left, .split-title-right { font-size: 36px; font-weight: 700; color: #9a3412; }
+
+.center-app-card {
+  width: 320px;
+  background: #fff;
+  border-radius: 28px;
+  padding: 24px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+}
+.app-card-head { display: flex; justify-content: space-between; font-size: 13px; color: #888; margin-bottom: 20px; }
+.card-pills { display: flex; gap: 4px; }
+.card-pills span { padding: 4px 8px; border-radius: 8px; }
+.pill-active { background: #ffe4e6; color: #ff4b11; font-weight: 700; }
+.user-list { margin-bottom: 20px; }
+.user-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+.u-avatar { width: 32px; height: 32px; background: #ddd; border-radius: 50%; }
+.u-price { margin-left: auto; color: #ff4b11; font-weight: 700; font-size: 14px; }
+.btn-card-submit { width: 100%; padding: 12px; background: #e5e7eb; border: none; border-radius: 12px; font-weight: 700; color: #4b5563; }
+
+/* Section 6: Auto Remind */
+.sec-6-remind { background: #231f20; padding: 120px 0; color: #fff; }
+.grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.dark-chat-left { display: flex; flex-direction: column; gap: 14px; }
+.bg-bubble { background: rgba(255,255,255,0.08); padding: 12px 20px; border-radius: 16px; font-size: 14px; width: fit-content; color: #ccc; }
+.remind-title { font-size: 36px; font-weight: 700; margin-top: 20px; line-height: 1.35; }
+.remind-card-right { background: #fef3c7; height: 320px; border-radius: 32px; position: relative; padding: 30px; display: flex; align-items: flex-end; }
+.orange-alert-toast { background: #ff4b11; color: #fff; padding: 14px 24px; border-radius: 16px; font-weight: 700; width: 100%; text-align: center; }
+
+/* Section 7: History */
+.sec-7-history { background: #282122; padding: 120px 0; color: #fff; }
+.dark-history-grid { display: flex; justify-content: space-between; align-items: center; }
+.chat-tag-orange { background: #ff4b11; padding: 8px 16px; border-radius: 100px; display: inline-block; font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+.chat-tag-white { background: #fff; color: #1a1b1e; padding: 8px 16px; border-radius: 100px; display: inline-block; font-size: 13px; font-weight: 700; margin-bottom: 20px; }
+.history-title { font-size: 36px; font-weight: 700; line-height: 1.35; }
+.history-card-box { background: #fff; color: #1a1b1e; width: 280px; padding: 24px; border-radius: 24px; }
+.history-head { font-weight: 700; margin-bottom: 16px; color: #888; font-size: 14px; }
+.history-row { padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+
+/* Section 8: Light Benefit */
+.sec-8-benefit { padding: 120px 0; background: #fffbf5; }
+.badge-head { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; }
+.badge-pill { padding: 8px 20px; border-radius: 100px; font-weight: 700; font-size: 15px; }
+.badge-pill.orange { background: #ff4b11; color: #fff; }
+.badge-pill.blue { background: #dbeafe; color: #1e40af; }
+
+.benefit-graphic-card {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #f3f4f6;
+  border-radius: 32px;
+  padding: 40px;
+  position: relative;
+}
+.brand-side-label { position: absolute; left: 24px; bottom: 40px; font-weight: 800; font-size: 32px; color: #93c5fd; writing-mode: vertical-rl; transform: rotate(180deg); }
+.benefit-info-box { background: #fff; padding: 32px; border-radius: 24px; text-align: left; margin-left: 80px; }
+.benefit-info-box h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+.benefit-info-box p { color: #666; font-size: 15px; }
+
+/* Section 9: 3-Cards Business */
+.sec-9-cards { padding: 120px 0; background: #fff7ed; }
+.sub-business { color: #9a3412; font-weight: 700; font-size: 14px; margin-bottom: 12px; display: block; }
+.business-head h2 { font-size: 32px; font-weight: 700; margin-bottom: 50px; color: #431407; }
+
+.three-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.biz-card { background: #fff; padding: 36px 24px; border-radius: 28px; text-align: left; box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
+.biz-card.center-card { transform: translateY(-16px); }
+.biz-icon { font-size: 32px; margin-bottom: 20px; }
+.biz-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #1a1b1e; }
+.biz-card p { font-size: 14px; color: #666; line-height: 1.6; }
+
+/* Section 10: Bottom CTA */
+.sec-10-cta { background: #231f20; color: #fff; padding: 120px 0; }
+.sec-10-cta h2 { font-size: 36px; font-weight: 700; margin-bottom: 40px; }
+.cta-mascot-box { display: flex; justify-content: center; gap: 16px; margin-bottom: 30px; }
+.mascot { width: 40px; height: 60px; border-radius: 12px; }
+.mascot.blue { background: #93c5fd; }
+.mascot.cyan { background: #a5f3fc; }
+.mascot.orange { background: #ff4b11; }
+.btn-cta-large { padding: 18px 54px; font-size: 18px; }
+
+/* Footer */
+.footer { background: #181516; color: #9ea0a5; padding: 80px 0 0 0; }
+.footer-top { display: flex; justify-content: space-between; margin-bottom: 60px; }
+.footer-links-group { display: flex; gap: 60px; }
+.f-col strong { color: #fff; display: block; margin-bottom: 16px; font-size: 15px; }
+.f-col a { display: block; color: #9ea0a5; text-decoration: none; margin-bottom: 10px; font-size: 14px; }
+
+.footer-form-group { text-align: right; }
+.footer-form-group p { font-size: 14px; margin-bottom: 12px; }
+.btn-footer-submit { padding: 14px 32px; margin-bottom: 20px; }
+.social-icons { display: flex; gap: 12px; justify-content: flex-end; margin-bottom: 10px; }
+.copyright { font-size: 12px; color: #666; }
+
+.footer-giant-logo { text-align: center; border-top: 1px solid #282526; padding: 40px 0; }
+.footer-giant-logo h1 { font-size: 120px; font-weight: 900; color: #ffffff; letter-spacing: -3px; line-height: 1; }
+
+/* Toast */
+.toast { position: fixed; bottom: -60px; left: 50%; transform: translateX(-50%); background: #1a1b1e; color: #fff; padding: 14px 28px; border-radius: 100px; transition: bottom 0.4s ease; z-index: 1000; }
 .toast.show { bottom: 40px; }
 
 @media (max-width: 900px) {
-  .sec-hero { flex-direction: column; }
-  .chat-flow-grid { grid-template-columns: 1fr; gap: 40px; }
-  .title-box { text-align: center; order: -1; }
+  .sec-1-hero, .chat-flow-grid, .grid-2col, .dark-history-grid, .split-layout { flex-direction: column; grid-template-columns: 1fr; text-align: center; }
+  .three-cards-grid { grid-template-columns: 1fr; }
+  .footer-top { flex-direction: column; gap: 40px; }
+  .footer-form-group { text-align: left; }
+  .social-icons { justify-content: flex-start; }
 }
