@@ -86,26 +86,46 @@
     </div>
   </section>
 
-  <!-- [Section 3] Stress Receipts -->
+ <!-- [Section 3] Stress Receipts -->
   <section class="sec-3-stress">
     <div class="container text-center">
+      
+      <!-- 상단 영수증 & 말풍선 대립 영역 -->
       <div class="stress-visual-container">
-        <div class="speech-box speech-orange">
-          <span class="speech-role">정산자</span>
-          <p>아직 안보냈는데<br />다시 보내달라고 요청해야겠지..?</p>
+        <!-- 주황 말풍선 (좌) -->
+        <div class="speech-wrapper left-speech">
+          <div class="character-top orange-char"></div>
+          <div class="speech-box speech-orange">
+            <span class="quote-mark">“</span>
+            <span class="speech-role">정산자</span>
+            <p>아직 안보냈는데<br />다시 보내달라고 요청해야겠지..?</p>
+            <div class="speech-tail tail-left"></div>
+          </div>
         </div>
+
+        <!-- 중앙 영수증 -->
         <div class="receipt-card">
+          <div class="receipt-top-teeth"></div>
           <p class="receipt-item">전기료<br />수도세<br />...</p>
           <div class="receipt-divider"></div>
           <p class="receipt-label">정산 요청</p>
           <h3 class="receipt-price">₩ 75,800</h3>
+          <div class="receipt-bottom-teeth"></div>
         </div>
-        <div class="speech-box speech-blue">
-          <span class="speech-role">송금자</span>
-          <p>아 맞다, 보내려고 했는데...<br />또 깜빡했네</p>
+
+        <!-- 파랑 말풍선 (우) -->
+        <div class="speech-wrapper right-speech">
+          <div class="character-top blue-char"></div>
+          <div class="speech-box speech-blue">
+            <span class="speech-role">송금자</span>
+            <span class="quote-mark">”</span>
+            <p>아 맞다, 보내려고 했는데...<br />또 깜빡했네</p>
+            <div class="speech-tail tail-right"></div>
+          </div>
         </div>
       </div>
 
+      <!-- 메인 메시지 괄호 텍스트 -->
       <div class="bracket-message">
         <span class="bracket">(</span>
         <p>
@@ -115,23 +135,27 @@
         <span class="bracket">)</span>
       </div>
 
-      <div class="chips-wrapper">
-        <div class="chips-left">
-          <span class="chip chip-dark-orange">답답함</span>
-          <span class="chip chip-orange">기다림</span>
-          <span class="chip chip-dark-orange">다시 말하기 부담</span>
-          <span class="chip chip-muted">지침</span>
+      <!-- 하단 무작위로 쌓여있는 칩(버튼) 영역 -->
+      <div class="stacked-chips-container">
+        <!-- 좌측 주황 계열 쌓인 칩들 -->
+        <div class="chip-stack left-stack">
+          <span class="chip chip-dark-orange pos-1">답답함</span>
+          <span class="chip chip-orange pos-2">기다림</span>
+          <span class="chip chip-dark-brown pos-3">다시 말하기 부담</span>
+          <span class="chip chip-muted pos-4">지침</span>
         </div>
-        <div class="chips-right">
-          <span class="chip chip-blue">귀찮음</span>
-          <span class="chip chip-blue-dark">미룸</span>
-          <span class="chip chip-muted">깜빡함</span>
-          <span class="chip chip-muted">미안함</span>
+
+        <!-- 우측 파랑 계열 쌓인 칩들 -->
+        <div class="chip-stack right-stack">
+          <span class="chip chip-blue pos-5">귀찮음</span>
+          <span class="chip chip-blue-mid pos-6">미룸</span>
+          <span class="chip chip-blue-dark pos-7">깜빡함</span>
+          <span class="chip chip-dark-gray pos-8">미안함</span>
         </div>
       </div>
+
     </div>
   </section>
-
   <!-- [Section 4] Spotlight Logo -->
   <section class="sec-4-spotlight">
     <div class="spotlight-bg">
