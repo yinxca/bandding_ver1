@@ -19,7 +19,6 @@ body {
   height: 100%;
 }
 
-/* 각 섹션 100vh 고정 및 중앙 정렬 */
 .fp-section {
   width: 100%;
   height: 100vh;
@@ -53,7 +52,7 @@ body {
 
 .btn-primary:hover { background-color: #e03e0a; }
 
-/* Header Navigation (고정) */
+/* Header Navigation */
 .header {
   position: fixed;
   top: 0;
@@ -187,7 +186,6 @@ body {
   border-color: #e2f0fe transparent transparent transparent;
 }
 
-/* 영수증 카드 (오른쪽 기울기 & 점선 없는 깔끔한 톱니) */
 .receipt-card {
   background-color: #ffffff;
   color: #1a1b1e;
@@ -224,14 +222,12 @@ body {
 .receipt-label { font-size: 14px; font-weight: 700; color: #333; text-align: center; margin-top: 12px; }
 .receipt-price { font-size: 21px; font-weight: 800; color: #1a1b1e; margin-top: 4px; text-align: center; }
 
-/* 괄호 문구 */
 .bracket-message { display: flex; justify-content: center; align-items: center; gap: 16px; margin-bottom: 30px; }
 .bracket { font-size: 42px; color: #6b5f5f; font-weight: 300; }
 .bracket-message p { font-size: 22px; font-weight: 700; line-height: 1.45; }
 .text-orange { color: #ff5e2b; }
 .text-blue-light { color: #7cb5ec; }
 
-/* 하단 대형 칩 스택 */
 .stacked-chips-container {
   display: flex;
   justify-content: space-between;
@@ -359,7 +355,7 @@ body {
 .mascot.orange { background: #ff4b11; }
 .btn-cta-large { padding: 16px 48px; font-size: 17px; }
 
-/* Footer Section */
+/* Section 11: Footer */
 .sec-footer { background: #181516; color: #9ea0a5; }
 .footer { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: space-between; padding-top: 100px; }
 .footer-top { display: flex; justify-content: space-between; gap: 20px; }
