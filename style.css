@@ -105,20 +105,95 @@ body {
 .phone-mockup { width: 180px; height: 320px; background: #fff; border-radius: 32px; border: 3px solid #1a1b1e; display: flex; align-items: center; justify-content: center; }
 .phone-toast { width: 70px; height: 70px; background: #ff4b11; color: #fff; border-radius: 18px; font-size: 32px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
 
-/* Section 2: Question Flow */
-.sec-2-chat { background-color: #fff8ee; }
-.chat-flow-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 60px; }
-.chat-list { display: flex; flex-direction: column; gap: 16px; }
-.chat-item { display: flex; align-items: center; gap: 14px; opacity: 0.35; }
-.chat-item.active { opacity: 1; }
-.orange-dot { width: 8px; height: 8px; background-color: #ff4b11; border-radius: 50%; }
-.chat-label { width: 80px; font-size: 15px; font-weight: 700; color: #666; }
-.chat-item.active .chat-label { color: #1a1b1e; }
-.chat-bubble { padding: 12px 20px; border-radius: 14px; font-size: 15px; }
-.chat-bubble.disabled { border: 1px solid #e5dfd5; color: #aaa; }
-.chat-bubble.active-bubble { background-color: #1a1b1e; color: #ffffff; font-weight: 700; }
-.section-title { font-size: 30px; font-weight: 700; line-height: 1.45; }
-.highlight-orange { color: #ff4b11; }
+/* ===========================================
+   Section 2: Question Flow (높이 434px 맞춤)
+=========================================== */
+.sec-2-chat {
+  background-color: #fff8ee;
+  height: 434px !important; /* 피그마 지정 높이 434px 강제 적용 */
+  min-height: 434px !important;
+  padding: 40px 0; /* 높이에 맞춰 내부 여백 조절 */
+  display: flex;
+  align-items: center;
+}
+
+.chat-flow-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
+}
+
+.chat-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.chat-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 0.35;
+  transition: opacity 0.3s ease;
+}
+
+.chat-item.active {
+  opacity: 1;
+}
+
+.orange-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #ff4b11;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.chat-label {
+  width: 80px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #666;
+  flex-shrink: 0;
+}
+
+.chat-item.active .chat-label {
+  color: #1a1b1e;
+}
+
+.chat-bubble {
+  padding: 10px 20px;
+  border-radius: 14px;
+  font-size: 15px;
+}
+
+.chat-bubble.disabled {
+  border: 1px solid #e5dfd5;
+  color: #aaa;
+}
+
+.chat-bubble.active-bubble {
+  background-color: #1a1b1e;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.title-box {
+  text-align: left;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #1a1b1e;
+}
+
+.highlight-orange {
+  color: #ff4b11;
+}
 
 /* Section 3: Stress Receipts */
 .sec-3-stress { background-color: #2b2323; color: #ffffff; }
