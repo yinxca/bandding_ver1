@@ -4,84 +4,70 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>반띵 - 공동비용 정산 서비스</title>
-  <!-- SUIT Variable Font -->
   <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- 1. Header Navigation -->
+  <!-- Header -->
   <header class="header">
     <div class="logo">
-      <a href="#"><img src="images/logo.svg" alt="반띵 로고" class="logo-img" /></a>
+      <a href="#"><img src="images/logo.svg" alt="logo" class="logo-img" /></a>
     </div>
     <nav class="nav-pills">
-      <a href="#why" class="nav-link active">왜 반띵</a>
-      <a href="#how" class="nav-link">어떻게 반띵?</a>
-      <a href="#benefit" class="nav-link">반띵 하면?</a>
-      <a href="#together" class="nav-link">함께 반띵!</a>
-      <a href="#start" class="nav-link">반띵 시작하기</a>
+      <a href="#why" class="nav-link active">Why</a>
+      <a href="#how" class="nav-link">How</a>
+      <a href="#benefit" class="nav-link">Benefit</a>
     </nav>
-    <button class="btn-primary btn-header" id="headerNotifyBtn">알림 받기</button>
+    <button class="btn-primary btn-header" id="headerNotifyBtn">Notification</button>
   </header>
 
-  <!-- 2. Hero Section (메인 본문 카드 영역) -->
+  <!-- Hero Section -->
   <section class="hero-section">
-    <!-- 왼쪽 카드 -->
     <div class="hero-card hero-card-left">
       <div class="pill-badge">
         <span class="badge-icon">💡</span>
-        <span>매달 함께 내는 비용을 위한 반띵</span>
+        <span>BanDding Service</span>
       </div>
       <h1 class="hero-title">
-        매달 반복되는 정산,<br />
-        서로 챙기지 않아도<br />
-        자연스럽게 끝나도록
+        Monthly Settlement<br />
+        Made Easy & Fast
       </h1>
       <p class="hero-desc">
-        월세처럼 정해진 비용부터, 매달 달라지는 공과금까지.<br />
-        반띵이 이번달 금액에 맞춰 나눠주고, 정산을 챙겨드려요.
+        Split your monthly rent and utility bills automatically.
       </p>
       
-      <!-- 이메일 알림 받기 Form -->
       <form class="email-form" id="emailForm">
-        <input type="email" id="emailInput" placeholder="이메일을 적어주세요" required />
-        <button type="submit" class="btn-primary">알림받기</button>
+        <input type="email" id="emailInput" placeholder="Enter your email" required />
+        <button type="submit" class="btn-primary">Submit</button>
       </form>
     </div>
 
-    <!-- 오른쪽 카드 (비주얼 이미지) -->
     <div class="hero-card hero-card-right">
       <div class="visual-container">
-        <img src="images/hero_visual.svg" alt="반띵 캐릭터 비주얼" class="hero-visual-img" />
+        <img src="images/hero_visual.svg" alt="visual" class="hero-visual-img" />
       </div>
     </div>
   </section>
 
-  <!-- 3. Message Section (하단 채팅 메시지 영역) -->
+  <!-- Message Section -->
   <section class="message-section" id="why">
     <h2 class="section-title">
-      매달 반복되는 비용,<br />
-      왜 정산은 매번 처음부터 해야 할까?
+      Why Bandding?
     </h2>
     <div class="chat-flow">
       <div class="chat-bubble active" data-step="1">
-        <span class="step-label">정산 요청</span>
-        <div class="bubble-content">이번 달은 47,980원 보내줘</div>
+        <span class="step-label">Step 1</span>
+        <div class="bubble-content">Send money 47,980 KRW</div>
       </div>
       <div class="chat-bubble" data-step="2">
-        <span class="step-label">송금 확인</span>
-        <div class="bubble-content">다 보냈나?</div>
-      </div>
-      <div class="chat-bubble" data-step="3">
-        <span class="step-label">다시 요청</span>
-        <div class="bubble-content">아직 안 보냈네...</div>
+        <span class="step-label">Step 2</span>
+        <div class="bubble-content">Check Transfer</div>
       </div>
     </div>
   </section>
 
-  <!-- 4. Toast Notification -->
-  <div class="toast" id="toast">이메일 알림 신청이 완료되었습니다! 🚀</div>
+  <div class="toast" id="toast">Complete! 🚀</div>
 
   <script src="app.js"></script>
 </body>
