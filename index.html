@@ -4,14 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>반띵 - 공동비용 정산 서비스</title>
-  <!-- SUIT 폰트 -->
+  <!-- SUIT Variable Font -->
   <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css" rel="stylesheet" />
-  <!-- CSS 연결 -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Header Navigation -->
+  <!-- 1. Header Navigation -->
   <header class="header">
     <div class="logo">
       <a href="#"><img src="images/logo.svg" alt="반띵 로고" class="logo-img" /></a>
@@ -26,8 +25,9 @@
     <button class="btn-primary btn-header" id="headerNotifyBtn">알림 받기</button>
   </header>
 
-  <!-- Hero Section -->
+  <!-- 2. Hero Section (메인 본문 카드 영역) -->
   <section class="hero-section">
+    <!-- 왼쪽 카드 -->
     <div class="hero-card hero-card-left">
       <div class="pill-badge">
         <span class="badge-icon">💡</span>
@@ -50,7 +50,7 @@
       </form>
     </div>
 
-    <!-- 오른쪽 비주얼 영역 -->
+    <!-- 오른쪽 카드 (비주얼 이미지) -->
     <div class="hero-card hero-card-right">
       <div class="visual-container">
         <img src="images/hero_visual.svg" alt="반띵 캐릭터 비주얼" class="hero-visual-img" />
@@ -58,7 +58,7 @@
     </div>
   </section>
 
-  <!-- Message Section -->
+  <!-- 3. Message Section (하단 채팅 메시지 영역) -->
   <section class="message-section" id="why">
     <h2 class="section-title">
       매달 반복되는 비용,<br />
@@ -80,7 +80,7 @@
     </div>
   </section>
 
-  <!-- Toast UI -->
+  <!-- 4. Toast Notification -->
   <div class="toast" id="toast">이메일 알림 신청이 완료되었습니다! 🚀</div>
 
   <script src="app.js"></script>
