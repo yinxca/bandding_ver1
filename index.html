@@ -3,37 +3,80 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>알림 신청</title>
-  <link rel="stylesheet" href="main.css" />
-  <!-- SUIT 폰트 불러오기 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css" />
+  <title>반띵 - 공동비용 정산 서비스</title>
+  <!-- 폰트 적용 (SUIT) -->
+  <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/main.css" />
 </head>
 <body>
-  <div class="container">
-    <!-- 디자인 이미지 요소가 있는 경우 (파일명에 맞춰 src 수정) -->
-    <!-- <img src="design-image.png" alt="디자인 이미지" class="design-img" /> -->
 
-    <!-- 이메일 및 알림받기 폼 (디자인 원본 위치 반영) -->
-    <form class="v1082_10247" id="notifyForm">
-      <div class="v1082_9824">
-        <input 
-          type="email" 
-          class="v1082_9825" 
-          placeholder="이메일을 적어주세요" 
-          required 
-        />
+  <!-- 1. Header Navigation -->
+  <header class="header">
+    <div class="logo">ban dding</div>
+    <nav class="nav-pills">
+      <a href="#" class="active">왜 반띵</a>
+      <a href="#">어떻게 반띵?</a>
+      <a href="#">반띵 하면?</a>
+      <a href="#">함께 반띵!</a>
+      <a href="#">반띵 시작하기</a>
+    </nav>
+    <button class="btn-primary btn-header">알림 받기</button>
+  </header>
+
+  <!-- 2. Hero Section -->
+  <section class="hero-section">
+    <div class="hero-card hero-card-left">
+      <div class="pill-badge">
+        <span class="badge-icon">💡</span>
+        <span>매달 함께 내는 비용을 위한 반띵</span>
       </div>
-      <button type="submit" class="v1082_9842">
-        <span class="v1082_9843">알림받기</span>
-      </button>
-    </form>
-  </div>
+      <h1 class="hero-title">
+        매달 반복되는 정산,<br />
+        서로 챙기지 않아도<br />
+        자연스럽게 끝나도록
+      </h1>
+      <p class="hero-desc">
+        월세처럼 정해진 비용부터, 매달 달라지는 공과금까지.<br />
+        반띵이 이번달 금액에 맞춰 나눠주고, 정산을 챙겨드려요.
+      </p>
+      
+      <!-- 이메일 알림 받기 Form -->
+      <form class="email-form" onsubmit="event.preventDefault();">
+        <input type="email" placeholder="이메일을 적어주세요" required />
+        <button type="submit" class="btn-primary">알림받기</button>
+      </form>
+    </div>
 
-  <script>
-    document.getElementById('notifyForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('알림 신청이 완료되었습니다!');
-    });
-  </script>
+    <!-- 오른쪽 비주얼 영역 -->
+    <div class="hero-card hero-card-right">
+      <div class="visual-circle">
+        <div class="avatar avatar-1"></div>
+        <div class="avatar avatar-2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Message Section -->
+  <section class="message-section">
+    <h2 class="section-title">
+      매달 반복되는 비용,<br />
+      왜 정산은 매번 처음부터 해야 할까?
+    </h2>
+    <div class="chat-flow">
+      <div class="chat-bubble left">
+        <span class="step-label">정산 요청</span>
+        <div class="bubble-content">이번 달은 47,980원 보내줘</div>
+      </div>
+      <div class="chat-bubble left step-2">
+        <span class="step-label">송금 확인</span>
+        <div class="bubble-content">다 보냈나?</div>
+      </div>
+      <div class="chat-bubble left step-3">
+        <span class="step-label">다시 요청</span>
+        <div class="bubble-content">아직 안 보냈네...</div>
+      </div>
+    </div>
+  </section>
+
 </body>
 </html>
