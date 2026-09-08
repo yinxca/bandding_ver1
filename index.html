@@ -10,21 +10,21 @@
 </head>
 <body>
 
-  <!-- 1. Header Navigation -->
+  <!-- [Header] -->
   <header class="header">
     <div class="logo"><a href="#">ban dding</a></div>
     <nav class="nav-pills">
-      <a href="#why" class="nav-link active">왜 반띵</a>
-      <a href="#how" class="nav-link">어떻게 반띵?</a>
-      <a href="#benefit" class="nav-link">반띵 하면?</a>
-      <a href="#together" class="nav-link">함께 반띵!</a>
-      <a href="#start" class="nav-link">반띵 시작하기</a>
+      <a href="#sec2" class="nav-link active">왜 반띵</a>
+      <a href="#sec5" class="nav-link">어떻게 반띵?</a>
+      <a href="#sec6" class="nav-link">반띵 하면?</a>
+      <a href="#sec8" class="nav-link">함께 반띵!</a>
+      <a href="#sec10" class="nav-link">반띵 시작하기</a>
     </nav>
     <button class="btn-primary btn-header" id="headerNotifyBtn">알림 받기</button>
   </header>
 
-  <!-- 2. Section 1: Hero Section -->
-  <section class="sec-hero">
+  <!-- [Section 1] Hero -->
+  <section class="sec-1-hero">
     <div class="hero-card hero-left">
       <div class="pill-badge">
         <span class="badge-icon">💡</span>
@@ -51,34 +51,25 @@
     </div>
   </section>
 
-  <!-- 3. Section 2: Question & Step Flow (수정된 2번째 섹션) -->
-  <section class="sec-chat-flow" id="why">
+  <!-- [Section 2] Question Flow -->
+  <section class="sec-2-chat" id="sec2">
     <div class="container chat-flow-grid">
-      
-      <!-- 왼쪽: 말풍선 흐름 (4단계) -->
       <div class="chat-list">
-        <!-- 1단계 (비활성화) -->
         <div class="chat-item">
           <span class="orange-dot"></span>
           <span class="chat-label">확인&계산</span>
           <div class="chat-bubble disabled">이번엔 얼마씩 나눠야 하지?</div>
         </div>
-        
-        <!-- 2단계 (활성화 - 검은색 말풍선) -->
         <div class="chat-item active">
           <span class="orange-dot"></span>
           <span class="chat-label">정산 요청</span>
           <div class="chat-bubble active-bubble">이번 달은 47,980원 보내줘</div>
         </div>
-
-        <!-- 3단계 (비활성화) -->
         <div class="chat-item">
           <span class="orange-dot"></span>
           <span class="chat-label">송금 확인</span>
           <div class="chat-bubble disabled">다 보냈나?</div>
         </div>
-
-        <!-- 4단계 (비활성화) -->
         <div class="chat-item">
           <span class="orange-dot"></span>
           <span class="chat-label">다시 요청</span>
@@ -86,18 +77,248 @@
         </div>
       </div>
 
-      <!-- 오른쪽: 메인 질문 타이틀 -->
       <div class="title-box">
         <h2 class="section-title">
           매달 반복되는 비용,<br />
           왜 정산은 <span class="highlight-orange">매번 처음부터 해야 할까?</span>
         </h2>
       </div>
-
     </div>
   </section>
 
-  <!-- Toast UI -->
+  <!-- [Section 3] Stress Receipts -->
+  <section class="sec-3-stress">
+    <div class="container text-center">
+      <div class="stress-visual-container">
+        <div class="speech-box speech-orange">
+          <span class="speech-role">정산자</span>
+          <p>아직 안보냈는데<br />다시 보내달라고 요청해야겠지..?</p>
+        </div>
+        <div class="receipt-card">
+          <p class="receipt-item">전기료<br />수도세<br />...</p>
+          <div class="receipt-divider"></div>
+          <p class="receipt-label">정산 요청</p>
+          <h3 class="receipt-price">₩ 75,800</h3>
+        </div>
+        <div class="speech-box speech-blue">
+          <span class="speech-role">송금자</span>
+          <p>아 맞다, 보내려고 했는데...<br />또 깜빡했네</p>
+        </div>
+      </div>
+
+      <div class="bracket-message">
+        <span class="bracket">(</span>
+        <p>
+          한쪽은 <span class="text-orange">다시 말하기가 부담</span>스럽고,<br />
+          한쪽은 미루다 <span class="text-blue-light">깜빡하고 미안해졌어요</span>
+        </p>
+        <span class="bracket">)</span>
+      </div>
+
+      <div class="chips-wrapper">
+        <div class="chips-left">
+          <span class="chip chip-dark-orange">답답함</span>
+          <span class="chip chip-orange">기다림</span>
+          <span class="chip chip-dark-orange">다시 말하기 부담</span>
+          <span class="chip chip-muted">지침</span>
+        </div>
+        <div class="chips-right">
+          <span class="chip chip-blue">귀찮음</span>
+          <span class="chip chip-blue-dark">미룸</span>
+          <span class="chip chip-muted">깜빡함</span>
+          <span class="chip chip-muted">미안함</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- [Section 4] Spotlight Logo -->
+  <section class="sec-4-spotlight">
+    <div class="spotlight-bg">
+      <h2 class="spotlight-title">
+        재촉하지 않고,<br />
+        까먹지 않고도
+      </h2>
+      <div class="spotlight-app-icon">
+        <div class="bubble-left">정산을</div>
+        <div class="app-icon">%</div>
+        <div class="bubble-right">끝낼 수 있어요</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- [Section 5] Auto Split -->
+  <section class="sec-5-split" id="sec5">
+    <div class="container text-center">
+      <div class="badge-pill-orange">매달 달라지는 금액도 걱정 없어요</div>
+      <div class="split-layout">
+        <h2 class="split-title-left">매번 확인하고,</h2>
+        <div class="center-app-card">
+          <div class="app-card-head">
+            <span>1건 총 금액 126,400원</span>
+            <div class="card-pills">
+              <span class="pill-active">반띵</span>
+              <span>랜덤</span>
+            </div>
+          </div>
+          <div class="user-list">
+            <div class="user-row">
+              <div class="u-avatar"></div>
+              <span>수훈&lt;3</span>
+              <span class="u-price">▲ 63,200원</span>
+            </div>
+            <div class="user-row">
+              <div class="u-avatar"></div>
+              <span>찌니</span>
+              <span class="u-price">▲ 63,200원</span>
+            </div>
+          </div>
+          <button class="btn-card-submit">1건 정산하기</button>
+        </div>
+        <h2 class="split-title-right">계산하지 않도록</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- [Section 6] Auto Remind -->
+  <section class="sec-6-remind" id="sec6">
+    <div class="container grid-2col">
+      <div class="dark-chat-left">
+        <div class="bg-bubble">혹시 이번 달 비용 아직 안 보냈어..?</div>
+        <div class="bg-bubble">오늘까지 보내줄 수 있어..?</div>
+        <div class="bg-bubble small">확인 부탁해</div>
+        <h2 class="remind-title">
+          깜빡한 정산,<br />
+          내가 말하기 전에
+        </h2>
+      </div>
+      <div class="remind-card-right">
+        <div class="white-screen"></div>
+        <div class="orange-alert-toast">아직 보내지 않은 멤버에게 먼저 알려줬어요!</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- [Section 7] History -->
+  <section class="sec-7-history">
+    <div class="container dark-history-grid">
+      <div class="history-left-text">
+        <div class="chat-tag-orange">반띵이 기억하고,</div>
+        <div class="chat-tag-white">알아서 챙길게요!</div>
+        <h2 class="history-title">
+          잊어버린 정산,<br />
+          다시 떠올릴 수 있게
+        </h2>
+      </div>
+      <div class="history-right-visual">
+        <div class="history-card-box">
+          <p class="history-head">9월 자동 정산</p>
+          <div class="history-row"><span>9/7 Netflix</span></div>
+          <div class="history-row"><span>9/12 공과금</span></div>
+          <div class="history-row"><span>9/17 Adobe</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- [Section 8] Light Benefit -->
+  <section class="sec-8-benefit" id="sec8">
+    <div class="container text-center">
+      <div class="badge-head">
+        <span class="badge-pill orange">정산은 가볍게</span>
+        <span class="badge-pill blue">우리사이는 편하게</span>
+      </div>
+      <div class="benefit-graphic-card">
+        <div class="brand-side-label">ban dding</div>
+        <div class="grey-rect-main"></div>
+        <div class="benefit-info-box">
+          <h3>한쪽은 다시 말할 일이 줄고, 한쪽은 깜빡해서 미안할 일이 줄어요.</h3>
+          <p>반띵이 정산을 챙기는 동안, 우리는 그냥 함께하면 돼요.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- [Section 9] 3-Cards Business -->
+  <section class="sec-9-cards">
+    <div class="container">
+      <div class="business-head text-center">
+        <span class="sub-business">for Business</span>
+        <h2>함께하는 사람이 많아질수록,<br />반복되는 비용 관리는 더 복잡해지니까</h2>
+      </div>
+
+      <div class="three-cards-grid">
+        <div class="biz-card">
+          <div class="biz-icon">⚡</div>
+          <h4>매달 달라도 자동으로 나누기</h4>
+          <p>전기·수도·가스처럼 달라지는 비용을 입주자별 기준에 맞춰 나눠요.</p>
+        </div>
+        <div class="biz-card center-card">
+          <div class="biz-icon">📋</div>
+          <h4>입금 현황 한눈에 보기</h4>
+          <p>누가 냈고, 누가 남았는지 사람마다 확인하지 않아도 돼요.</p>
+        </div>
+        <div class="biz-card">
+          <div class="biz-icon">🔔</div>
+          <h4>미정산도 자동으로 알림발송</h4>
+          <p>아직 끝나지 않은 정산은 반띵이 필요한 시점에 다시 알려요.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- [Section 10] Bottom CTA -->
+  <section class="sec-10-cta" id="sec10">
+    <div class="container text-center">
+      <h2>다음 달 정산, <span class="highlight-orange">반띵!</span> 해볼까요?</h2>
+      <div class="cta-mascot-box">
+        <div class="mascot blue"></div>
+        <div class="mascot cyan"></div>
+        <div class="mascot orange"></div>
+      </div>
+      <button class="btn-primary btn-cta-large">사전 신청하기</button>
+    </div>
+  </section>
+
+  <!-- [Footer] -->
+  <footer class="footer">
+    <div class="container footer-top">
+      <div class="footer-links-group">
+        <div class="f-col">
+          <strong>About Bandding</strong>
+          <a href="#sec2">왜 반띵</a>
+          <a href="#sec5">어떻게 반띵?</a>
+          <a href="#sec6">반띵 하면?</a>
+          <a href="#sec8">함께 반띵!</a>
+          <a href="#sec10">반띵 시작하기</a>
+        </div>
+        <div class="f-col">
+          <strong>Participate</strong>
+          <a href="#">출시 소식 받기</a>
+          <a href="#">사용 의향 남기기</a>
+          <a href="#">의견 보내기</a>
+        </div>
+        <div class="f-col">
+          <strong>Legal</strong>
+          <a href="#">개인정보 수집 및 이용 안내</a>
+        </div>
+      </div>
+
+      <div class="footer-form-group">
+        <p>출시되면 가장 먼저 알려드릴게요.</p>
+        <button class="btn-primary btn-footer-submit">출시 소식 받기</button>
+        <div class="social-icons">
+          <span>📷</span> <span>💼</span> <span>facebook</span> <span>▶</span>
+        </div>
+        <p class="copyright">© 2026 Bandding. All rights reserved.</p>
+      </div>
+    </div>
+
+    <div class="footer-giant-logo">
+      <h1>ban dding</h1>
+    </div>
+  </footer>
+
   <div class="toast" id="toast">이메일 알림 신청이 완료되었습니다! 🚀</div>
 
   <script src="app.js"></script>
