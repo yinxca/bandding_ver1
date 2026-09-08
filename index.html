@@ -1,302 +1,348 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'SUIT Variable', -apple-system, sans-serif;
-}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>반띵 - 공동비용 정산 서비스</title>
+  <!-- SUIT Variable Font -->
+  <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="fullpage-container">
 
-/* 풀페이지 스크롤 설정 */
-html {
-  scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
-  height: 100%;
-}
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="logo"><a href="#">ban dding</a></div>
+    <nav class="nav-pills">
+      <a href="#sec2" class="nav-link active">왜 반띵</a>
+      <a href="#sec5" class="nav-link">어떻게 반띵?</a>
+      <a href="#sec6" class="nav-link">반띵 하면?</a>
+      <a href="#sec8" class="nav-link">함께 반띵!</a>
+      <a href="#sec10" class="nav-link">반띵 시작하기</a>
+    </nav>
+    <button class="btn-primary btn-header" id="headerNotifyBtn">알림 받기</button>
+  </header>
 
-body {
-  background-color: #fffcf7;
-  color: #1a1b1e;
-  overflow-x: hidden;
-  height: 100%;
-}
+  <!-- [Section 1] Hero -->
+  <section class="fp-section sec-1-hero" id="sec1">
+    <div class="hero-card hero-left">
+      <div class="pill-badge">
+        <span class="badge-icon">💡</span>
+        <span>매달 함께 내는 비용을 위한 반띵</span>
+      </div>
+      <h1 class="hero-title">
+        매달 반복되는 정산,<br />
+        서로 챙기지 않아도<br />
+        자연스럽게 끝나도록
+      </h1>
+      <p class="hero-desc">
+        월세처럼 정해진 비용부터, 매달 달라지는 공과금까지.<br />
+        반띵이 이번달 금액에 맞춰 나눠주고, 정산을 챙겨드려요.
+      </p>
+      <form class="email-form" id="emailForm">
+        <input type="email" id="emailInput" placeholder="이메일을 적어주세요" required />
+        <button type="submit" class="btn-primary">알림받기</button>
+      </form>
+    </div>
+    <div class="hero-card hero-right">
+      <div class="phone-mockup">
+        <div class="phone-toast">%</div>
+      </div>
+    </div>
+  </section>
 
-.fp-section {
-  width: 100%;
-  height: 100vh;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
+  <!-- [Section 2] Question Flow -->
+  <section class="fp-section sec-2-chat" id="sec2">
+    <div class="container chat-flow-grid">
+      <div class="chat-list">
+        <div class="chat-item">
+          <span class="orange-dot"></span>
+          <span class="chat-label">확인&계산</span>
+          <div class="chat-bubble disabled">이번엔 얼마씩 나눠야 하지?</div>
+        </div>
+        <div class="chat-item active">
+          <span class="orange-dot"></span>
+          <span class="chat-label">정산 요청</span>
+          <div class="chat-bubble active-bubble">이번 달은 47,980원 보내줘</div>
+        </div>
+        <div class="chat-item">
+          <span class="orange-dot"></span>
+          <span class="chat-label">송금 확인</span>
+          <div class="chat-bubble disabled">다 보냈나?</div>
+        </div>
+        <div class="chat-item">
+          <span class="orange-dot"></span>
+          <span class="chat-label">다시 요청</span>
+          <div class="chat-bubble disabled">아직 안 보냈네...</div>
+        </div>
+      </div>
 
-.container {
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
+      <div class="title-box">
+        <h2 class="section-title">
+          매달 반복되는 비용,<br />
+          왜 정산은 <span class="highlight-orange">매번 처음부터 해야 할까?</span>
+        </h2>
+      </div>
+    </div>
+  </section>
 
-.text-center { text-align: center; }
+  <!-- [Section 3] Stress Receipts -->
+  <section class="fp-section sec-3-stress" id="sec3">
+    <div class="container text-center">
+      <div class="stress-visual-container">
+        <div class="speech-wrapper left-speech">
+          <div class="character-head orange-char">
+            <span class="char-face">:(</span>
+          </div>
+          <div class="speech-box speech-orange">
+            <div class="speech-header">
+              <span class="quote">“</span>
+              <span class="role-tag">정산자</span>
+            </div>
+            <p>아직 안보냈는데<br />다시 보내달라고 요청해야겠지..?</p>
+            <div class="speech-tail tail-left-bottom"></div>
+          </div>
+        </div>
 
-.btn-primary {
-  background-color: #ff4b11;
-  color: #ffffff;
-  border: none;
-  border-radius: 100px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
+        <div class="receipt-card">
+          <div class="receipt-zigzag top-zigzag"></div>
+          <p class="receipt-item">전기료<br />수도세<br />...</p>
+          <div class="receipt-divider"></div>
+          <p class="receipt-label">정산 요청</p>
+          <h3 class="receipt-price">₩ 75,800</h3>
+          <div class="receipt-zigzag bottom-zigzag"></div>
+        </div>
 
-/* Header Navigation */
-.header {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 1280px;
-  height: 80px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 40px;
-  z-index: 100;
-}
+        <div class="speech-wrapper right-speech">
+          <div class="character-head blue-char">
+            <span class="char-face">:o</span>
+          </div>
+          <div class="speech-box speech-blue">
+            <div class="speech-header right-align">
+              <span class="role-tag">송금자</span>
+              <span class="quote">”</span>
+            </div>
+            <p>아 맞다, 보내려고 했는데...<br />또 깜빡했네</p>
+            <div class="speech-tail tail-right-bottom"></div>
+          </div>
+        </div>
+      </div>
 
-.logo a { text-decoration: none; font-weight: 800; font-size: 24px; color: #1a1b1e; }
+      <div class="bracket-message">
+        <span class="bracket">(</span>
+        <p>
+          한쪽은 <span class="text-orange">다시 말하기가 부담</span>스럽고,<br />
+          한쪽은 미루다 <span class="text-blue-light">깜빡하고 미안해졌어요</span>
+        </p>
+        <span class="bracket">)</span>
+      </div>
 
-.nav-pills {
-  background: rgba(0, 0, 0, 0.85);
-  padding: 6px;
-  border-radius: 100px;
-  display: flex;
-  gap: 4px;
-  backdrop-filter: blur(8px);
-}
+      <div class="stacked-chips-container">
+        <div class="chip-stack left-stack">
+          <span class="chip chip-dark-orange pos-1">답답함</span>
+          <span class="chip chip-orange pos-2">기다림</span>
+          <span class="chip chip-dark-brown pos-3">다시 말하기 부담</span>
+          <span class="chip chip-muted pos-4">지침</span>
+        </div>
 
-.nav-pills .nav-link {
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.7);
-  padding: 8px 20px;
-  border-radius: 100px;
-  font-size: 14px;
-}
+        <div class="chip-stack right-stack">
+          <span class="chip chip-blue pos-5">귀찮음</span>
+          <span class="chip chip-blue-mid pos-6">미룸</span>
+          <span class="chip chip-blue-dark pos-7">깜빡함</span>
+          <span class="chip chip-dark-gray pos-8">미안함</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-.nav-pills .nav-link.active { background: #e6f4ff; color: #000; font-weight: 700; }
-.btn-header { padding: 10px 20px; font-size: 14px; }
+  <!-- [Section 4] Spotlight Logo -->
+  <section class="fp-section sec-4-spotlight" id="sec4">
+    <div class="spotlight-bg">
+      <h2 class="spotlight-title">
+        재촉하지 않고,<br />
+        까먹지 않고도
+      </h2>
+      <div class="spotlight-app-icon">
+        <div class="bubble-left">정산을</div>
+        <div class="app-icon">%</div>
+        <div class="bubble-right">끝낼 수 있어요</div>
+      </div>
+    </div>
+  </section>
 
-/* Section 1: Hero */
-.sec-1-hero { max-width: 1280px; margin: 0 auto; display: flex; gap: 24px; padding: 100px 40px 40px 40px; }
-.hero-card { flex: 1; height: 100%; max-height: 520px; border-radius: 34px; padding: 48px; display: flex; flex-direction: column; }
-.hero-left { background-color: #f8f8f8; }
-.pill-badge { background: #fff; padding: 8px 18px; border-radius: 100px; font-size: 14px; width: fit-content; margin-bottom: 24px; }
-.hero-title { font-size: 32px; font-weight: 700; line-height: 1.35; margin-bottom: 16px; }
-.hero-desc { color: #666; font-size: 15px; line-height: 1.6; margin-bottom: auto; }
+  <!-- [Section 5] Auto Split -->
+  <section class="fp-section sec-5-split" id="sec5">
+    <div class="container text-center">
+      <div class="badge-pill-orange">매달 달라지는 금액도 걱정 없어요</div>
+      <div class="split-layout">
+        <h2 class="split-title-left">매번 확인하고,</h2>
+        <div class="center-app-card">
+          <div class="app-card-head">
+            <span>1건 총 금액 126,400원</span>
+            <div class="card-pills">
+              <span class="pill-active">반띵</span>
+              <span>랜덤</span>
+            </div>
+          </div>
+          <div class="user-list">
+            <div class="user-row">
+              <div class="u-avatar"></div>
+              <span>수훈&lt;3</span>
+              <span class="u-price">▲ 63,200원</span>
+            </div>
+            <div class="user-row">
+              <div class="u-avatar"></div>
+              <span>찌니</span>
+              <span class="u-price">▲ 63,200원</span>
+            </div>
+          </div>
+          <button class="btn-card-submit">1건 정산하기</button>
+        </div>
+        <h2 class="split-title-right">계산하지 않도록</h2>
+      </div>
+    </div>
+  </section>
 
-.email-form { background: #ffffff; border-radius: 100px; padding: 6px 6px 6px 20px; display: flex; justify-content: space-between; border: 1px solid #eaeaea; }
-.email-form input { border: none; outline: none; font-size: 15px; width: 60%; }
-.email-form button { padding: 12px 28px; font-size: 15px; }
+  <!-- [Section 6] Auto Remind -->
+  <section class="fp-section sec-6-remind" id="sec6">
+    <div class="container grid-2col">
+      <div class="dark-chat-left">
+        <div class="bg-bubble">혹시 이번 달 비용 아직 안 보냈어..?</div>
+        <div class="bg-bubble">오늘까지 보내줄 수 있어..?</div>
+        <div class="bg-bubble small">확인 부탁해</div>
+        <h2 class="remind-title">
+          깜빡한 정산,<br />
+          내가 말하기 전에
+        </h2>
+      </div>
+      <div class="remind-card-right">
+        <div class="orange-alert-toast">아직 보내지 않은 멤버에게 먼저 알려줬어요!</div>
+      </div>
+    </div>
+  </section>
 
-.hero-right { background-color: #f0f0f0; align-items: center; justify-content: center; }
-.phone-mockup { width: 180px; height: 320px; background: #fff; border-radius: 32px; border: 3px solid #1a1b1e; display: flex; align-items: center; justify-content: center; }
-.phone-toast { width: 70px; height: 70px; background: #ff4b11; color: #fff; border-radius: 18px; font-size: 32px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  <!-- [Section 7] History -->
+  <section class="fp-section sec-7-history" id="sec7">
+    <div class="container dark-history-grid">
+      <div class="history-left-text">
+        <div class="chat-tag-orange">반띵이 기억하고,</div>
+        <div class="chat-tag-white">알아서 챙길게요!</div>
+        <h2 class="history-title">
+          잊어버린 정산,<br />
+          다시 떠올릴 수 있게
+        </h2>
+      </div>
+      <div class="history-right-visual">
+        <div class="history-card-box">
+          <p class="history-head">9월 자동 정산</p>
+          <div class="history-row"><span>9/7 Netflix</span></div>
+          <div class="history-row"><span>9/12 공과금</span></div>
+          <div class="history-row"><span>9/17 Adobe</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-/* Section 2: Question Flow */
-.sec-2-chat { background-color: #fff8ee; }
-.chat-flow-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 60px; }
-.chat-list { display: flex; flex-direction: column; gap: 16px; }
-.chat-item { display: flex; align-items: center; gap: 14px; opacity: 0.35; }
-.chat-item.active { opacity: 1; }
-.orange-dot { width: 8px; height: 8px; background-color: #ff4b11; border-radius: 50%; }
-.chat-label { width: 80px; font-size: 15px; font-weight: 700; color: #666; }
-.chat-item.active .chat-label { color: #1a1b1e; }
-.chat-bubble { padding: 12px 20px; border-radius: 14px; font-size: 15px; }
-.chat-bubble.disabled { border: 1px solid #e5dfd5; color: #aaa; }
-.chat-bubble.active-bubble { background-color: #1a1b1e; color: #ffffff; font-weight: 700; }
-.section-title { font-size: 30px; font-weight: 700; line-height: 1.45; }
-.highlight-orange { color: #ff4b11; }
+  <!-- [Section 8] Light Benefit -->
+  <section class="fp-section sec-8-benefit" id="sec8">
+    <div class="container text-center">
+      <div class="badge-head">
+        <span class="badge-pill orange">정산은 가볍게</span>
+        <span class="badge-pill blue">우리사이는 편하게</span>
+      </div>
+      <div class="benefit-graphic-card">
+        <div class="benefit-info-box">
+          <h3>한쪽은 다시 말할 일이 줄고, 한쪽은 깜빡해서 미안할 일이 줄어요.</h3>
+          <p>반띵이 정산을 챙기는 동안, 우리는 그냥 함께하면 돼요.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-/* ===========================================
-   Section 3: Stress Receipts (3번 섹션 정밀 수정)
-=========================================== */
-.sec-3-stress { background-color: #2b2323; color: #ffffff; }
+  <!-- [Section 9] 3-Cards Business -->
+  <section class="fp-section sec-9-cards" id="sec9">
+    <div class="container">
+      <div class="business-head text-center">
+        <span class="sub-business">for Business</span>
+        <h2>함께하는 사람이 많아질수록,<br />반복되는 비용 관리는 더 복잡해지니까</h2>
+      </div>
 
-.stress-visual-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  position: relative;
-  max-width: 960px;
-  margin: 0 auto 30px auto;
-}
+      <div class="three-cards-grid">
+        <div class="biz-card">
+          <div class="biz-icon">⚡</div>
+          <h4>매달 달라도 자동으로 나누기</h4>
+          <p>전기·수도·가스처럼 달라지는 비용을 입주자별 기준에 맞춰 나눠요.</p>
+        </div>
+        <div class="biz-card center-card">
+          <div class="biz-icon">📋</div>
+          <h4>입금 현황 한눈에 보기</h4>
+          <p>누가 냈고, 누가 남았는지 사람마다 확인하지 않아도 돼요.</p>
+        </div>
+        <div class="biz-card">
+          <div class="biz-icon">🔔</div>
+          <h4>미정산도 자동으로 알림발송</h4>
+          <p>아직 끝나지 않은 정산은 반띵이 필요한 시점에 다시 알려요.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-.speech-wrapper { position: relative; z-index: 2; }
-.left-speech { margin-right: -20px; margin-bottom: 25px; }
-.right-speech { margin-left: -20px; margin-bottom: 25px; }
+  <!-- [Section 10] Bottom CTA -->
+  <section class="fp-section sec-10-cta" id="sec10">
+    <div class="container text-center">
+      <h2>다음 달 정산, <span class="highlight-orange">반띵!</span> 해볼까요?</h2>
+      <div class="cta-mascot-box">
+        <div class="mascot blue"></div>
+        <div class="mascot cyan"></div>
+        <div class="mascot orange"></div>
+      </div>
+      <button class="btn-primary btn-cta-large">사전 신청하기</button>
+    </div>
+  </section>
 
-/* 캐릭터 머리 아이콘 크기 확대 */
-.character-head {
-  width: 56px;
-  height: 28px;
-  border-radius: 28px 28px 0 0;
-  position: absolute;
-  top: -26px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  <!-- [Section 11] Footer -->
+  <section class="fp-section sec-footer" id="footer">
+    <footer class="footer">
+      <div class="container footer-top">
+        <div class="footer-links-group">
+          <div class="f-col">
+            <strong>About Bandding</strong>
+            <a href="#sec2">왜 반띵</a>
+            <a href="#sec5">어떻게 반띵?</a>
+            <a href="#sec6">반띵 하면?</a>
+            <a href="#sec8">함께 반띵!</a>
+            <a href="#sec10">반띵 시작하기</a>
+          </div>
+          <div class="f-col">
+            <strong>Participate</strong>
+            <a href="#">출시 소식 받기</a>
+            <a href="#">사용 의향 남기기</a>
+            <a href="#">의견 보내기</a>
+          </div>
+          <div class="f-col">
+            <strong>Legal</strong>
+            <a href="#">개인정보 수집 및 이용 안내</a>
+          </div>
+        </div>
 
-.orange-char { background-color: #e0410a; left: 50px; }
-.blue-char { background-color: #93c5fd; right: 50px; }
-.char-face { font-size: 12px; font-weight: 800; color: #1a1b1e; transform: rotate(90deg); }
+        <div class="footer-form-group">
+          <p>출시되면 가장 먼저 알려드릴게요.</p>
+          <button class="btn-primary btn-footer-submit">출시 소식 받기</button>
+          <div class="social-icons">
+            <span>📷</span> <span>💼</span> <span>facebook</span> <span>▶</span>
+          </div>
+          <p class="copyright">© 2026 Bandding. All rights reserved.</p>
+        </div>
+      </div>
 
-/* 말풍선 가로 폭 확대 */
-.speech-box {
-  min-width: 340px;
-  padding: 22px 32px;
-  border-radius: 26px;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.5;
-  text-align: left;
-  position: relative;
-  box-shadow: 0 10px 24px rgba(0,0,0,0.3);
-}
+      <div class="footer-giant-logo">
+        <h1>ban dding</h1>
+      </div>
+    </footer>
+  </section>
 
-.speech-orange { background-color: #ff4b11; color: #ffffff; }
-.speech-blue { background-color: #e2f0fe; color: #1a1b1e; }
+  <div class="toast" id="toast">이메일 알림 신청이 완료되었습니다! 🚀</div>
 
-.speech-header { display: flex; align-items: center; gap: 4px; margin-bottom: 6px; }
-.speech-header.right-align { justify-content: flex-end; }
-.role-tag { font-size: 13px; opacity: 0.8; }
-.quote { font-size: 20px; font-weight: 800; }
-
-.speech-tail { position: absolute; width: 0; height: 0; border-style: solid; }
-.tail-left-bottom {
-  bottom: -12px;
-  left: 28px;
-  border-width: 14px 12px 0 0;
-  border-color: #ff4b11 transparent transparent transparent;
-}
-.tail-right-bottom {
-  bottom: -12px;
-  right: 28px;
-  border-width: 14px 0 0 12px;
-  border-color: #e2f0fe transparent transparent transparent;
-}
-
-/* 오른쪽으로 기울어진 영수증 및 점선 제거 */
-.receipt-card {
-  background-color: #ffffff;
-  color: #1a1b1e;
-  padding: 32px 24px;
-  width: 185px;
-  position: relative;
-  z-index: 3;
-  transform: rotate(8deg); /* 오른쪽 기울기 적용 */
-  box-shadow: 0 14px 36px rgba(0,0,0,0.45);
-  border-radius: 2px;
-}
-
-/* 톱니 절취선 (점선 제거 후 깔끔한 지그재그 패턴) */
-.receipt-zigzag {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 10px;
-  background-repeat: repeat-x;
-  background-size: 14px 10px;
-}
-
-.top-zigzag {
-  top: -10px;
-  background-image: linear-gradient(135deg, #2b2323 50%, transparent 50%), linear-gradient(225deg, #2b2323 50%, transparent 50%);
-}
-
-.bottom-zigzag {
-  bottom: -10px;
-  background-image: linear-gradient(45deg, #2b2323 50%, transparent 50%), linear-gradient(315deg, #2b2323 50%, transparent 50%);
-}
-
-.receipt-item { font-size: 13px; color: #888; line-height: 1.4; text-align: center; }
-.receipt-divider { display: none; } /* 기존 점선 구분선 제거 */
-.receipt-label { font-size: 14px; font-weight: 700; color: #333; text-align: center; margin-top: 12px; }
-.receipt-price { font-size: 21px; font-weight: 800; color: #1a1b1e; margin-top: 4px; text-align: center; }
-
-/* 괄호 문구 */
-.bracket-message { display: flex; justify-content: center; align-items: center; gap: 16px; margin-bottom: 30px; }
-.bracket { font-size: 42px; color: #6b5f5f; font-weight: 300; }
-.bracket-message p { font-size: 22px; font-weight: 700; line-height: 1.45; }
-.text-orange { color: #ff5e2b; }
-.text-blue-light { color: #7cb5ec; }
-
-/* 하단 쌓인 스택 칩들 크기 및 배치 확장 */
-.stacked-chips-container {
-  display: flex;
-  justify-content: space-between;
-  max-width: 980px;
-  margin: 0 auto;
-  height: 140px;
-  position: relative;
-}
-
-.chip-stack { position: relative; width: 420px; }
-
-/* 스택 칩 패딩 & 볼륨 확대 */
-.chip {
-  position: absolute;
-  padding: 16px 32px;
-  border-radius: 100px;
-  font-size: 18px;
-  font-weight: 700;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-  white-space: nowrap;
-}
-
-/* 주황 계열 스택 위치 및 각도 정밀 수정 */
-.pos-1 { background: #ba3c1b; color: #f0a390; top: 0; left: 20px; transform: rotate(-10deg); z-index: 1; }
-.pos-2 { background: #ff4b11; color: #fff; top: 12px; left: 80px; transform: rotate(-3deg); font-size: 22px; padding: 18px 40px; z-index: 4; }
-.pos-3 { background: #52312b; color: #aa8177; top: 68px; left: 0px; transform: rotate(4deg); z-index: 2; }
-.pos-4 { background: #944633; color: #eabbaf; top: 72px; left: 200px; transform: rotate(-6deg); z-index: 3; }
-
-/* 파랑 계열 스택 위치 및 각도 정밀 수정 */
-.pos-5 { background: #3b82f6; color: #fff; top: 0; right: 20px; transform: rotate(8deg); font-size: 20px; padding: 18px 36px; z-index: 4; }
-.pos-6 { background: #2563eb; color: #fff; top: 28px; right: 130px; transform: rotate(-6deg); font-size: 20px; padding: 18px 38px; z-index: 3; }
-.pos-7 { background: #1d3557; color: #93c5fd; top: 70px; right: 170px; transform: rotate(6deg); z-index: 2; }
-.pos-8 { background: #334155; color: #cbd5e1; top: 72px; right: 10px; transform: rotate(-4deg); z-index: 1; }
-
-/* Section 10: Bottom CTA */
-.sec-10-cta { background: #231f20; color: #fff; }
-.sec-10-cta h2 { font-size: 32px; font-weight: 700; margin-bottom: 30px; }
-.cta-mascot-box { display: flex; justify-content: center; gap: 12px; margin-bottom: 24px; }
-.mascot { width: 36px; height: 54px; border-radius: 10px; }
-.mascot.blue { background: #93c5fd; }
-.mascot.cyan { background: #a5f3fc; }
-.mascot.orange { background: #ff4b11; }
-.btn-cta-large { padding: 16px 48px; font-size: 17px; }
-
-/* Toast */
-.toast {
-  position: fixed;
-  bottom: -60px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #1a1b1e;
-  color: #fff;
-  padding: 12px 24px;
-  border-radius: 100px;
-  transition: bottom 0.4s ease;
-  z-index: 1000;
-  font-size: 14px;
-}
-.toast.show { bottom: 30px; }
-
-@media (max-width: 820px) {
-  .sec-1-hero, .chat-flow-grid { flex-direction: column; grid-template-columns: 1fr; text-align: center; }
-  .stress-visual-container { flex-direction: column; align-items: center; }
-  .left-speech, .right-speech { margin: 0; }
-  .stacked-chips-container { flex-direction: column; height: auto; gap: 100px; align-items: center; }
-}
+  <script src="app.js"></script>
+</body>
+</html>
