@@ -5,7 +5,7 @@
   font-family: 'SUIT Variable', -apple-system, sans-serif;
 }
 
-/* 풀페이지 스크롤 핵심 CSS (Scroll Snap) */
+/* 풀페이지 스크롤 설정 */
 html {
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
@@ -19,7 +19,7 @@ body {
   height: 100%;
 }
 
-/* 각 섹션을 화면 전체 높이(100vh)로 딱 맞춰 스냅 */
+/* 각 섹션 100vh 고정 및 중앙 정렬 */
 .fp-section {
   width: 100%;
   height: 100vh;
@@ -51,7 +51,7 @@ body {
   transition: all 0.2s ease;
 }
 
-/* Header Navigation (고정 위치) */
+/* Header */
 .header {
   position: fixed;
   top: 0;
@@ -120,7 +120,9 @@ body {
 .section-title { font-size: 30px; font-weight: 700; line-height: 1.45; }
 .highlight-orange { color: #ff4b11; }
 
-/* Section 3: Stress Receipts (3번 섹션 톱니 및 말풍선 꼬리 구현) */
+/* ===========================================
+   Section 3: Stress Receipts (영수증 & 스택 크기 수정)
+=========================================== */
 .sec-3-stress { background-color: #2b2323; color: #ffffff; }
 
 .stress-visual-container {
@@ -128,39 +130,38 @@ body {
   justify-content: center;
   align-items: flex-end;
   position: relative;
-  max-width: 820px;
-  margin: 0 auto 40px auto;
+  max-width: 860px;
+  margin: 0 auto 30px auto;
 }
 
 .speech-wrapper { position: relative; z-index: 2; }
-.left-speech { margin-right: -30px; margin-bottom: 20px; }
-.right-speech { margin-left: -30px; margin-bottom: 20px; }
+.left-speech { margin-right: -25px; margin-bottom: 25px; }
+.right-speech { margin-left: -25px; margin-bottom: 25px; }
 
-/* 캐릭터 머리 귀여운 디자인 */
 .character-head {
-  width: 44px;
-  height: 22px;
-  border-radius: 20px 20px 0 0;
+  width: 48px;
+  height: 24px;
+  border-radius: 24px 24px 0 0;
   position: absolute;
-  top: -18px;
+  top: -22px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.orange-char { background-color: #e0410a; left: 40px; }
-.blue-char { background-color: #93c5fd; right: 40px; }
-.char-face { font-size: 10px; font-weight: 800; color: #1a1b1e; transform: rotate(90deg); }
+.orange-char { background-color: #e0410a; left: 45px; }
+.blue-char { background-color: #93c5fd; right: 45px; }
+.char-face { font-size: 11px; font-weight: 800; color: #1a1b1e; transform: rotate(90deg); }
 
-/* 말풍선 본체 */
 .speech-box {
-  padding: 18px 24px;
-  border-radius: 20px;
-  font-size: 14px;
+  padding: 20px 28px;
+  border-radius: 22px;
+  font-size: 15px;
   font-weight: 600;
   line-height: 1.45;
   text-align: left;
   position: relative;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.3);
 }
 
 .speech-orange { background-color: #ff4b11; color: #ffffff; }
@@ -168,10 +169,9 @@ body {
 
 .speech-header { display: flex; align-items: center; gap: 4px; margin-bottom: 4px; }
 .speech-header.right-align { justify-content: flex-end; }
-.role-tag { font-size: 11px; opacity: 0.8; }
-.quote { font-size: 16px; font-weight: 800; }
+.role-tag { font-size: 12px; opacity: 0.8; }
+.quote { font-size: 18px; font-weight: 800; }
 
-/* 말풍선 꼬리표 (CSS Triangle) */
 .speech-tail { position: absolute; width: 0; height: 0; border-style: solid; }
 .tail-left-bottom {
   bottom: -10px;
@@ -186,64 +186,81 @@ body {
   border-color: #e2f0fe transparent transparent transparent;
 }
 
-/* 중앙 영수증 톱니 절취선 구현 */
+/* 영수증 카드 형태 개선 */
 .receipt-card {
   background-color: #ffffff;
   color: #1a1b1e;
-  padding: 24px 20px;
-  width: 160px;
+  padding: 30px 22px;
+  width: 175px;
   position: relative;
   z-index: 3;
   transform: rotate(-4deg);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.45);
 }
 
 .receipt-zigzag {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 10px;
-  background-size: 12px 10px;
+  height: 8px;
+  background-repeat: repeat-x;
+  background-size: 12px 8px;
 }
 
 .top-zigzag {
-  top: -10px;
-  background-image: radial-gradient(circle, transparent 70%, #ffffff 75%);
-  background-position: 0 -5px;
+  top: -8px;
+  background-image: radial-gradient(circle at 6px 0, transparent 6px, #ffffff 7px);
 }
 
 .bottom-zigzag {
-  bottom: -10px;
-  background-image: radial-gradient(circle, transparent 70%, #ffffff 75%);
-  background-position: 0 5px;
+  bottom: -8px;
+  background-image: radial-gradient(circle at 6px 8px, transparent 6px, #ffffff 7px);
 }
 
-.receipt-item { font-size: 12px; color: #888; line-height: 1.3; }
-.receipt-divider { border-top: 2px dashed #ddd; margin: 8px 0; }
-.receipt-label { font-size: 12px; font-weight: 700; color: #333; }
-.receipt-price { font-size: 18px; font-weight: 800; color: #1a1b1e; margin-top: 2px; }
+.receipt-item { font-size: 13px; color: #888; line-height: 1.35; }
+.receipt-divider { border-top: 2px dashed #ddd; margin: 10px 0; }
+.receipt-label { font-size: 13px; font-weight: 700; color: #333; }
+.receipt-price { font-size: 20px; font-weight: 800; color: #1a1b1e; margin-top: 2px; }
 
-/* 괄호 메시지 */
-.bracket-message { display: flex; justify-content: center; align-items: center; gap: 14px; margin-bottom: 40px; }
-.bracket { font-size: 38px; color: #6b5f5f; font-weight: 300; }
-.bracket-message p { font-size: 20px; font-weight: 700; line-height: 1.45; }
+/* 괄호 문구 */
+.bracket-message { display: flex; justify-content: center; align-items: center; gap: 16px; margin-bottom: 36px; }
+.bracket { font-size: 42px; color: #6b5f5f; font-weight: 300; }
+.bracket-message p { font-size: 22px; font-weight: 700; line-height: 1.45; }
 .text-orange { color: #ff5e2b; }
 .text-blue-light { color: #7cb5ec; }
 
-/* 포개진 칩 버튼 영역 */
-.stacked-chips-container { display: flex; justify-content: space-between; max-width: 800px; margin: 0 auto; height: 100px; }
-.chip-stack { position: relative; width: 300px; }
-.chip { position: absolute; padding: 10px 20px; border-radius: 100px; font-size: 14px; font-weight: 700; }
+/* 하단 쌓인 스택 칩들 크기 및 배치 확대 */
+.stacked-chips-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 920px;
+  margin: 0 auto;
+  height: 130px;
+  position: relative;
+}
 
-.pos-1 { background: #a83d22; color: #e5937d; top: 0; left: 0; transform: rotate(-8deg); }
-.pos-2 { background: #ff4b11; color: #fff; top: 15px; left: 40px; transform: rotate(-2deg); font-size: 16px; padding: 12px 26px; z-index: 3; }
-.pos-3 { background: #59352e; color: #a37b72; top: 50px; left: -10px; transform: rotate(3deg); }
-.pos-4 { background: #8c4735; color: #e0aa9b; top: 55px; left: 140px; transform: rotate(-5deg); }
+.chip-stack { position: relative; width: 380px; }
 
-.pos-5 { background: #3b82f6; color: #fff; top: 0; right: 10px; transform: rotate(6deg); }
-.pos-6 { background: #2563eb; color: #fff; top: 20px; right: 90px; transform: rotate(-4deg); z-index: 3; }
-.pos-7 { background: #1e3a8a; color: #93c5fd; top: 50px; right: 110px; transform: rotate(5deg); }
-.pos-8 { background: #334155; color: #cbd5e1; top: 55px; right: 0; transform: rotate(-3deg); }
+/* 스택 칩 개별 폰트 & 패딩 확대 */
+.chip {
+  position: absolute;
+  padding: 14px 28px;
+  border-radius: 100px;
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  white-space: nowrap;
+}
+
+.pos-1 { background: #a83d22; color: #e5937d; top: 0; left: 0; transform: rotate(-8deg); z-index: 1; }
+.pos-2 { background: #ff4b11; color: #fff; top: 16px; left: 60px; transform: rotate(-2deg); font-size: 19px; padding: 16px 34px; z-index: 4; }
+.pos-3 { background: #59352e; color: #a37b72; top: 62px; left: -10px; transform: rotate(3deg); z-index: 2; }
+.pos-4 { background: #8c4735; color: #e0aa9b; top: 68px; left: 170px; transform: rotate(-5deg); z-index: 3; }
+
+.pos-5 { background: #3b82f6; color: #fff; top: 0; right: 10px; transform: rotate(6deg); z-index: 3; }
+.pos-6 { background: #2563eb; color: #fff; top: 22px; right: 110px; transform: rotate(-4deg); font-size: 18px; padding: 15px 32px; z-index: 4; }
+.pos-7 { background: #1e3a8a; color: #93c5fd; top: 62px; right: 140px; transform: rotate(5deg); z-index: 2; }
+.pos-8 { background: #334155; color: #cbd5e1; top: 68px; right: 0; transform: rotate(-3deg); z-index: 1; }
 
 /* Section 10: Bottom CTA */
 .sec-10-cta { background: #231f20; color: #fff; }
@@ -256,5 +273,24 @@ body {
 .btn-cta-large { padding: 16px 48px; font-size: 17px; }
 
 /* Toast */
-.toast { position: fixed; bottom: -60px; left: 50%; transform: translateX(-50%); background: #1a1b1e; color: #fff; padding: 12px 24px; border-radius: 100px; transition: bottom 0.4s ease; z-index: 1000; font-size: 14px; }
+.toast {
+  position: fixed;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1a1b1e;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 100px;
+  transition: bottom 0.4s ease;
+  z-index: 1000;
+  font-size: 14px;
+}
 .toast.show { bottom: 30px; }
+
+@media (max-width: 820px) {
+  .sec-1-hero, .chat-flow-grid { flex-direction: column; grid-template-columns: 1fr; text-align: center; }
+  .stress-visual-container { flex-direction: column; align-items: center; }
+  .left-speech, .right-speech { margin: 0; }
+  .stacked-chips-container { flex-direction: column; height: auto; gap: 100px; align-items: center; }
+}
