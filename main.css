@@ -1,87 +1,255 @@
+/* 기본 리셋 및 글로벌 스타일 */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: 'SUIT Variable', sans-serif;
 }
 
 body {
-  font-family: 'SUIT', sans-serif;
-  background-color: #ffffff;
+  background-color: #fffcf7;
+  color: #1a1b1e;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-.container {
-  position: relative;
-  width: 100%;
-  max-width: 1440px; /* 원본 피그마/디자인 프레임 너비에 맞춰 조정 가능 */
-  margin: 0 auto;
-}
-
-/* 이미지 파일 사용 시 스타일 */
-.design-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* 이메일 입력폼 전체 래퍼 */
-.v1082_10247 {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-/* 이메일 입력창 영역 */
-.v1082_9824 {
-  width: 320px;
-  height: 52px;
-  background: #f1f5f9;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
-}
-
-/* 실제 Input 텍스트 필드 */
-.v1082_9825 {
-  width: 100%;
-  border: none;
-  background: transparent;
-  outline: none;
-  font-family: 'SUIT', sans-serif;
-  font-size: 15px;
-  color: #1e293b;
-}
-
-.v1082_9825::placeholder {
-  color: #94a3b8;
-}
-
-/* 알림받기 버튼 */
-.v1082_9842 {
-  height: 52px;
-  padding: 0 24px;
-  background: #2563eb; /* 디자인 속 버튼 메인 색상 */
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
-}
-
-.v1082_9842:hover {
-  background: #1d4ed8;
-}
-
-/* 버튼 텍스트 */
-.v1082_9843 {
+/* Common Components */
+.btn-primary {
+  background-color: #ff4b11;
   color: #ffffff;
-  font-family: 'SUIT', sans-serif;
+  border: none;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #e03e0a;
+}
+
+/* 1. Header Styles */
+.header {
+  width: 100%;
+  max-width: 1280px;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  margin-top: 10px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+}
+
+.nav-pills {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 6px;
+  border-radius: 100px;
+  display: flex;
+  gap: 4px;
+}
+
+.nav-pills a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 8px 18px;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.nav-pills a.active,
+.nav-pills a:hover {
+  background: #e6f4ff;
+  color: #000;
+  font-weight: 700;
+}
+
+.btn-header {
+  padding: 12px 24px;
+}
+
+/* 2. Hero Section */
+.hero-section {
+  width: 100%;
+  max-width: 1280px;
+  display: flex;
+  gap: 24px;
+  padding: 20px 40px 60px 40px;
+}
+
+.hero-card {
+  flex: 1;
+  height: 580px;
+  background-color: #f5f5f5;
+  border-radius: 34px;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-card-left {
+  justify-content: flex-start;
+}
+
+/* 배지 아이콘 및 텍스트 */
+.pill-badge {
+  display: inline-flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 28px;
+  width: fit-content;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.badge-icon {
+  margin-right: 8px;
+}
+
+.hero-title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #1a1b1e;
+  margin-bottom: 16px;
+}
+
+.hero-desc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: auto;
+}
+
+/* 이메일 입력 폼 */
+.email-form {
+  background: #ffffff;
+  border-radius: 100px;
+  padding: 6px 6px 6px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.email-form input {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  width: 60%;
+  color: #333;
+}
+
+.email-form input::placeholder {
+  color: #9d9d9d;
+}
+
+.email-form button {
+  padding: 14px 32px;
+}
+
+/* 오른쪽 그래픽 영역 */
+.hero-card-right {
+  background-color: #ececec;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.visual-circle {
+  width: 280px;
+  height: 280px;
+  background: #ffffff;
+  border-radius: 50%;
+  position: relative;
+}
+
+.avatar {
+  position: absolute;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+}
+
+.avatar-1 {
+  width: 120px;
+  height: 120px;
+  background-color: #ffb8a2;
+  top: 40px;
+  left: 30px;
+}
+
+.avatar-2 {
+  width: 100px;
+  height: 100px;
+  background-color: #a2d2ff;
+  bottom: 30px;
+  right: 40px;
+}
+
+/* 3. Message Section */
+.message-section {
+  width: 100%;
+  background-color: #fff8ee;
+  padding: 80px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #1a1b1e;
+}
+
+.chat-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.chat-bubble {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.step-label {
   font-size: 16px;
   font-weight: 600;
+  color: #ff4b11;
+  width: 80px;
+}
+
+.bubble-content {
+  background-color: #1a1b1e;
+  color: #ffffff;
+  padding: 14px 24px;
+  border-radius: 16px 16px 16px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.chat-bubble.step-2 .bubble-content,
+.chat-bubble.step-3 .bubble-content {
+  background-color: #252323;
+  color: #ccc6be;
 }
