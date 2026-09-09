@@ -23,6 +23,7 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     initHeader();
+    initHeaderTheme();
     initMobileNav();
     initScrollSpy();
     initSmoothScroll();
@@ -67,6 +68,22 @@
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     if (fp) fp.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  /* ---------- header colour vs. dark sections ---------- */
+  function initHeaderTheme() {
+    const header = document.getElementById('header');
+    if (!header) return;
+    const darkSections = [...document.querySelectorAll('[data-header-dark]')];
+    if (!darkSections.length || !('IntersectionObserver' in window)) return;
+
+    const state = new Map();
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => state.set(e.target, e.isIntersecting));
+      header.classList.toggle('on-dark', [...state.values()].some(Boolean));
+    }, { rootMargin: '-46% 0px -46% 0px', threshold: 0 });
+
+    darkSections.forEach((s) => obs.observe(s));
   }
 
   /* ---------- mobile nav ---------- */
