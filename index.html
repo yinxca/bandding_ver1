@@ -74,7 +74,7 @@
     <div class="hero-content" data-reveal>
       <div class="pill-badge">
         <span class="badge-avatars" aria-hidden="true">
-          <span class="badge-av badge-av-mark">%</span>
+          <img class="badge-av badge-av-mark" src="images/header_profile.png" alt="" />
           <span class="badge-av badge-av-plus">+</span>
         </span>
         <span>매달 함께 내는 비용을 위한 반띵</span>
@@ -139,6 +139,11 @@
               <img class="deco" src="images/food.png" alt="" />
               <img class="deco" src="images/fire.png" alt="" />
             </div>
+            <div class="deco-row deco-below-2" aria-hidden="true">
+              <img class="deco" src="images/fire.png" alt="" />
+              <img class="deco" src="images/electronic.png" alt="" />
+              <img class="deco" src="images/shopping-cart.png" alt="" />
+            </div>
           </div>
         </div>
       </div>
@@ -165,29 +170,26 @@
 
       <div class="stress-visual">
         <div class="speech orange-speech">
-          <span class="blob orange-blob" aria-hidden="true">
-            <span class="blob-eyes"></span><span class="blob-mouth mouth-sad"></span>
-          </span>
-          <span class="q" aria-hidden="true">“</span>
+          <img class="blob orange-blob" src="images/red_sad.png" alt="" aria-hidden="true" />
+          <span class="q" aria-hidden="true"></span>
           <span class="role">정산자</span>
           <p class="speech-msg">아직 안보냈는데<br />다시 보내달라고 요청해야겠지..?</p>
           <span class="speech-tail tail-l" aria-hidden="true"></span>
         </div>
 
         <div class="receipt" aria-hidden="true">
-          <span class="zig zig-top"></span>
-          <p class="receipt-lines">전기료<br />수도세</p>
-          <span class="receipt-dots">⋮</span>
-          <p class="receipt-req">정산 요청</p>
-          <p class="receipt-amt">₩ 75,800</p>
-          <span class="zig zig-bot"></span>
+          <img class="receipt-paper" src="images/receipt.png" alt="" />
+          <div class="receipt-body">
+            <p class="receipt-lines">전기료<br />수도세</p>
+            <span class="receipt-dots">⋮</span>
+            <p class="receipt-req">정산 요청</p>
+            <p class="receipt-amt">₩ 75,800</p>
+          </div>
         </div>
 
         <div class="speech blue-speech">
-          <span class="blob blue-blob" aria-hidden="true">
-            <span class="blob-eyes"></span><span class="blob-mouth mouth-o"></span>
-          </span>
-          <span class="q" aria-hidden="true">”</span>
+          <img class="blob blue-blob" src="images/blue_oh.png" alt="" aria-hidden="true" />
+          <span class="q" aria-hidden="true"></span>
           <span class="role">송금자</span>
           <p class="speech-msg">아 맞다, 보내려고 했는데...<br />또 깜빡했네</p>
           <span class="speech-tail tail-r" aria-hidden="true"></span>
@@ -230,22 +232,11 @@
       <div class="spotlight-stage">
         <div class="speech-bubble sb-left">정산을</div>
         <div class="speech-bubble sb-right">끝낼 수 있어요</div>
-
-        <div class="app-icon" aria-hidden="true">
-          <span class="app-mark"><span class="mark-slash"></span></span>
-        </div>
-
-        <div class="hold-bear" aria-hidden="true">
-          <span class="bear-arm arm-l"></span>
-          <span class="bear-arm arm-r"></span>
-          <span class="bear-head">
-            <span class="bear-ear ear-l"></span>
-            <span class="bear-ear ear-r"></span>
-            <span class="bear-face"></span>
-          </span>
-        </div>
       </div>
     </div>
+
+    <img class="hold-bear" src="images/red_up.png" alt="" aria-hidden="true" />
+    <img class="app-icon" src="images/final_logo.png" alt="" aria-hidden="true" />
   </section>
 
   <!-- [Section 5] Auto Split -->
@@ -259,11 +250,7 @@
         <h2 class="split-title split-title-left">매번 확인하고,</h2>
 
         <div class="s5-hold">
-          <div class="s5-bear" aria-hidden="true">
-            <span class="s5-bear-face"></span>
-            <span class="s5-arm s5-arm-l"></span>
-            <span class="s5-arm s5-arm-r"></span>
-          </div>
+          <img class="s5-bear" src="images/red_happy.png" alt="" aria-hidden="true" />
 
           <div class="s5-phone" aria-hidden="true">
             <div class="s5-phone-notch"></div>
@@ -375,8 +362,8 @@
 
     <div class="s8-stage" data-reveal>
       <div class="s8-minis" aria-hidden="true">
-        <div class="s8-mini s8-mini-cart">🛒</div>
-        <div class="s8-mini s8-mini-bolt">⚡</div>
+        <div class="s8-mini s8-mini-cart"><span class="s8-ic"></span></div>
+        <div class="s8-mini s8-mini-bolt"><span class="s8-ic"></span></div>
       </div>
 
       <span class="s8-watermark" aria-hidden="true">ban dding</span>
@@ -384,14 +371,16 @@
       <div class="s8-card s8-card-center" aria-hidden="true"></div>
 
       <div class="s8-card s8-card-gray" aria-hidden="true"></div>
-      <div class="s8-card s8-card-flame" aria-hidden="true">🔥</div>
-      <div class="s8-card s8-card-logo" aria-hidden="true"><span class="s8-logo-mark"></span></div>
+      <div class="s8-card s8-card-flame" aria-hidden="true"><span class="s8-ic"></span></div>
+      <div class="s8-card s8-card-logo" aria-hidden="true"><span class="s8-ic"></span></div>
 
       <div class="s8-panel">
-        <div class="s8-panel-icons" aria-hidden="true"><span>⚡</span><span>🍲</span><span>👍</span></div>
+        <div class="s8-panel-icons" aria-hidden="true">
+          <span class="s8-ic"></span><span class="s8-ic"></span><span class="s8-ic"></span>
+        </div>
         <h3 class="s8-panel-title">한쪽은 다시 말할 일이 줄고,<br />한쪽은 깜빡해서 미안할 일이 줄어요.</h3>
         <p class="s8-panel-sub">반띵이 정산을 챙기는 동안,<br />우리는 그냥 함께하면 돼요.</p>
-        <span class="s8-panel-mark" aria-hidden="true">b</span>
+        <span class="s8-panel-mark" aria-hidden="true"><span class="s8-ic"></span></span>
       </div>
     </div>
   </section>
@@ -404,36 +393,19 @@
       <h2 class="s9-aside s9-aside-left">함께하는 <b>사람이</b><br /><b>많아질수록,</b></h2>
 
       <article class="s9-card s9-card-1">
-        <div class="s9-art s9-art-bills" aria-hidden="true">
-          <span class="s9-ic s9-ic-flame">🔥</span>
-          <span class="s9-ic s9-ic-won">₩</span>
-          <span class="s9-ic s9-ic-drop">💧</span>
-          <span class="s9-ic s9-ic-bolt">⚡</span>
-          <span class="s9-tank"></span>
-        </div>
+        <div class="s9-art" aria-hidden="true"><img src="images/house.png" alt="" /></div>
         <h3>매달 달라도 자동으로 나누기</h3>
         <p>전기·수도·가스처럼 달라지는 비용을<br />입주자별 기준에 맞춰 나눠요.</p>
       </article>
 
       <article class="s9-card s9-card-2">
-        <div class="s9-art s9-art-board" aria-hidden="true">
-          <span class="s9-badge s9-badge-chk s9-chk-a">✓</span>
-          <span class="s9-badge s9-badge-warn s9-warn-a">!</span>
-          <span class="s9-badge s9-badge-chk s9-chk-b">✓</span>
-          <span class="s9-badge s9-badge-warn s9-warn-b">!</span>
-          <span class="s9-clip"></span>
-        </div>
+        <div class="s9-art" aria-hidden="true"><img src="images/list.png" alt="" /></div>
         <h3>입금 현황 한눈에 보기</h3>
         <p>누가 냈고, 누가 남았는지<br />사람마다 확인하지 않아도 돼요.</p>
       </article>
 
       <article class="s9-card s9-card-3">
-        <div class="s9-art s9-art-alert" aria-hidden="true">
-          <span class="s9-talk s9-talk-a">!</span>
-          <span class="s9-talk s9-talk-b">···</span>
-          <span class="s9-talk s9-talk-c">!</span>
-          <span class="s9-appicon"><span class="s9-logo-mark"></span></span>
-        </div>
+        <div class="s9-art" aria-hidden="true"><img src="images/message.png" alt="" /></div>
         <h3>미정산도 자동으로 알림발송</h3>
         <p>아직 끝나지 않은 정산은<br />반띵이 필요한 시점에 다시 알려요.</p>
       </article>
@@ -445,17 +417,13 @@
   <!-- [Section 10] Bottom CTA + Footer — one full-page section -->
   <section class="section sec-10-cta" id="sec10" data-header-dark>
     <div class="s10-cta" data-reveal>
-      <span class="s10-wm s10-wm-a" aria-hidden="true">%</span>
-      <span class="s10-wm s10-wm-b" aria-hidden="true">%</span>
+      <img class="s10-wm s10-wm-a" src="images/background_logo.png" alt="" aria-hidden="true" />
+      <img class="s10-wm s10-wm-b" src="images/background_logo.png" alt="" aria-hidden="true" />
 
       <h2 class="s10-title">다음 달 정산, <span class="s10-accent"><span class="s10-a1">반</span>&nbsp;<span class="s10-a2">띵!</span></span> 해볼까요?</h2>
 
       <div class="s10-stage">
-        <div class="s10-mascots" aria-hidden="true">
-          <span class="s10-m s10-m-cyan"><i class="s10-face"></i></span>
-          <span class="s10-m s10-m-blue"><i class="s10-face"></i></span>
-          <span class="s10-m s10-m-orange"><i class="s10-face"></i></span>
-        </div>
+        <img class="s10-mascots" src="images/friend.png" alt="" aria-hidden="true" />
         <button type="button" class="s10-btn" id="emailSubmitCta" data-scroll="#sec1">사전 신청하기</button>
       </div>
     </div>
@@ -486,12 +454,7 @@
         <div class="footer-end">
           <p class="footer-notify-title">출시되면 가장 먼저 알려드릴게요.</p>
           <button type="button" class="footer-notify-btn" data-scroll="#sec1">출시 소식 받기</button>
-          <div class="social-icons" aria-label="소셜 채널">
-            <a href="#" aria-label="Instagram">📷</a>
-            <a href="#" aria-label="LinkedIn">💼</a>
-            <a href="#" aria-label="Facebook">f</a>
-            <a href="#" aria-label="YouTube">▶</a>
-          </div>
+          <img class="social-icons" src="images/sns.png" alt="소셜 채널" />
           <p class="copyright">© 2026 Bandding. All rights reserved.</p>
         </div>
       </div>
