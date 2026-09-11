@@ -938,6 +938,19 @@ img { max-width: 100%; display: block; }
   color: #993a1b;
   isolation: isolate;
 }
+.reminder-slide-2,
+.reminder-slide-3 { justify-content: center; }
+.reminder-full-phone {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(42vw, 760px);
+  max-width: none;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 20px 24px rgba(100, 50, 35, .16));
+}
+.reminder-slide-2 .reminder-full-phone { top: 58%; }
+.reminder-slide-3 .reminder-full-phone { top: 112%; }
 .reminder-backdrop {
   position: absolute;
   top: -5%;
@@ -1004,6 +1017,9 @@ img { max-width: 100%; display: block; }
   .reminder-manager { left: 9%; top: 72%; width: 39%; }
   .reminder-member { left: 43%; top: 56%; width: 44%; }
   .reminder-label { font-size: 17px; bottom: calc(100% + 20px); }
+  .reminder-full-phone { width: 86vw; }
+  .reminder-slide-2 .reminder-full-phone { top: 57%; }
+  .reminder-slide-3 .reminder-full-phone { top: 112%; }
 }
 
 /* =========================================================
