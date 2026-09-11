@@ -47,6 +47,9 @@
       const start = s2.offsetTop;
       const end = s2.offsetTop + s2.offsetHeight - fp.clientHeight;
       const progress = Math.max(0, Math.min(1, (fp.scrollTop - start) / Math.max(1, end - start)));
+      const transition = Math.max(0, Math.min(1, (fp.scrollTop - s1.offsetTop) / Math.max(1, s1.offsetHeight)));
+      s1.style.setProperty('--s9-story-fade', (1 - transition).toFixed(3));
+      s2.style.setProperty('--s9-story-image', transition.toFixed(3));
       const scale = 1 + progress * 0.42;
       phones.forEach((phone) => { phone.style.setProperty('--s9-zoom', scale.toFixed(3)); });
     };
