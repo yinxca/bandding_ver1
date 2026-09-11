@@ -953,7 +953,7 @@ img { max-width: 100%; display: block; }
 .reminder-slide-3 .reminder-full-phone {
   /* The reference is a close crop of the lower half of the phone. */
   width: min(70vw, 1280px);
-  top: 20%;
+  top: 50%;
 }
 .reminder-backdrop {
   position: absolute;
@@ -1023,7 +1023,7 @@ img { max-width: 100%; display: block; }
   .reminder-label { font-size: 17px; bottom: calc(100% + 20px); }
   .reminder-full-phone { width: 86vw; }
   .reminder-slide-2 .reminder-full-phone { top: 57%; }
-  .reminder-slide-3 .reminder-full-phone { width: 112vw; top: 20%; }
+  .reminder-slide-3 .reminder-full-phone { width: 112vw; top: 50%; }
 }
 
 /* =========================================================
