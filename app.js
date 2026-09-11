@@ -258,6 +258,15 @@
         order: ['icloud', 'netflix-pill', 'gas-pill', 'notify', 'adobe', 'spotify', 'youtube'],
         hiddenSlot: 'chatgpt-pill',
         notify: { type: 'img', src: 'images/GPT.png', title: '이번 달 Chat GPT가 도착했어요', amount: '34,000원' },
+        showExtra: false,
+      },
+      {
+        // same scene as above — this step only brings in the bottom heading
+        lineStates: { 1: 'medium', 2: 'light', 3: 'active' },
+        l1Word: '전기세',
+        order: ['icloud', 'netflix-pill', 'gas-pill', 'notify', 'adobe', 'spotify', 'youtube'],
+        hiddenSlot: 'chatgpt-pill',
+        notify: { type: 'img', src: 'images/GPT.png', title: '이번 달 Chat GPT가 도착했어요', amount: '34,000원' },
         showExtra: true,
       },
     ];
@@ -306,15 +315,24 @@
     // row + notify card, which otherwise change instantly/abruptly) so a
     // step reads as a deliberate transition rather than a jarring jump-cut.
     // Pass immediate:true for the very first paint / the exit-reset, where
-    // there's no "from" state on screen yet to fade away from.
+    // there's no "from" state on screen yet to fade away from. When the
+    // pill row/notify card content is identical to the previous scene (a
+    // step that only brings in the extra heading, say), skip the cross-fade
+    // entirely so nothing flashes for no visual reason.
+    let prevFrame = 0;
+    const pillSignature = (f) => JSON.stringify([f.order, f.hiddenSlot, f.notify]);
+
     function applyFrame(i, immediate) {
-      if (immediate || !pillRow) {
+      const unchanged = pillSignature(FRAMES[prevFrame]) === pillSignature(FRAMES[i]);
+      if (immediate || !pillRow || unchanged) {
         mutateFrame(i);
+        prevFrame = i;
         return;
       }
       pillRow.classList.add('is-swapping');
       setTimeout(() => {
         mutateFrame(i);
+        prevFrame = i;
         requestAnimationFrame(() => pillRow.classList.remove('is-swapping'));
       }, SWAP_MS);
     }
