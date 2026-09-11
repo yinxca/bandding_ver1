@@ -652,6 +652,25 @@ img { max-width: 100%; display: block; }
   font-weight: 600;
   margin-bottom: clamp(10px, 1.6vh, 16px);
 }
+.s5-eyebrow-text { position: relative; white-space: nowrap; }
+.s5-eyebrow-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background: currentColor;
+  transform: translateY(-50%) scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.65s ease 0.35s;
+}
+.s5-copy.in-view .s5-eyebrow-text::after {
+  transform: translateY(-50%) scaleX(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .s5-eyebrow-text::after { transition: none; }
+}
 .s5-eyebrow-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
 .s5-heading {
   font-size: clamp(24px, 3vw, 38px);
