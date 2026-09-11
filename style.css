@@ -946,7 +946,9 @@ img { max-width: 100%; display: block; }
   top: 50%;
   width: min(42vw, 760px);
   max-width: none;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(var(--s9-zoom, 1));
+  transform-origin: center center;
+  transition: transform 180ms ease-out;
   filter: drop-shadow(0 20px 24px rgba(100, 50, 35, .16));
 }
 .reminder-slide-2 .reminder-full-phone { top: 58%; }
