@@ -989,7 +989,6 @@ img { max-width: 100%; display: block; }
   /* The reference is a close crop of the lower half of the phone. */
   width: min(70vw, 1280px);
   top: -20%;
-  translate: 200px;
 }
 .reminder-backdrop {
   position: absolute;
