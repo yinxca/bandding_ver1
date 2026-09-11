@@ -352,7 +352,7 @@ img { max-width: 100%; display: block; }
 .hero-visual {
   position: absolute;
   right: -2%;
-  top: -20%;
+  top: 50%;
   transform: translateY(-50%);
   width: clamp(460px, 54vw, 800px);
   pointer-events: none;
