@@ -942,16 +942,20 @@ img { max-width: 100%; display: block; }
 .reminder-slide-3 { justify-content: center; }
 .reminder-slide-2,
 .reminder-slide-3 {
-  min-height: 68vh;
-  height: 68vh;
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
   scroll-snap-stop: normal;
-  scroll-snap-align: none;
+  scroll-snap-align: start;
 }
 .reminder-slide-1 {
-  min-height: 82vh;
-  height: 82vh;
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
   scroll-snap-stop: normal;
-  scroll-snap-align: none;
+  scroll-snap-align: start;
 }
 .reminder-full-phone {
   position: absolute;
