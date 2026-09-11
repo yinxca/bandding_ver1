@@ -39,7 +39,7 @@
       <div class="logo">
         <a href="#sec1" class="logo-text" aria-label="ban dding">
           <img class="logo-mark-img" src="images/Logo_image.png" alt="" />
-          <img class="logo-word" src="images/Logo_slogan.png" alt="ban dding" />
+          <img class="logo-word" src="images/Bandding.png" alt="ban dding" />
         </a>
       </div>
       <nav class="nav-pills" aria-label="주요 섹션">
@@ -49,7 +49,6 @@
         <a href="#sec8" class="nav-link">함께 반띵!</a>
         <a href="#sec10" class="nav-link">반띵 시작하기</a>
       </nav>
-      <button class="btn-primary btn-header" id="headerNotifyBtn">알림 받기</button>
       <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -72,151 +71,74 @@
   <!-- [Section 1] Hero -->
   <section class="section sec-1-hero" id="sec1">
     <div class="hero-content" data-reveal>
-      <div class="pill-badge">
-        <span class="badge-avatars" aria-hidden="true">
-          <img class="badge-av badge-av-mark" src="images/header_profile.png" alt="" />
-          <span class="badge-av badge-av-plus">+</span>
-        </span>
-        <span>매달 함께 내는 비용을 위한 반띵</span>
-      </div>
       <h1 class="hero-title">
-        매달 <span class="highlight-orange">반복되는 정산,</span><br />
-        서로 챙기지 않아도 <span class="highlight-orange">자연스럽게 끝나도록</span>
+        한번 <span class="c-orange">반띵</span><span class="hero-toggle" aria-hidden="true"></span> 하면,<br />
+        다음 달도 <span class="c-orange">그대로!</span>
       </h1>
       <p class="hero-desc">
-        월세처럼 <strong>정해진 비용</strong>부터, <strong>매달 달라지는 공과금</strong>까지.<br />
-        반띵이 <strong>이번달 금액에 맞춰 나누어주고, 정산을 챙겨드려요.</strong>
+        공과금부터 OTT, 디자인 툴, AI 구독까지 함께 내는 비용을 모아,<br />
+        다음 정산에도 그대로 쭉&ndash; 관리할 수 있어요.
       </p>
       <form class="email-form" id="emailForm" novalidate>
-        <input type="email" id="emailInput" name="email" placeholder="이메일을 적어주세요"
+        <img class="email-form-icon" src="images/email.png" alt="" aria-hidden="true" />
+        <input type="email" id="emailInput" name="email" placeholder="다음달 정산은, 반띵과 함께하실래요?"
                autocomplete="email" required aria-label="이메일 주소" />
-        <button type="submit" class="btn-primary" id="emailSubmit">알림받기</button>
+        <button type="submit" class="btn-primary email-submit-icon" id="emailSubmit" aria-label="신청하기" data-icon-only>
+          <span class="s-mark" aria-hidden="true"></span>
+        </button>
       </form>
       <p class="form-hint" id="formHint"></p>
     </div>
 
     <div class="hero-visual" aria-hidden="true">
-      <div class="hero-panel">
-        <div class="hero-phone">
-          <img class="hero-phone-frame" src="images/phone-mockup.png" alt="" />
-          <img class="hero-phone-logo" src="images/header_bread.png" alt="" />
-        </div>
-      </div>
+      <img class="hero-red" src="images/header_red.png" alt="" />
     </div>
   </section>
 
   <!-- [Section 2] Question Flow -->
-  <section class="section sec-2-chat" id="sec2">
-    <div class="s2-stack" data-reveal>
-
-      <div class="container s2-rows s2-rows-top">
-        <div class="chat-item">
-          <span class="orange-dot" aria-hidden="true"></span>
-          <span class="chat-label">확인&amp;계산</span>
-          <div class="chat-bubble">이번엔 얼마씩 나눠야 하지?</div>
-        </div>
-      </div>
-
-      <div class="s2-band">
-        <div class="container s2-band-inner">
-          <div class="chat-item active">
-            <span class="orange-dot" aria-hidden="true"></span>
-            <span class="chat-label">정산 요청</span>
-            <div class="chat-bubble">이번 달은&nbsp; 47,980원 보내줘</div>
-          </div>
-          <div class="s2-title-col">
-            <div class="deco-row deco-above-top" aria-hidden="true">
-              <img class="deco" src="images/fire.png" alt="" />
-              <img class="deco" src="images/shopping-cart.png" alt="" />
-              <img class="deco" src="images/electronic.png" alt="" />
-            </div>
-            <h2 class="section-title">
-              매달 반복되는 비용,<br />
-              왜 정산은 <span class="highlight-orange">매번 처음부터 해야 할까?</span>
-            </h2>
-            <div class="deco-row deco-below-bottom" aria-hidden="true">
-              <img class="deco" src="images/electronic.png" alt="" />
-              <img class="deco" src="images/food.png" alt="" />
-              <img class="deco" src="images/fire.png" alt="" />
-            </div>
-            <div class="deco-row deco-below-2" aria-hidden="true">
-              <img class="deco" src="images/fire.png" alt="" />
-              <img class="deco" src="images/electronic.png" alt="" />
-              <img class="deco" src="images/shopping-cart.png" alt="" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="container s2-rows s2-rows-bottom">
-        <div class="chat-item">
-          <span class="orange-dot" aria-hidden="true"></span>
-          <span class="chat-label">송금 확인</span>
-          <div class="chat-bubble">다 보냈나?</div>
-        </div>
-        <div class="chat-item">
-          <span class="orange-dot" aria-hidden="true"></span>
-          <span class="chat-label">다시 요청</span>
-          <div class="chat-bubble">아직 안 보냈네…</div>
-        </div>
-      </div>
-
+  <section class="section sec-2-fade" id="sec2" data-frame="0">
+    <div class="s2-fade-title" data-reveal>
+      <p class="s2-fade-line" data-line="1">
+        <span class="s2-fade-dim">매달</span> <span data-l1-word>가스비</span>는 달라지고,
+      </p>
+      <p class="s2-fade-line is-medium" data-line="2">
+        <span class="s2-fade-dim">Netflix는</span> <span>그대로고</span>
+      </p>
+      <p class="s2-fade-line is-light" data-line="3">
+        <span class="s2-fade-dim">AI 구독은</span> <span>환율 때문에 바뀌고...</span>
+      </p>
     </div>
-  </section>
 
-  <!-- [Section 3] Stress Receipts -->
-  <section class="section sec-3-stress" id="sec3" data-header-dark>
-    <div class="s3-inner" data-reveal>
+    <div class="s2-fade-dots" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </div>
 
-      <div class="stress-visual">
-        <div class="speech orange-speech">
-          <img class="blob orange-blob" src="images/red_sad.png" alt="" aria-hidden="true" />
-          <span class="q" aria-hidden="true"></span>
-          <span class="role">정산자</span>
-          <p class="speech-msg">아직 안보냈는데<br />다시 보내달라고 요청해야겠지..?</p>
-          <span class="speech-tail tail-l" aria-hidden="true"></span>
-        </div>
-
-        <div class="receipt" aria-hidden="true">
-          <img class="receipt-paper" src="images/receipt.png" alt="" />
-          <div class="receipt-body">
-            <p class="receipt-lines">전기료<br />수도세</p>
-            <span class="receipt-dots">⋮</span>
-            <p class="receipt-req">정산 요청</p>
-            <p class="receipt-amt">₩ 75,800</p>
+    <div class="s2-pill-row">
+      <div class="s2-pill-track" id="s2Track">
+        <span class="s2-pill" data-slot="icloud">iCloud</span>
+        <span class="s2-pill" data-slot="netflix-pill">Netflix</span>
+        <span class="s2-pill" data-slot="gas-pill" hidden>가스비</span>
+        <span class="s2-pill" data-slot="chatgpt-pill">Chat GPT</span>
+        <div class="s2-notify-card" data-slot="notify">
+          <span class="s2-notify-icon" id="s2NotifyIcon"><span class="s2-notify-icon-mark" aria-hidden="true"></span></span>
+          <div class="s2-notify-body">
+            <div class="s2-notify-top">
+              <span class="s2-notify-title" id="s2NotifyTitle">이번 달 가스비가 도착했어요</span>
+              <span class="s2-notify-time">11:41 AM</span>
+            </div>
+            <div class="s2-notify-amount" id="s2NotifyAmount">32,640원</div>
           </div>
         </div>
-
-        <div class="speech blue-speech">
-          <img class="blob blue-blob" src="images/blue_oh.png" alt="" aria-hidden="true" />
-          <span class="q" aria-hidden="true"></span>
-          <span class="role">송금자</span>
-          <p class="speech-msg">아 맞다, 보내려고 했는데...<br />또 깜빡했네</p>
-          <span class="speech-tail tail-r" aria-hidden="true"></span>
-        </div>
+        <span class="s2-pill" data-slot="adobe">Adobe</span>
+        <span class="s2-pill" data-slot="spotify">Spotify</span>
+        <span class="s2-pill" data-slot="youtube">YouTube</span>
       </div>
-
-      <div class="bracket-message">
-        <span class="bracket">(</span>
-        <p>
-          한쪽은 <span class="c-orange">다시 말하기가 부담</span>스럽고,<br />
-          한쪽은 미루다 <span class="c-orange">깜빡</span>하고 <span class="c-blue">미안해졌어요</span>
-        </p>
-        <span class="bracket">)</span>
-      </div>
-
-      <div class="chips" aria-hidden="true">
-        <span class="chip chip-l1">답답함</span>
-        <span class="chip chip-l2">기다림</span>
-        <span class="chip chip-l3">다시 말하기 부담</span>
-        <span class="chip chip-l4">지침</span>
-        <span class="chip chip-r1">귀찮음</span>
-        <span class="chip chip-r2">미룸</span>
-        <span class="chip chip-r3">깜빡함</span>
-        <span class="chip chip-r4">미안함</span>
-      </div>
-
     </div>
+
+    <p class="s2-extra-heading" id="s2ExtraHeading" hidden>
+      매달 내는 비용인데,<br />
+      왜 정산은 매번 <span class="highlight-orange">다시 계산하고 있을까요?</span>
+    </p>
   </section>
 
   <!-- [Section 4] Spotlight Logo -->
@@ -239,54 +161,26 @@
     <img class="app-icon" src="images/final_logo.png" alt="" aria-hidden="true" />
   </section>
 
-  <!-- [Section 5] Auto Split -->
+  <!-- [Section 5] Amount Check -->
   <section class="section sec-5-split" id="sec5">
     <span class="s5-watermark" aria-hidden="true">ban dding</span>
 
-    <div class="s5-inner" data-reveal>
-      <div class="s5-bubble">매달 달라지는 금액도 걱정 없어요</div>
+    <div class="s5-layout">
+      <div class="s5-visual">
+        <span class="s5-visual-blob" aria-hidden="true"></span>
+        <img class="s5-phone-ui" src="images/first_UI.png" alt="반띵 앱 정산 화면" />
+      </div>
 
-      <div class="s5-stage">
-        <h2 class="split-title split-title-left">매번 확인하고,</h2>
-
-        <div class="s5-hold">
-          <img class="s5-bear" src="images/red_happy.png" alt="" aria-hidden="true" />
-
-          <div class="s5-phone" aria-hidden="true">
-            <div class="s5-phone-notch"></div>
-            <div class="s5-phone-screen"></div>
-          </div>
-
-          <div class="center-app-card">
-            <div class="app-card-head">
-              <span class="ac-total">1건 총 금액 <strong>126,400원</strong></span>
-              <div class="card-pills">
-                <span class="pill-active">반띵</span>
-                <span>랜덤</span>
-              </div>
-            </div>
-            <div class="user-list">
-              <div class="user-row">
-                <span class="u-avatar"></span>
-                <span class="u-badge">띵</span>
-                <span class="u-name">수훈&lt;3</span>
-                <span class="u-amount">
-                  <span class="u-arrow">▲</span><span class="u-price">63,200원</span><span class="u-arrow down">▼</span>
-                </span>
-              </div>
-              <div class="user-row">
-                <span class="u-avatar"></span>
-                <span class="u-name">찌니</span>
-                <span class="u-amount">
-                  <span class="u-arrow">▲</span><span class="u-price">63,200원</span><span class="u-arrow down">▼</span>
-                </span>
-              </div>
-            </div>
-            <button class="btn-card-submit" type="button" tabindex="-1">1건 정산하기</button>
-          </div>
-        </div>
-
-        <h2 class="split-title split-title-right">계산하지 않도록</h2>
+      <div class="s5-copy" data-reveal>
+        <p class="s5-eyebrow">금액이 달라져도<span class="s5-eyebrow-dot" aria-hidden="true"></span></p>
+        <h2 class="s5-heading">
+          달라진 금액만 <strong>확인</strong>하면,<br />
+          각자 낼 금액까지 <span class="highlight-orange">계산 끝.</span>
+        </h2>
+        <p class="s5-sub">
+          지난달과 비교해 금액 변화부터 이유까지 정리하고,<br />
+          정해둔 기준대로 각자 낼 금액까지 나눠드려요.
+        </p>
       </div>
     </div>
   </section>

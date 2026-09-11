@@ -29,6 +29,7 @@
     initSmoothScroll();
     initReveal();
     initChatFlow();
+    initSection2Scenes();
     initForms();
     renderSignupCount();
   });
@@ -210,6 +211,181 @@
     }
   }
 
+  /* ---------- section 2: scroll-through scenes ----------
+   * Section 2 holds 3 "scenes" (frame 0/1/2): the fading headline's
+   * active line, the notification card content, and the pill order
+   * all change together. Scrolling down while inside section 2 steps
+   * through the scenes one at a time instead of leaving the section;
+   * only once the last scene is reached does the next scroll continue
+   * on to section 3 (and symmetrically in reverse on the way back up).
+   * Desktop only — mobile already scrolls normally (no fp-scroll snap). */
+  function initSection2Scenes() {
+    const section = document.getElementById('sec2');
+    const track = document.getElementById('s2Track');
+    const fp = document.querySelector('.fp-scroll');
+    if (!section || !track || !fp) return;
+
+    const slots = {};
+    track.querySelectorAll('[data-slot]').forEach((el) => { slots[el.dataset.slot] = el; });
+
+    const lines = [...section.querySelectorAll('[data-line]')];
+    const l1Word = section.querySelector('[data-l1-word]');
+    const notifyIconWrap = document.getElementById('s2NotifyIcon');
+    const notifyTitle = document.getElementById('s2NotifyTitle');
+    const notifyAmount = document.getElementById('s2NotifyAmount');
+    const extra = document.getElementById('s2ExtraHeading');
+
+    const FRAMES = [
+      {
+        lineStates: { 1: 'active', 2: 'medium', 3: 'light' },
+        l1Word: '가스비',
+        order: ['icloud', 'netflix-pill', 'chatgpt-pill', 'notify', 'adobe', 'spotify', 'youtube'],
+        hiddenSlot: 'gas-pill',
+        notify: { type: 'mask', title: '이번 달 가스비가 도착했어요', amount: '32,640원' },
+        showExtra: false,
+      },
+      {
+        lineStates: { 1: 'light', 2: 'active', 3: 'medium' },
+        l1Word: '전기세',
+        order: ['icloud', 'notify', 'gas-pill', 'chatgpt-pill', 'adobe', 'spotify', 'youtube'],
+        hiddenSlot: 'netflix-pill',
+        notify: { type: 'img', src: 'images/netflix.png', title: '이번 달 Netflix가 도착했어요', amount: '17,000원' },
+        showExtra: false,
+      },
+      {
+        lineStates: { 1: 'medium', 2: 'light', 3: 'active' },
+        l1Word: '전기세',
+        order: ['icloud', 'netflix-pill', 'gas-pill', 'notify', 'adobe', 'spotify', 'youtube'],
+        hiddenSlot: 'chatgpt-pill',
+        notify: { type: 'img', src: 'images/GPT.png', title: '이번 달 Chat GPT가 도착했어요', amount: '34,000원' },
+        showExtra: true,
+      },
+    ];
+
+    let frame = 0;
+    const pillRow = section.querySelector('.s2-pill-row');
+    const SWAP_MS = 400; // how long the pill row/notify card cross-fades out before the content swaps (~0.8s round trip)
+
+    function mutateFrame(i) {
+      const f = FRAMES[i];
+      section.dataset.frame = String(i);
+
+      lines.forEach((el) => {
+        const state = f.lineStates[el.dataset.line];
+        el.classList.toggle('is-medium', state === 'medium');
+        el.classList.toggle('is-light', state === 'light');
+      });
+
+      if (l1Word) l1Word.textContent = f.l1Word;
+
+      f.order.forEach((key) => { if (slots[key]) track.appendChild(slots[key]); });
+      ['netflix-pill', 'gas-pill', 'chatgpt-pill'].forEach((key) => {
+        if (slots[key]) slots[key].hidden = key === f.hiddenSlot;
+      });
+
+      if (notifyIconWrap) {
+        notifyIconWrap.innerHTML = f.notify.type === 'mask'
+          ? '<span class="s2-notify-icon-mark" aria-hidden="true"></span>'
+          : `<img src="${f.notify.src}" alt="" />`;
+      }
+      if (notifyTitle) notifyTitle.textContent = f.notify.title;
+      if (notifyAmount) notifyAmount.textContent = f.notify.amount;
+
+      if (extra) {
+        if (f.showExtra) {
+          extra.hidden = false;
+          requestAnimationFrame(() => requestAnimationFrame(() => extra.classList.add('is-visible')));
+        } else {
+          extra.classList.remove('is-visible');
+          setTimeout(() => { if (!FRAMES[frame].showExtra) extra.hidden = true; }, 450);
+        }
+      }
+    }
+
+    // applyFrame() plays a brief cross-fade around the content swap (pill
+    // row + notify card, which otherwise change instantly/abruptly) so a
+    // step reads as a deliberate transition rather than a jarring jump-cut.
+    // Pass immediate:true for the very first paint / the exit-reset, where
+    // there's no "from" state on screen yet to fade away from.
+    function applyFrame(i, immediate) {
+      if (immediate || !pillRow) {
+        mutateFrame(i);
+        return;
+      }
+      pillRow.classList.add('is-swapping');
+      setTimeout(() => {
+        mutateFrame(i);
+        requestAnimationFrame(() => pillRow.classList.remove('is-swapping'));
+      }, SWAP_MS);
+    }
+
+    applyFrame(0, true);
+
+    const isSection2Active = () => Math.abs(fp.scrollTop - section.offsetTop) < 4;
+
+    // Cooldown is measured against a real clock (performance.now()) rather
+    // than a setTimeout-driven flag, so it can't be thrown off by timer
+    // coalescing/throttling — every wheel tick re-checks actual elapsed time.
+    const COOLDOWN_MS = 900; // covers the ~0.8s cross-fade so a step can't be interrupted mid-transition
+    let lastStepAt = -Infinity;
+
+    // was section 2 the active (settled) section as of the last wheel tick?
+    // tracked inside the wheel stream itself (not via IntersectionObserver)
+    // so entry-detection and the swallow-the-first-tick guard share one
+    // deterministic timeline instead of racing an async observer callback.
+    let wasActiveOnLastWheel = false;
+
+    fp.addEventListener('wheel', (e) => {
+      if (window.innerWidth <= 900) return; // mobile: plain scroll, no scene-stepping
+      const active = isSection2Active();
+      if (!active) { wasActiveOnLastWheel = false; return; }
+
+      const now = performance.now();
+
+      if (!wasActiveOnLastWheel) {
+        // the very first wheel tick observed once section 2 has settled into
+        // view — the gesture that scrolled us here is often still firing
+        // residual "momentum" ticks; swallow this one and start the cooldown
+        // now so those trailing ticks don't get mistaken for a fresh step
+        wasActiveOnLastWheel = true;
+        lastStepAt = now;
+        e.preventDefault();
+        return;
+      }
+
+      const down = e.deltaY > 0;
+      const canStep = (down && frame < FRAMES.length - 1) || (!down && frame > 0);
+      const cooling = now - lastStepAt < COOLDOWN_MS;
+
+      if (!canStep) {
+        // at a boundary (first/last scene) — normally let native scroll-snap
+        // carry on to the next/prev section, but if we *just* stepped here,
+        // the same gesture's residual momentum could otherwise leak straight
+        // through into that section-to-section scroll. Hold it off briefly.
+        if (cooling) e.preventDefault();
+        return;
+      }
+
+      e.preventDefault();
+      if (cooling) return; // still cooling down from the last step/entry
+
+      frame += down ? 1 : -1;
+      applyFrame(frame);
+      lastStepAt = now;
+    }, { passive: false });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting && frame !== 0) {
+            frame = 0;
+            applyFrame(0, true);
+          }
+        });
+      }, { threshold: 0 }).observe(section);
+    }
+  }
+
   /* ---------- forms ---------- */
   function initForms() {
     bindForm({
@@ -264,8 +440,8 @@
       }
 
       button.disabled = true;
-      const label = button.textContent;
-      button.textContent = '신청 중…';
+      const label = button.innerHTML;
+      if (!button.hasAttribute('data-icon-only')) button.textContent = '신청 중…';
 
       try {
         await sendSignup(email);
@@ -279,7 +455,7 @@
         showToast('일시적인 오류가 발생했어요. 잠시 후 다시 시도해주세요.', true);
       } finally {
         button.disabled = false;
-        button.textContent = label;
+        button.innerHTML = label;
       }
     });
   }
