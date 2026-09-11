@@ -30,9 +30,30 @@
     initReveal();
     initChatFlow();
     initSection2Scenes();
+    initSection9Zoom();
     initForms();
     renderSignupCount();
   });
+
+  /* Section 9: carry the phone scale forward as the three reference frames scroll by. */
+  function initSection9Zoom() {
+    const fp = document.querySelector('.fp-scroll');
+    const s1 = document.getElementById('sec7');
+    const s2 = document.getElementById('sec7-2');
+    const s3 = document.getElementById('sec7-3');
+    if (!fp || !s1 || !s2 || !s3) return;
+    const phones = [s2.querySelector('.reminder-full-phone'), s3.querySelector('.reminder-full-phone')].filter(Boolean);
+    const update = () => {
+      const start = s1.offsetTop;
+      const end = s3.offsetTop + s3.offsetHeight;
+      const progress = Math.max(0, Math.min(1, (fp.scrollTop - start) / Math.max(1, end - start)));
+      const scale = 1 + progress * 0.2;
+      phones.forEach((phone) => { phone.style.setProperty('--s9-zoom', scale.toFixed(3)); });
+    };
+    fp.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
+  }
 
   /* ---------- storage ---------- */
   function getSignups() {
