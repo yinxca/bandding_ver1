@@ -940,6 +940,19 @@ img { max-width: 100%; display: block; }
 }
 .reminder-slide-2,
 .reminder-slide-3 { justify-content: center; }
+.reminder-slide-2,
+.reminder-slide-3 {
+  min-height: 68vh;
+  height: 68vh;
+  scroll-snap-stop: normal;
+  scroll-snap-align: none;
+}
+.reminder-slide-1 {
+  min-height: 82vh;
+  height: 82vh;
+  scroll-snap-stop: normal;
+  scroll-snap-align: none;
+}
 .reminder-full-phone {
   position: absolute;
   left: 50%;
