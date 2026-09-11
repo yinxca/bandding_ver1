@@ -30,9 +30,42 @@
     initReveal();
     initChatFlow();
     initSection2Scenes();
+    initSection5Reveal();
+    initSection5dToggle();
+    positionS5dBlur();
+    window.addEventListener('resize', positionS5dBlur, { passive: true });
+    window.addEventListener('load', positionS5dBlur); // re-measure once images have settled
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(positionS5dBlur); // re-measure once the webfont has actually applied
+    }
+    setTimeout(positionS5dBlur, 600); // final safety net for any late layout shift
+    initSection9Zoom();
     initForms();
     renderSignupCount();
   });
+
+  /* Section 9: carry the phone scale forward as the three reference frames scroll by. */
+  function initSection9Zoom() {
+    const fp = document.querySelector('.fp-scroll');
+    const s1 = document.getElementById('sec7');
+    const s2 = document.getElementById('sec7-2');
+    const s3 = document.getElementById('sec7-3');
+    if (!fp || !s1 || !s2 || !s3) return;
+    const phones = [s2.querySelector('.reminder-full-phone')].filter(Boolean);
+    const update = () => {
+      const start = s2.offsetTop;
+      const end = s2.offsetTop + s2.offsetHeight - fp.clientHeight;
+      const progress = Math.max(0, Math.min(1, (fp.scrollTop - start) / Math.max(1, end - start)));
+      const transition = Math.max(0, Math.min(1, (fp.scrollTop - s1.offsetTop) / Math.max(1, s1.offsetHeight)));
+      s1.style.setProperty('--s9-story-fade', (1 - transition).toFixed(3));
+      s2.style.setProperty('--s9-story-image', transition.toFixed(3));
+      const scale = 1 + progress * 0.42;
+      phones.forEach((phone) => { phone.style.setProperty('--s9-zoom', scale.toFixed(3)); });
+    };
+    fp.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
+  }
 
   /* ---------- storage ---------- */
   function getSignups() {
@@ -246,7 +279,7 @@
       },
       {
         lineStates: { 1: 'light', 2: 'active', 3: 'medium' },
-        l1Word: '전기세',
+        l1Word: '가스비',
         order: ['icloud', 'notify', 'gas-pill', 'chatgpt-pill', 'adobe', 'spotify', 'youtube'],
         hiddenSlot: 'netflix-pill',
         notify: { type: 'img', src: 'images/netflix.png', title: '이번 달 Netflix가 도착했어요', amount: '17,000원' },
@@ -254,7 +287,7 @@
       },
       {
         lineStates: { 1: 'medium', 2: 'light', 3: 'active' },
-        l1Word: '전기세',
+        l1Word: '가스비',
         order: ['icloud', 'netflix-pill', 'gas-pill', 'notify', 'adobe', 'spotify', 'youtube'],
         hiddenSlot: 'chatgpt-pill',
         notify: { type: 'img', src: 'images/GPT.png', title: '이번 달 Chat GPT가 도착했어요', amount: '34,000원' },
@@ -263,7 +296,7 @@
       {
         // same scene as above — this step only brings in the bottom heading
         lineStates: { 1: 'medium', 2: 'light', 3: 'active' },
-        l1Word: '전기세',
+        l1Word: '가스비',
         order: ['icloud', 'netflix-pill', 'gas-pill', 'notify', 'adobe', 'spotify', 'youtube'],
         hiddenSlot: 'chatgpt-pill',
         notify: { type: 'img', src: 'images/GPT.png', title: '이번 달 Chat GPT가 도착했어요', amount: '34,000원' },
@@ -272,8 +305,6 @@
     ];
 
     let frame = 0;
-    const pillRow = section.querySelector('.s2-pill-row');
-    const SWAP_MS = 400; // how long the pill row/notify card cross-fades out before the content swaps (~0.8s round trip)
 
     function mutateFrame(i) {
       const f = FRAMES[i];
@@ -311,40 +342,62 @@
       }
     }
 
-    // applyFrame() plays a brief cross-fade around the content swap (pill
-    // row + notify card, which otherwise change instantly/abruptly) so a
-    // step reads as a deliberate transition rather than a jarring jump-cut.
-    // Pass immediate:true for the very first paint / the exit-reset, where
-    // there's no "from" state on screen yet to fade away from. When the
-    // pill row/notify card content is identical to the previous scene (a
-    // step that only brings in the extra heading, say), skip the cross-fade
-    // entirely so nothing flashes for no visual reason.
-    let prevFrame = 0;
-    const pillSignature = (f) => JSON.stringify([f.order, f.hiddenSlot, f.notify]);
+    // Pills swap instantly (no fade dip — they never "blink" on a step),
+    // but the notify card itself slides open like a shutter/drawer
+    // whenever its content actually changes (a different service takes
+    // over the card) — skipped when the card's content is unchanged
+    // (e.g. the step that only brings in the bottom heading).
+    const notifyCard = section.querySelector('.s2-notify-card');
+    const notifySignature = (f) => JSON.stringify(f.notify);
+    let prevNotifySig = notifySignature(FRAMES[0]);
 
-    function applyFrame(i, immediate) {
-      const unchanged = pillSignature(FRAMES[prevFrame]) === pillSignature(FRAMES[i]);
-      if (immediate || !pillRow || unchanged) {
-        mutateFrame(i);
-        prevFrame = i;
-        return;
-      }
-      pillRow.classList.add('is-swapping');
-      setTimeout(() => {
-        mutateFrame(i);
-        prevFrame = i;
-        requestAnimationFrame(() => pillRow.classList.remove('is-swapping'));
-      }, SWAP_MS);
+    // Closing the card is cheap (just a class, no content change yet) and
+    // happens synchronously so the wheel handler returns fast. The heavier
+    // DOM work (onClosed — reordering 7 pills, swapping the icon/text) is
+    // deferred into the next animation frame instead of running inline in
+    // the scroll handler, which was the actual source of the stutter — then
+    // the card opens, revealing the new content, one frame after that.
+    function slideOpenCard(onClosed) {
+      if (!notifyCard) { if (onClosed) onClosed(); return; }
+      notifyCard.style.transition = 'none';
+      notifyCard.classList.add('s2-notify-closed');
+      void getComputedStyle(notifyCard).clipPath; // flush the closed/no-transition state (style-only, no layout)
+      notifyCard.style.transition = '';
+      requestAnimationFrame(() => {
+        if (onClosed) onClosed();
+        requestAnimationFrame(() => notifyCard.classList.remove('s2-notify-closed'));
+      });
     }
 
-    applyFrame(0, true);
+    // called on entry into section 2 (from section 1, or back up from
+    // section 3) — content is already correct (always scene 0), so just
+    // replay the open, no content mutation needed
+    function playNotifyOpen() {
+      slideOpenCard();
+    }
+
+    function applyFrame(i) {
+      const sig = notifySignature(FRAMES[i]);
+      const shouldReplay = sig !== prevNotifySig;
+      prevNotifySig = sig;
+
+      if (!shouldReplay) {
+        mutateFrame(i);
+        return;
+      }
+
+      slideOpenCard(() => mutateFrame(i));
+    }
+
+    applyFrame(0);
 
     const isSection2Active = () => Math.abs(fp.scrollTop - section.offsetTop) < 4;
 
     // Cooldown is measured against a real clock (performance.now()) rather
     // than a setTimeout-driven flag, so it can't be thrown off by timer
     // coalescing/throttling — every wheel tick re-checks actual elapsed time.
-    const COOLDOWN_MS = 900; // covers the ~0.8s cross-fade so a step can't be interrupted mid-transition
+    // Keeps one scroll gesture from firing multiple steps (trackpad momentum).
+    const COOLDOWN_MS = 700;
     let lastStepAt = -Infinity;
 
     // was section 2 the active (settled) section as of the last wheel tick?
@@ -393,15 +446,216 @@
     }, { passive: false });
 
     if ('IntersectionObserver' in window) {
+      // threshold:0 alone fires the instant a single pixel of the section
+      // appears — mid-glide, long before the scroll-snap actually settles,
+      // so an animation started there is already finished by the time the
+      // section is really on screen. 0.6 fires close to settle instead.
+      let wasSettled = false;
       new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting && frame !== 0) {
-            frame = 0;
-            applyFrame(0, true);
+          if (entry.intersectionRatio === 0) {
+            if (frame !== 0) { frame = 0; applyFrame(0); }
+            wasSettled = false;
+            return;
+          }
+          const settled = entry.intersectionRatio >= 0.6;
+          if (settled && !wasSettled) {
+            // section 2 has essentially arrived (from section 1 above, or
+            // back up from section 3) — it always settles on scene 0, so
+            // play the same slide-open on the card as any other scene change
+            playNotifyOpen();
+          }
+          wasSettled = settled;
+        });
+      }, { threshold: [0, 0.6] }).observe(section);
+    }
+  }
+
+  /* ---------- section 5: scroll-stepped reveal ----------
+   * Arriving at section 5 shows only the title. Each further scroll floats
+   * one more piece in (card 1, card 2, card 3, then the closing line) —
+   * cumulative, nothing already shown goes away. Same entry-swallow /
+   * cooldown / boundary-hold mechanics as section 2's stepper, so a single
+   * scroll gesture's momentum can't skip steps or leak into section 4/6.
+   * Desktop only — mobile already scrolls normally (no fp-scroll snap). */
+  function initSection5Reveal() {
+    const section = document.getElementById('sec5');
+    const fp = document.querySelector('.fp-scroll');
+    if (!section || !fp) return;
+
+    const items = [...section.querySelectorAll('[data-stage-item]')]
+      .sort((a, b) => Number(a.dataset.stageItem) - Number(b.dataset.stageItem));
+    if (!items.length) return;
+    const maxStage = items.length;
+
+    let stage = 0;
+
+    function applyStage(s) {
+      section.dataset.stage = String(s);
+      items.forEach((el) => {
+        el.classList.toggle('is-visible', Number(el.dataset.stageItem) <= s);
+      });
+    }
+    applyStage(0);
+
+    const isActive = () => Math.abs(fp.scrollTop - section.offsetTop) < 4;
+    const COOLDOWN_MS = 700;
+    let lastStepAt = -Infinity;
+    let wasActiveOnLastWheel = false;
+
+    fp.addEventListener('wheel', (e) => {
+      if (window.innerWidth <= 900) return;
+      const active = isActive();
+      if (!active) { wasActiveOnLastWheel = false; return; }
+
+      const now = performance.now();
+      if (!wasActiveOnLastWheel) {
+        wasActiveOnLastWheel = true;
+        lastStepAt = now;
+        e.preventDefault();
+        return;
+      }
+
+      const down = e.deltaY > 0;
+      const canStep = (down && stage < maxStage) || (!down && stage > 0);
+      const cooling = now - lastStepAt < COOLDOWN_MS;
+
+      if (!canStep) {
+        if (cooling) e.preventDefault();
+        return;
+      }
+
+      e.preventDefault();
+      if (cooling) return;
+
+      stage += down ? 1 : -1;
+      applyStage(stage);
+      lastStepAt = now;
+    }, { passive: false });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting && stage !== 0) {
+            stage = 0;
+            applyStage(0);
           }
         });
       }, { threshold: 0 }).observe(section);
     }
+  }
+
+  /* ---------- section 5d: auto-charge toggle swipe ----------
+   * The toggle baked into the screenshot always shows "off" (knob at the
+   * left). One scroll inside section 5d swipes it "on" (knob slides right,
+   * a matching-green mask covers the image's static knob so nothing
+   * ghosts); a further scroll continues on to section 6, same
+   * entry-swallow / cooldown / boundary-hold mechanics as the other
+   * section steppers. Desktop only — mobile has no fp-scroll snap. */
+  function initSection5dToggle() {
+    const section = document.getElementById('sec5d');
+    const wrap = document.getElementById('s5dPhoneWrap');
+    const phone = document.querySelector('.s5d-phone-ui');
+    const track = document.getElementById('s5dToggleTrack');
+    const knob = document.getElementById('s5dToggleKnob');
+    const fp = document.querySelector('.fp-scroll');
+    if (!section || !wrap || !phone || !track || !knob || !fp) return;
+
+    // exact pixel measurements taken from images/second_UI.png at its
+    // native 424×864 size — scaled to whatever size the image actually
+    // renders at, so the overlay lines up with the baked-in toggle at
+    // any viewport width, not just the one it was eyeballed at.
+    const NATURAL_W = 424;
+    const TRACK = { left: 229, top: 590, right: 386, bottom: 638 }; // inset inside the image's own border — that border is left untouched
+    const KNOB = { top: 593, size: 41, offLeft: 342, onLeft: 232 };
+    const TRACK_FONT = 19; // natural px, matching the baked-in off-state label's measured glyph height
+
+    function positionToggle() {
+      const scale = phone.getBoundingClientRect().width / NATURAL_W;
+      track.style.left = `${TRACK.left * scale}px`;
+      track.style.top = `${TRACK.top * scale}px`;
+      track.style.width = `${(TRACK.right - TRACK.left) * scale}px`;
+      track.style.height = `${(TRACK.bottom - TRACK.top) * scale}px`;
+      track.style.fontSize = `${TRACK_FONT * scale}px`;
+      knob.style.top = `${KNOB.top * scale}px`;
+      knob.style.width = `${KNOB.size * scale}px`;
+      knob.style.height = `${KNOB.size * scale}px`;
+      knob.style.left = `${(wrap.classList.contains('is-on') ? KNOB.onLeft : KNOB.offLeft) * scale}px`;
+    }
+    positionToggle();
+    window.addEventListener('resize', positionToggle, { passive: true });
+    window.addEventListener('load', positionToggle);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(positionToggle);
+    setTimeout(positionToggle, 600);
+
+    let stage = 0;
+    const maxStage = 1;
+
+    function setStage(s) {
+      stage = s;
+      wrap.classList.toggle('is-on', stage === 1);
+      const scale = phone.getBoundingClientRect().width / NATURAL_W;
+      knob.style.left = `${(stage === 1 ? KNOB.onLeft : KNOB.offLeft) * scale}px`;
+    }
+
+    const isActive = () => Math.abs(fp.scrollTop - section.offsetTop) < 4;
+    const COOLDOWN_MS = 700;
+    let lastStepAt = -Infinity;
+    let wasActiveOnLastWheel = false;
+
+    fp.addEventListener('wheel', (e) => {
+      if (window.innerWidth <= 900) return;
+      const active = isActive();
+      if (!active) { wasActiveOnLastWheel = false; return; }
+
+      const now = performance.now();
+      if (!wasActiveOnLastWheel) {
+        wasActiveOnLastWheel = true;
+        lastStepAt = now;
+        e.preventDefault();
+        return;
+      }
+
+      const down = e.deltaY > 0;
+      const canStep = (down && stage < maxStage) || (!down && stage > 0);
+      const cooling = now - lastStepAt < COOLDOWN_MS;
+
+      if (!canStep) {
+        if (cooling) e.preventDefault();
+        return;
+      }
+
+      e.preventDefault();
+      if (cooling) return;
+
+      setStage(stage + (down ? 1 : -1));
+      lastStepAt = now;
+    }, { passive: false });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting && stage !== 0) setStage(0);
+        });
+      }, { threshold: 0 }).observe(section);
+    }
+  }
+
+  /* ---------- section 5d: blur backdrop position ----------
+   * Pinned with a precise gap above the "정산할 때마다 챙기지 않도록,"
+   * heading line — the two sit in different flex columns (visual is
+   * bottom-anchored, copy is vertically centered), so getting an exact
+   * pixel gap between them needs a real measurement rather than a
+   * percentage guess. */
+  function positionS5dBlur() {
+    const blur = document.querySelector('.s5d-blur');
+    const heading = document.querySelector('.s5d-heading');
+    const visual = document.querySelector('.s5d-visual');
+    if (!blur || !heading || !visual) return;
+    const headingRect = heading.getBoundingClientRect();
+    const visualRect = visual.getBoundingClientRect();
+    const top = headingRect.top - visualRect.top - blur.offsetHeight - 34;
+    blur.style.top = `${top}px`;
   }
 
   /* ---------- forms ---------- */

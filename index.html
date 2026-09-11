@@ -72,22 +72,19 @@
   <section class="section sec-1-hero" id="sec1">
     <div class="hero-content" data-reveal>
       <h1 class="hero-title">
-        한번 <span class="c-orange">반띵</span><span class="hero-toggle" aria-hidden="true"></span> 하면,<br />
-        다음 달도 <span class="c-orange">그대로!</span>
+        <span class="hero-title-line"><strong>함께</strong> 내는 비용, <span class="c-orange">매달 달라져도</span></span>
+        <span class="hero-title-line">이제 <span class="c-orange">알아서</span><span class="hero-toggle" aria-hidden="true"></span> 정산되도록!</span>
       </h1>
+
       <p class="hero-desc">
-        공과금부터 OTT, 디자인 툴, AI 구독까지 함께 내는 비용을 모아,<br />
-        다음 정산에도 그대로 쭉&ndash; 관리할 수 있어요.
+        공과금부터 OTT, 음악, AI 구독까지, 함께 내지만 매달 달라지는 비용을 모아<br />
+        반띵이 알아서 정산이 끝날 때까지 챙겨드려요.
       </p>
-      <form class="email-form" id="emailForm" novalidate>
-        <img class="email-form-icon" src="images/email.png" alt="" aria-hidden="true" />
-        <input type="email" id="emailInput" name="email" placeholder="다음달 정산은, 반띵과 함께하실래요?"
-               autocomplete="email" required aria-label="이메일 주소" />
-        <button type="submit" class="btn-primary email-submit-icon" id="emailSubmit" aria-label="신청하기" data-icon-only>
-          <span class="s-mark" aria-hidden="true"></span>
-        </button>
-      </form>
-      <p class="form-hint" id="formHint"></p>
+
+      <div class="hero-cta" aria-label="베타 웹 체험 신청 안내">
+        <span class="cta-badge">선착순 30명!</span>
+        <button type="button" class="hero-btn" data-scroll="#sec10">Beta 웹 체험 신청하기</button>
+      </div>
     </div>
 
     <div class="hero-visual" aria-hidden="true">
@@ -141,46 +138,86 @@
     </p>
   </section>
 
-  <!-- [Section 4] Spotlight Logo -->
-  <section class="section sec-4-spotlight" id="sec4" data-header-dark>
-    <div class="beam" aria-hidden="true"></div>
-
-    <div class="s4-inner" data-reveal>
-      <h2 class="spotlight-title">
-        재촉하지 않고,<br />
-        까먹지 않고도
-      </h2>
-
-      <div class="spotlight-stage">
-        <div class="speech-bubble sb-left">정산을</div>
-        <div class="speech-bubble sb-right">끝낼 수 있어요</div>
+  <!-- [Section 5] Changing amounts -->
+  <section class="section sec-5-split" id="sec5" data-stage="0">
+    <div class="s5-layout">
+      <div class="s5-top-decoration" aria-hidden="true">
+        <img class="s5-decoration-img" src="images/section2_blur.png" alt="" />
+        <span class="s5-decoration-dots"><i></i><i></i><i></i></span>
       </div>
-    </div>
 
-    <img class="hold-bear" src="images/red_up.png" alt="" aria-hidden="true" />
-    <img class="app-icon" src="images/final_logo.png" alt="" aria-hidden="true" />
+      <h2 class="s5-title">금액이 달라지니까</h2>
+
+      <div class="s5-card-row" aria-label="매달 반복되는 정산 과정">
+        <article class="s5-card s5-card-orange" data-stage-item="1"><span><strong>알려</strong>주고</span></article>
+        <article class="s5-card s5-card-blue" data-stage-item="2"><span><strong>확인</strong>하고 보내는 일</span></article>
+        <article class="s5-card s5-card-dark" data-stage-item="3"><span><strong>매달 다시</strong> 해야 해요</span></article>
+      </div>
+
+      <p class="s5-closing" data-stage-item="4">
+        그러다 <strong>깜빡</strong>하면<br />
+        누군가는 <span>기다리고, 또 말해야</span> 하죠...
+      </p>
+    </div>
   </section>
 
-  <!-- [Section 5] Amount Check -->
-  <section class="section sec-5-split" id="sec5">
-    <span class="s5-watermark" aria-hidden="true">ban dding</span>
+  <!-- [Section 5b] Mid CTA -->
+  <section class="section sec-5b-cta" id="sec5b">
+    <div class="s5b-inner" data-reveal>
+      <p class="s5b-eyebrow">매달 다시 하던 정산,</p>
+      <h2 class="s5b-heading">
+        달라진 금액부터 확인까지.<br />
+        이제 <span class="highlight-orange">반띵이 대신</span> 챙겨드릴게요
+      </h2>
+      <button type="button" class="s5b-btn" data-scroll="#sec10">반띵 Beta 신청하기</button>
+    </div>
+  </section>
 
-    <div class="s5-layout">
-      <div class="s5-visual">
-        <span class="s5-visual-blob" aria-hidden="true"></span>
-        <img class="s5-phone-ui" src="images/first_UI.png" alt="반띵 앱 정산 화면" />
+  <!-- [Section 5c] Amount Check -->
+  <section class="section sec-5c-split" id="sec5c">
+    <span class="s5c-watermark" aria-hidden="true">ban dding</span>
+
+    <div class="s5c-layout">
+      <div class="s5c-visual">
+        <img class="s5c-phone-ui" src="images/first_UI.png" alt="반띵 앱 정산 화면" />
       </div>
 
-      <div class="s5-copy" data-reveal>
-        <p class="s5-eyebrow">금액이 달라져도<span class="s5-eyebrow-dot" aria-hidden="true"></span></p>
-        <h2 class="s5-heading">
+      <div class="s5c-copy" data-reveal>
+        <p class="s5c-eyebrow">금액이 달라져도<span class="s5c-eyebrow-dot" aria-hidden="true"></span></p>
+        <h2 class="s5c-heading">
           달라진 금액만 <strong>확인</strong>하면,<br />
           각자 낼 금액까지 <span class="highlight-orange">계산 끝.</span>
         </h2>
-        <p class="s5-sub">
+        <p class="s5c-sub">
           지난달과 비교해 금액 변화부터 이유까지 정리하고,<br />
           정해둔 기준대로 각자 낼 금액까지 나눠드려요.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- [Section 5d] Auto Charge -->
+  <section class="section sec-5d-autocharge" id="sec5d">
+    <div class="s5d-layout">
+      <div class="s5d-copy" data-reveal>
+        <p class="s5d-eyebrow"><span class="s5d-eyebrow-dot" aria-hidden="true"></span><span class="s5d-eyebrow-text">매번 보내지 않아도</span></p>
+        <h2 class="s5d-heading">
+          정산할 <strong>때마다 챙기지 않도록,</strong><br />
+          <strong>필요한 만큼만</strong> 채워둘게요
+        </h2>
+        <p class="s5d-sub">
+          자동충전을 켜두면 정산 금액이 확정된 뒤,<br />
+          부족한 금액 만큼만 미리 채워 정산을 준비해요.
+        </p>
+      </div>
+
+      <div class="s5d-visual">
+        <img class="s5d-blur" src="images/second_blur.png" alt="" aria-hidden="true" />
+        <div class="s5d-phone-wrap" id="s5dPhoneWrap">
+          <img class="s5d-phone-ui" src="images/second_UI.png" alt="반띵 앱 자동충전 화면" />
+          <span class="s5d-toggle-track" id="s5dToggleTrack" aria-hidden="true">자동 충전</span>
+          <span class="s5d-toggle-knob" id="s5dToggleKnob" aria-hidden="true"></span>
+        </div>
       </div>
     </div>
   </section>
@@ -211,38 +248,36 @@
     </div>
   </section>
 
-  <!-- [Section 7] History -->
-  <section class="section sec-7-history" id="sec7" data-header-dark>
-    <span class="s7-bg-bubble s7-bg-1" aria-hidden="true">친구한테 미안해서 어쩌지..</span>
-    <span class="s7-bg-bubble s7-bg-2" aria-hidden="true">이걸 보냈는지 기억이 안 나..ㅠ</span>
-    <span class="s7-bg-bubble s7-bg-3" aria-hidden="true">정산 일이 며칠이었더라..</span>
-    <span class="s7-bg-bubble s7-bg-4" aria-hidden="true">아 또 깜빡하고 안 보냈네..</span>
-
-    <div class="s7-row-wrap" data-reveal>
-      <h2 class="s7-title s7-title-left"><b>잊어</b>버린 정산,</h2>
-
-      <div class="s7-stage">
-      <div class="s7-speech s7-speech-a">반띵이 기억하고,</div>
-      <div class="s7-speech s7-speech-b">알아서 챙길게요!</div>
-
-      <div class="s7-phone" aria-hidden="true">
-        <div class="s7-phone-notch"></div>
-        <div class="s7-phone-screen"></div>
-      </div>
-
-      <div class="s7-card s7-card-front">
-        <p class="s7-card-head">9월 자동 정산</p>
-        <div class="s7-row"><span class="s7-date">9/7</span><span class="s7-name">Netflix</span></div>
-        <div class="s7-row"><span class="s7-date">9/12</span><span class="s7-name">공과금</span></div>
-        <div class="s7-row"><span class="s7-date">9/17</span><span class="s7-name">Adobe</span></div>
-      </div>
-
-      <span class="s7-hand s7-hand-l" aria-hidden="true"></span>
-      <span class="s7-hand s7-hand-r" aria-hidden="true"></span>
-      </div>
-
-      <h2 class="s7-title s7-title-right"><b>다시</b> 떠올릴 수 있게</h2>
+  <!-- [Section 7] Home and widget reminders (section9 design reference) -->
+  <section class="section sec-7-reminder reminder-slide-1" id="sec7" aria-labelledby="reminder-heading">
+    <div class="reminder-backdrop" aria-hidden="true">
+      <img src="images/section9/s9_widget_delay3.png" alt="" />
+      <img src="images/section9/s9_widget_delay3.png" alt="" />
+      <img src="images/section9/s9_widget_delay3.png" alt="" />
     </div>
+
+    <figure class="reminder-phone reminder-manager">
+      <figcaption class="reminder-label"><strong>총무</strong>에게</figcaption>
+      <img src="images/section9/s9-reminder-widget-manager-progress.png" alt="총무 홈 위젯에 우당탕 우리집 정산 완료, 4명 중 4명으로 표시된 화면" />
+    </figure>
+    <figure class="reminder-phone reminder-member">
+      <figcaption class="reminder-label"><strong>멤버</strong>에게</figcaption>
+      <img src="images/section9/s9-reminder-send-screen.png" alt="멤버 홈에 3일 지연 중인 정산과 37,980원 송금 버튼을 보여주는 화면" />
+    </figure>
+
+    <div class="reminder-copy">
+      <p class="reminder-eyebrow">깜빡해도<span aria-hidden="true"></span></p>
+      <h2 id="reminder-heading"><strong>바로 이어 보낼 수 있게</strong><br />띄워드릴게요</h2>
+      <p class="reminder-description">미완료 정산을 홈과 위젯에 계속 보여줘<br />직접 재촉하지 않아도 자연스럽게 떠올릴 수 있게 해요.</p>
+    </div>
+  </section>
+
+  <section class="section sec-7-reminder reminder-slide-2" id="sec7-2" aria-label="멤버 정산 금액 화면">
+    <img class="reminder-full-phone" src="images/section9/s9-reminder-send-screen2.png" alt="우당탕 우리집 정산 금액 37,980원 화면" />
+  </section>
+
+  <section class="section sec-7-reminder reminder-slide-3" id="sec7-3" aria-label="멤버 송금 화면">
+    <img class="reminder-full-phone" src="images/section9/s9-reminder-send-screen2.png" alt="우당탕 우리집 밀어서 송금하기 화면" />
   </section>
 
   <!-- [Section 8] Light Benefit -->
