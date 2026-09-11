@@ -958,7 +958,7 @@ img { max-width: 100%; display: block; }
 .reminder-slide-2 .reminder-full-phone {
   position: sticky;
   top: 45%;
-  width: min(50vw, 900px);
+  width: min(42vw, 760px);
   margin-top: 0;
   opacity: var(--s9-story-image, 0);
   transition: opacity 160ms linear, transform 180ms ease-out;
@@ -984,7 +984,7 @@ img { max-width: 100%; display: block; }
   transition: transform 180ms ease-out;
   filter: drop-shadow(0 20px 24px rgba(100, 50, 35, .16));
 }
-.reminder-slide-2 .reminder-full-phone { top: 45%; width: min(50vw, 900px); }
+.reminder-slide-2 .reminder-full-phone { top: 45%; width: min(42vw, 760px); }
 .reminder-slide-3 .reminder-full-phone {
   /* The reference is a close crop of the lower half of the phone. */
   width: min(70vw, 1280px);
@@ -1057,7 +1057,7 @@ img { max-width: 100%; display: block; }
   .reminder-member { left: 43%; top: 56%; width: 44%; }
   .reminder-label { font-size: 17px; bottom: calc(100% + 20px); }
   .reminder-full-phone { width: 86vw; }
-  .reminder-slide-2 .reminder-full-phone { top: 45%; width: 100vw; }
+  .reminder-slide-2 .reminder-full-phone { top: 45%; width: 86vw; }
   .reminder-slide-3 .reminder-full-phone { width: 112vw; top: 15%; }
 }
 
