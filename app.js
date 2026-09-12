@@ -534,9 +534,20 @@
     // Cooldown is measured against a real clock (performance.now()) rather
     // than a setTimeout-driven flag, so it can't be thrown off by timer
     // coalescing/throttling — every wheel tick re-checks actual elapsed time.
-    // Keeps one scroll gesture from firing multiple steps (trackpad momentum).
     const COOLDOWN_MS = 700;
     let lastStepAt = -Infinity;
+
+    // Trackpad momentum can keep firing wheel ticks for well over COOLDOWN_MS
+    // after the physical swipe ends, so cooldown alone still let one swipe
+    // punch through 2-3 steps back to back — each one instantly re-closing
+    // the card before its open transition ever finished, so the shutter
+    // motion never actually got a chance to be seen. A gesture is instead
+    // allowed only ONE step: once taken, further ticks are ignored until the
+    // wheel stream goes quiet for GESTURE_GAP_MS (i.e. a genuinely new
+    // gesture), regardless of how long the old one's momentum keeps trailing.
+    const GESTURE_GAP_MS = 160;
+    let lastWheelAt = -Infinity;
+    let steppedThisGesture = false;
 
     // was section 2 the active (settled) section as of the last wheel tick?
     // tracked inside the wheel stream itself (not via IntersectionObserver)
@@ -550,6 +561,8 @@
       if (!active) { wasActiveOnLastWheel = false; return; }
 
       const now = performance.now();
+      if (now - lastWheelAt > GESTURE_GAP_MS) steppedThisGesture = false;
+      lastWheelAt = now;
 
       if (!wasActiveOnLastWheel) {
         // the very first wheel tick observed once section 2 has settled into
@@ -558,6 +571,7 @@
         // now so those trailing ticks don't get mistaken for a fresh step
         wasActiveOnLastWheel = true;
         lastStepAt = now;
+        steppedThisGesture = false;
         e.preventDefault();
         return;
       }
@@ -566,12 +580,12 @@
       const canStep = (down && frame < FRAMES.length - 1) || (!down && frame > 0);
       const cooling = now - lastStepAt < COOLDOWN_MS;
 
-      if (!canStep) {
+      if (!canStep || steppedThisGesture) {
         // at a boundary (first/last scene) — normally let native scroll-snap
         // carry on to the next/prev section, but if we *just* stepped here,
         // the same gesture's residual momentum could otherwise leak straight
         // through into that section-to-section scroll. Hold it off briefly.
-        if (cooling) e.preventDefault();
+        if (cooling || steppedThisGesture) e.preventDefault();
         return;
       }
 
@@ -581,6 +595,7 @@
       frame += down ? 1 : -1;
       applyFrame(frame);
       lastStepAt = now;
+      steppedThisGesture = true;
     }, { passive: false });
 
     if ('IntersectionObserver' in window) {
