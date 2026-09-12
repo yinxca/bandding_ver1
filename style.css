@@ -1294,7 +1294,23 @@ img { max-width: 100%; display: block; }
    Section 8b: Light transition CTA
 ========================================================= */
 .sec-8b-light { background: linear-gradient(180deg, #fff5e9 0%, #fffcf7 100%); }
+/* soft half-circle bleeding off the right edge, behind the copy */
+.sec-8b-light::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: clamp(-420px, -18vw, -180px);
+  transform: translateY(-50%);
+  width: clamp(700px, 62vw, 980px);
+  height: clamp(700px, 62vw, 980px);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fffdfa 0%, #ffecd9 55%, #ffe0c1 100%);
+  z-index: 0;
+  pointer-events: none;
+}
 .s8b-inner {
+  position: relative;
+  z-index: 1;
   align-self: flex-start;
   max-width: 900px;
   width: 100%;
