@@ -1350,6 +1350,79 @@ img { max-width: 100%; display: block; }
 .s8b-btn:hover { background: #fff5ef; }
 
 /* =========================================================
+   Section 8c: Together rows
+========================================================= */
+.sec-8c-together { background: linear-gradient(180deg, #fffaf3 0%, #fff5e9 100%); }
+.s8c-stage {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 5vw, 64px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vh, 32px);
+}
+.s8c-row {
+  display: flex;
+  align-items: center;
+}
+.s8c-pill {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(18px, 2vw, 26px) clamp(26px, 2.8vw, 36px);
+  background: var(--orange);
+  color: #fff;
+  font-size: clamp(16px, 1.6vw, 21px);
+  font-weight: 800;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 12px 24px rgba(255, 75, 17, 0.22);
+  margin-right: clamp(-30px, -2.6vw, -22px);
+}
+.s8c-pill::after {
+  content: '';
+  position: absolute;
+  left: clamp(26px, 2.8vw, 36px);
+  top: 100%;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 12px solid var(--orange);
+}
+.s8c-bar {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  border-radius: 999px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(107, 50, 38, 0.06);
+}
+.s8c-bar-art { display: block; width: 100%; height: auto; }
+.s8c-bar-text {
+  position: absolute;
+  left: clamp(50px, 6vw, 92px);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: clamp(14px, 1.25vw, 18px);
+  color: #6b6b6b;
+  white-space: nowrap;
+}
+.s8c-bar-text strong { font-weight: 800; color: var(--ink); }
+.s8c-closing {
+  text-align: center;
+  margin-top: clamp(24px, 4vh, 40px);
+  font-size: clamp(24px, 2.6vw, 40px);
+  font-weight: 700;
+  color: var(--ink);
+}
+.s8c-less { color: var(--orange); font-weight: 800; }
+.s8c-more { color: #25a9cf; font-weight: 800; }
+
+/* =========================================================
    Section 9: Business Cards
 ========================================================= */
 .sec-9-cards {
