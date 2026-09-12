@@ -934,245 +934,6 @@ img { max-width: 100%; display: block; }
 .s5d-phone-wrap.is-on .s5d-toggle-track { opacity: 1; }
 
 /* =========================================================
-   Section 6: Auto Remind
-========================================================= */
-.sec-6-remind {
-  background-color: #3a2d38;
-  color: #fff;
-  overflow: hidden;
-  position: relative;
-  --s6-panel-left: 43vw;                 /* left edge of the cream panel */
-}
-.s6-inner {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  /* start the chat/heading just far enough left of the panel that
-     bubble 1 keeps a constant gap to the panel at any width */
-  --s6-lead: max(28px, calc(var(--s6-panel-left) - 355px));
-  padding: 0 24px 0 var(--s6-lead);
-  z-index: 2;
-}
-
-/* ---- left: chat + ghost + heading ---- */
-.s6-left {
-  position: relative;
-  z-index: 2;
-  width: min(46%, 430px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: clamp(420px, 66vh, 620px);
-}
-.s6-chat {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 42px;
-  margin-top: clamp(-64px, -6vh, -32px);
-  margin-bottom: clamp(52px, 11vh, 116px);
-}
-.s6-bubble {
-  position: relative;
-  background: #4b3d48;
-  color: #e4dee2;
-  border-radius: 28px 28px 28px 7px;
-  width: max-content;
-  max-width: 100%;
-}
-/* curved speech-bubble tail off the bottom-left corner */
-.s6-bubble::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: -9px;
-  width: 22px;
-  height: 22px;
-  background: inherit;
-  border-bottom-right-radius: 16px;
-}
-.s6-bubble::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: -22px;
-  width: 22px;
-  height: 24px;
-  background: #3a2d38;              /* section bg — carves the tail curve */
-  border-bottom-right-radius: 14px;
-}
-
-/* bubble 1 is the anchor; the thread gets a little smaller / more indented as it goes down */
-.s6-bubble-1 {
-  margin-left: 0;
-  padding: 18px 26px;
-  font-size: clamp(15px, 1.7vw, 18px);
-}
-.s6-bubble-2 {
-  margin-left: clamp(14px, 1.6vw, 26px);
-  padding: 17px 25px;
-  font-size: clamp(14.5px, 1.65vw, 17.5px);
-}
-.s6-bubble-3 {
-  margin-left: clamp(36px, 4vw, 60px);
-  padding: 15px 22px;
-  background: #423642;
-  color: #9a909a;
-  font-size: clamp(13px, 1.5vw, 15.5px);
-}
-.s6-bubble-3::before { background: #423642; }
-
-/* bubble 2: tail flipped to the bottom-right corner */
-.s6-bubble-2 { border-radius: 28px 28px 7px 28px; }
-.s6-bubble-2::before {
-  left: auto;
-  right: -9px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 16px;
-}
-.s6-bubble-2::after {
-  left: auto;
-  right: -22px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 14px;
-}
-
-.s6-ghost {
-  position: absolute;
-  left: calc(132px - var(--s6-lead));   /* keeps the character ~132px from the screen edge */
-  top: clamp(210px, 44%, 320px);
-  width: clamp(64px, 6.6vw, 88px);
-  height: 520px;
-  background: #b3e4f0;
-  border-radius: 46% 46% 8% 8% / 14% 14% 3% 3%;
-  z-index: 2;
-}
-.s6-ghost::before {          /* soft wavy tuft on top */
-  content: '';
-  position: absolute;
-  top: -10px;
-  right: 12px;
-  width: 34px;
-  height: 26px;
-  background: #b3e4f0;
-  border-radius: 50% 50% 40% 40%;
-}
-.s6-ghost-face {
-  position: absolute;
-  top: 54px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 34px;
-  height: 20px;
-}
-.s6-ghost-face::before,
-.s6-ghost-face::after {       /* worried eyes */
-  content: '';
-  position: absolute;
-  top: 0;
-  width: 6px;
-  height: 9px;
-  background: #2f2733;
-  border-radius: 50%;
-}
-.s6-ghost-face::before { left: 3px; transform: rotate(18deg); }
-.s6-ghost-face::after  { right: 3px; transform: rotate(-18deg); }
-
-.s6-title {
-  position: relative;
-  z-index: 3;
-  margin-left: 0;   /* aligned with bubble 1 */
-  font-size: clamp(24px, 3.2vw, 38px);
-  font-weight: 400;
-  line-height: 1.42;
-  color: #fff;
-  white-space: nowrap;
-}
-.s6-title b { font-weight: 800; }
-
-/* ---- right: cream panel (full-bleed to the right edge) ---- */
-.s6-panel {
-  position: absolute;
-  left: var(--s6-panel-left);
-  right: 0;
-  top: calc(var(--header-h) + clamp(28px, 6vh, 60px));
-  bottom: clamp(28px, 6vh, 60px);
-  background: #fdf5e6;
-  border-radius: 40px 0 0 40px;
-  overflow: hidden;
-  z-index: 1;
-}
-
-/* back: phone mock-up */
-.s6-phone {
-  position: absolute;
-  right: 14%;
-  top: 8%;
-  width: 40%;
-  height: 84%;
-  background: linear-gradient(150deg, #dcdce0 0%, #b7b7bd 55%, #e6e6ea 100%);
-  border-radius: 13% / 6.4%;
-  padding: 2.8%;
-  box-shadow: 0 30px 60px -22px rgba(0, 0, 0, 0.28);
-}
-.s6-phone-screen {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, #fbfbfc 0%, #eeeef1 100%);
-  border-radius: 10% / 5%;
-}
-.s6-phone-notch {
-  position: absolute;
-  top: 3.4%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 32%;
-  height: 13px;
-  background: #0c0c0d;
-  border-radius: 100px;
-  z-index: 2;
-}
-
-/* front: white card, slightly overlapping the phone */
-.s6-card-front {
-  position: absolute;
-  left: 8%;
-  top: 17%;
-  width: 48%;
-  height: 42%;
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 24px 50px rgba(90, 70, 40, 0.20);
-}
-
-.s6-toast {
-  position: absolute;
-  left: 8%;
-  top: 60%;
-  width: max-content;
-  max-width: 84%;
-  background: var(--orange);
-  color: #fff;
-  padding: 19px 34px;
-  border-radius: 16px;
-  font-size: clamp(14px, 1.75vw, 17.5px);
-  font-weight: 500;
-  line-height: 1.4;
-  text-align: center;
-  box-shadow: 0 18px 38px rgba(255, 75, 17, 0.34);
-}
-.s6-toast strong { font-weight: 800; }
-.s6-toast::after {           /* tail pointing up into the white card */
-  content: '';
-  position: absolute;
-  right: 26%;
-  top: -9px;
-  border: 10px solid transparent;
-  border-top: 0;
-  border-bottom-color: var(--orange);
-}
-
-/* =========================================================
    Section 7: Home and widget reminders
 ========================================================= */
 .sec-7-reminder {
@@ -1200,13 +961,29 @@ img { max-width: 100%; display: block; }
   min-height: 200dvh;
   overflow: visible;
 }
-.reminder-slide-2 .reminder-full-phone {
+/* the sticky+zoom+fade now lives on the wrapper so the swipe-button
+   overlay (track + knob) scales and fades in lockstep with the phone
+   image itself, instead of being a separate element chasing it */
+.reminder-swipe-wrap {
   position: sticky;
   top: 45%;
+  left: 50%;
   width: min(42vw, 760px);
-  margin-top: 0;
+  transform: translate(-50%, -50%) scale(var(--s9-zoom, 1));
+  transform-origin: center center;
+  transition: transform 180ms ease-out;
   opacity: var(--s9-story-image, 0);
-  transition: opacity 160ms linear, transform 180ms ease-out;
+  z-index: 1;
+}
+.reminder-slide-2 .reminder-full-phone {
+  position: relative;
+  top: auto;
+  left: auto;
+  width: 100%;
+  transform: none;
+  opacity: 1;
+  transition: none;
+  margin-top: 0;
 }
 .reminder-slide-3 { display: none; }
 .reminder-slide-1 {
@@ -1229,12 +1006,66 @@ img { max-width: 100%; display: block; }
   transition: transform 180ms ease-out;
   filter: drop-shadow(0 20px 24px rgba(100, 50, 35, .16));
 }
-.reminder-slide-2 .reminder-full-phone { top: 45%; width: min(42vw, 760px); }
 .reminder-slide-3 .reminder-full-phone {
   /* The reference is a close crop of the lower half of the phone. */
   width: min(70vw, 1280px);
   top: -20%;
 }
+
+/* "밀어서 송금하기" swipe button — baked into zoom_off_1.png always showing
+   the gray/off look (icon left); once fully zoomed in, one more scroll
+   swipes the icon right and the track turns orange, matching zoom_on.png's
+   "송금 완료!" state. Positions are % of the image's own natural size, so
+   they scale and fade together with the phone image for free via the
+   shared .reminder-swipe-wrap transform/opacity. */
+.reminder-swipe-track {
+  position: absolute;
+  left: 23.6%;
+  top: 79.7%;
+  width: 53.7%;
+  height: 6.58%;
+  box-sizing: border-box;
+  border-radius: 999px;
+  background: #ff5b32;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 19.5%;
+  font-size: clamp(11px, 1.1vw, 15px);
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+.reminder-swipe-knob {
+  position: absolute;
+  left: 23.6%;
+  top: 79.7%;
+  width: 19.5%;
+  height: 6.58%;
+  border-radius: 999px;
+  background: #fffcf7;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: left 0.55s cubic-bezier(0.22, 0.9, 0.3, 1);
+  z-index: 3;
+  pointer-events: none;
+}
+.reminder-swipe-icon {
+  width: 46%;
+  aspect-ratio: 1;
+  background: var(--orange);
+  -webkit-mask: url(images/Logo_image.png) center / contain no-repeat;
+  mask: url(images/Logo_image.png) center / contain no-repeat;
+}
+.reminder-swipe-wrap.is-on .reminder-swipe-track { opacity: 1; }
+.reminder-swipe-wrap.is-on .reminder-swipe-knob { left: 57.8%; }
 .reminder-backdrop {
   position: absolute;
   top: -5%;
@@ -1284,6 +1115,7 @@ img { max-width: 100%; display: block; }
   color: #ff4b11;
   font-size: clamp(16px, 1.56vw, 36px);
   margin-bottom: 5.6vh;
+  margin-right: -14px;
 }
 .reminder-eyebrow span { position: relative; width: 0.55em; height: 0.55em; border-radius: 50%; background: #ff643b; box-shadow: 0 0 0 0.4em #ffc6b0; }
 .reminder-eyebrow span::after { content: ""; position: absolute; top: 50%; left: 50%; width: 1px; height: 10vh; background: #ff997b; }
@@ -1302,7 +1134,7 @@ img { max-width: 100%; display: block; }
   .reminder-member { left: 43%; top: 56%; width: 44%; }
   .reminder-label { font-size: 17px; bottom: calc(100% + 20px); }
   .reminder-full-phone { width: 86vw; }
-  .reminder-slide-2 .reminder-full-phone { top: 45%; width: 86vw; }
+  .reminder-slide-2 .reminder-full-phone { width: 86vw; }
   .reminder-slide-3 .reminder-full-phone { width: 112vw; top: 15%; }
 }
 
@@ -1981,8 +1813,6 @@ img { max-width: 100%; display: block; }
 @media (max-width: 1280px) {
   .hero-content { margin-left: clamp(24px, 5vw, 64px); max-width: none; }
   .hero-panel { right: 44px; left: 52%; }
-
-  .sec-6-remind { --s6-panel-left: 46vw; }
 }
 
 @media (max-width: 1024px) {
@@ -1990,8 +1820,6 @@ img { max-width: 100%; display: block; }
   .nav-toggle { display: flex; }
   .header-inner { padding: 0 20px; }
 
-  .sec-6-remind { --s6-panel-left: 48vw; }
-  .s6-left { width: min(50%, 430px); }
 }
 
 @media (max-width: 900px) {
@@ -2058,24 +1886,6 @@ img { max-width: 100%; display: block; }
   .s9-aside-left  { order: -1; }
   .s9-aside-right { order: 99; }
 
-  .s6-inner { padding-left: 22px; }
-  .s6-left { width: 100%; min-height: 0; padding-bottom: 120px; }
-  .s6-chat { margin-bottom: 40px; gap: 32px; }
-  .s6-bubble-1 { margin-left: 30px; font-size: 16px; padding: 16px 22px; }
-  .s6-bubble-2 { margin-left: 44px; font-size: 14.5px; padding: 14px 20px; }
-  .s6-bubble-3 { margin-left: 66px; font-size: 13px; padding: 12px 18px; }
-  .s6-ghost { top: auto; bottom: -30px; left: -8px; width: 70px; height: 210px; }
-  .s6-title { margin-left: 92px; font-size: clamp(22px, 6.4vw, 30px); white-space: normal; word-break: keep-all; }
-  .s6-panel {
-    position: relative;
-    left: auto; right: auto; top: auto; bottom: auto;
-    transform: none;
-    width: calc(100% - 40px);
-    margin: 4px auto 0;
-    height: clamp(340px, 92vw, 460px);
-    border-radius: 24px;
-  }
-  .s6-toast { font-size: 14px; padding: 15px 24px; top: 55%; left: 6%; width: max-content; max-width: 88%; }
   .s5-layout { width: min(100% - 40px, 480px); }
   .s5-top-decoration { display: none; }
   .s5-title { margin-bottom: 32px; }

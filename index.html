@@ -45,7 +45,6 @@
       <nav class="nav-pills" aria-label="주요 섹션">
         <a href="#sec2" class="nav-link active">왜 반띵</a>
         <a href="#sec5" class="nav-link">어떻게 반띵?</a>
-        <a href="#sec6" class="nav-link">반띵 하면?</a>
         <a href="#sec8" class="nav-link">함께 반띵!</a>
         <a href="#sec10" class="nav-link">반띵 시작하기</a>
       </nav>
@@ -56,7 +55,6 @@
     <div class="nav-drawer" id="navDrawer">
       <a href="#sec2" class="nav-link">왜 반띵</a>
       <a href="#sec5" class="nav-link">어떻게 반띵?</a>
-      <a href="#sec6" class="nav-link">반띵 하면?</a>
       <a href="#sec8" class="nav-link">함께 반띵!</a>
       <a href="#sec10" class="nav-link">반띵 시작하기</a>
       <button class="btn-primary btn-drawer" data-scroll="#sec10">알림 받기</button>
@@ -222,32 +220,6 @@
     </div>
   </section>
 
-  <!-- [Section 6] Auto Remind -->
-  <section class="section sec-6-remind" id="sec6" data-header-dark>
-    <div class="s6-inner">
-      <div class="s6-left" data-reveal>
-        <div class="s6-chat">
-          <div class="s6-bubble s6-bubble-1">혹시 이번 달 비용 아직 안 보냈어..?</div>
-          <div class="s6-bubble s6-bubble-2">오늘까지 보내줄 수 있어..?</div>
-          <div class="s6-bubble s6-bubble-3">확인 부탁해</div>
-        </div>
-
-        <div class="s6-ghost" aria-hidden="true"><span class="s6-ghost-face"></span></div>
-
-        <h2 class="s6-title"><b>깜빡</b>한 정산,<br />내가 <b>말하기 전에</b></h2>
-      </div>
-    </div>
-
-    <div class="s6-panel">
-      <div class="s6-phone" aria-hidden="true">
-        <div class="s6-phone-notch"></div>
-        <div class="s6-phone-screen"></div>
-      </div>
-      <div class="s6-card s6-card-front" aria-hidden="true"></div>
-      <div class="s6-toast">아직 보내지 않은 멤버에게 <strong>먼저 알려줬어요!</strong></div>
-    </div>
-  </section>
-
   <!-- [Section 7] Home and widget reminders (section9 design reference) -->
   <section class="section sec-7-reminder reminder-slide-1" id="sec7" aria-labelledby="reminder-heading">
     <div class="reminder-backdrop" aria-hidden="true">
@@ -273,7 +245,11 @@
   </section>
 
   <section class="section sec-7-reminder reminder-slide-2" id="sec7-2" aria-label="멤버 정산 금액 화면">
-    <img class="reminder-full-phone" src="images/section9/s9-reminder-send-screen2.png" alt="우당탕 우리집 정산 금액 37,980원 화면" />
+    <div class="reminder-swipe-wrap" id="reminderSwipeWrap">
+      <img class="reminder-full-phone" src="images/zoom_off_1.png" alt="우당탕 우리집 정산 금액 37,980원 화면" />
+      <span class="reminder-swipe-track" id="reminderSwipeTrack">송금 완료!</span>
+      <span class="reminder-swipe-knob" id="reminderSwipeKnob"><span class="reminder-swipe-icon"></span></span>
+    </div>
   </section>
 
   <section class="section sec-7-reminder reminder-slide-3" id="sec7-3" aria-label="멤버 송금 화면">
@@ -364,7 +340,6 @@
             <strong>About Bandding</strong>
             <a href="#sec2">왜 반띵</a>
             <a href="#sec5">어떻게 반띵?</a>
-            <a href="#sec6">반띵 하면?</a>
             <a href="#sec8">함께 반띵!</a>
             <a href="#sec10">반띵 시작하기</a>
           </div>

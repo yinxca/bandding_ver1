@@ -51,20 +51,77 @@
     const s2 = document.getElementById('sec7-2');
     const s3 = document.getElementById('sec7-3');
     if (!fp || !s1 || !s2 || !s3) return;
-    const phones = [s2.querySelector('.reminder-full-phone')].filter(Boolean);
-    const update = () => {
+    const swipeWrap = document.getElementById('reminderSwipeWrap');
+
+    const getProgress = () => {
       const start = s2.offsetTop;
       const end = s2.offsetTop + s2.offsetHeight - fp.clientHeight;
-      const progress = Math.max(0, Math.min(1, (fp.scrollTop - start) / Math.max(1, end - start)));
+      return Math.max(0, Math.min(1, (fp.scrollTop - start) / Math.max(1, end - start)));
+    };
+
+    const update = () => {
+      const progress = getProgress();
       const transition = Math.max(0, Math.min(1, (fp.scrollTop - s1.offsetTop) / Math.max(1, s1.offsetHeight)));
       s1.style.setProperty('--s9-story-fade', (1 - transition).toFixed(3));
       s2.style.setProperty('--s9-story-image', transition.toFixed(3));
       const scale = 1 + progress * 0.42;
-      phones.forEach((phone) => { phone.style.setProperty('--s9-zoom', scale.toFixed(3)); });
+      // set on s2 (a shared ancestor of both the swipe wrapper and the
+      // plain phone image) so the custom property reaches whichever one
+      // actually reads it in its transform, since CSS vars only inherit
+      // downward and this section renders the phone either way.
+      s2.style.setProperty('--s9-zoom', scale.toFixed(3));
     };
     fp.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update, { passive: true });
     update();
+
+    // ---- swipe-to-pay gate: once the continuous zoom is fully in, one
+    // more scroll swipes the "밀어서 송금하기" button to "송금 완료!" before
+    // any further scroll is allowed to leave the section (and symmetrically
+    // un-swipes on the way back up), same cooldown pattern as the other
+    // scroll-gated interactions on this page. ----
+    if (swipeWrap) {
+      let swiped = false;
+      let lastGateAt = -Infinity;
+      const GATE_COOLDOWN_MS = 700;
+
+      const setSwiped = (on) => {
+        swiped = on;
+        swipeWrap.classList.toggle('is-on', on);
+      };
+
+      fp.addEventListener('wheel', (e) => {
+        if (window.innerWidth <= 900) return;
+        const progress = getProgress();
+        const now = performance.now();
+        const cooling = now - lastGateAt < GATE_COOLDOWN_MS;
+        const down = e.deltaY > 0;
+
+        if (down && progress >= 0.98 && !swiped) {
+          e.preventDefault();
+          if (cooling) return;
+          setSwiped(true);
+          lastGateAt = now;
+          return;
+        }
+        if (!down && swiped) {
+          e.preventDefault();
+          if (cooling) return;
+          setSwiped(false);
+          lastGateAt = now;
+          return;
+        }
+        // already swiped and still scrolling down: let it proceed on to the
+        // next section instead of holding it here indefinitely
+        if (down && swiped && cooling) e.preventDefault();
+      }, { passive: false });
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+          entries.forEach((entry) => { if (!entry.isIntersecting) setSwiped(false); });
+        }, { threshold: 0 }).observe(s2);
+      }
+    }
   }
 
   /* ---------- storage ---------- */
