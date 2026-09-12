@@ -750,7 +750,7 @@ img { max-width: 100%; display: block; }
   color: var(--orange);
   font-size: clamp(16px, 1.56vw, 36px);
   font-weight: 600;
-  margin-bottom: clamp(20px, 4vh, 48px);
+  margin-bottom: 34px;
 }
 .s5c-eyebrow-dot {
   position: relative;
@@ -771,7 +771,7 @@ img { max-width: 100%; display: block; }
   transform: translateX(-50%);
   width: 1px;
   height: clamp(64px, 8vh, 110px);
-  background: var(--orange);
+  background: linear-gradient(180deg, var(--orange) 0%, rgba(255, 75, 17, 0) 100%);
 }
 .s5c-heading {
   font-size: clamp(28px, 2.78vw, 64px);
@@ -779,7 +779,7 @@ img { max-width: 100%; display: block; }
   line-height: 1.5;
   color: #6b3226;
   letter-spacing: -0.5px;
-  margin-bottom: clamp(14px, 2vh, 22px);
+  margin-bottom: 20px;
 }
 .s5c-heading strong { font-weight: 800; }
 .s5c-heading .highlight-orange { font-weight: 800; }
@@ -821,7 +821,7 @@ img { max-width: 100%; display: block; }
   color: var(--orange);
   font-size: clamp(16px, 1.56vw, 36px);
   font-weight: 600;
-  margin-bottom: clamp(20px, 4vh, 48px);
+  margin-bottom: 34px;
 }
 .s5d-eyebrow-dot {
   position: relative;
@@ -842,7 +842,7 @@ img { max-width: 100%; display: block; }
   transform: translateX(-50%);
   width: 1px;
   height: clamp(64px, 8vh, 110px);
-  background: var(--orange);
+  background: linear-gradient(180deg, var(--orange) 0%, rgba(255, 75, 17, 0) 100%);
 }
 .s5d-heading {
   font-size: clamp(28px, 2.78vw, 64px);
@@ -850,7 +850,7 @@ img { max-width: 100%; display: block; }
   line-height: 1.5;
   letter-spacing: -0.025em;
   color: #6b3226;
-  margin-bottom: clamp(20px, 3vh, 32px);
+  margin-bottom: 20px;
 }
 .s5d-heading strong { font-weight: 800; }
 .s5d-sub {
@@ -1114,14 +1114,14 @@ img { max-width: 100%; display: block; }
   gap: 1.4vw;
   color: #ff4b11;
   font-size: clamp(16px, 1.56vw, 36px);
-  margin-bottom: 5.6vh;
+  margin-bottom: 34px;
   margin-right: -14px;
 }
 .reminder-eyebrow span { position: relative; width: 0.55em; height: 0.55em; border-radius: 50%; background: #ff643b; box-shadow: 0 0 0 0.4em #ffc6b0; }
-.reminder-eyebrow span::after { content: ""; position: absolute; top: 50%; left: 50%; width: 1px; height: 10vh; background: #ff997b; }
+.reminder-eyebrow span::after { content: ""; position: absolute; top: 50%; left: 50%; width: 1px; height: 10vh; background: linear-gradient(180deg, var(--orange) 0%, rgba(255, 75, 17, 0) 100%); }
 .reminder-copy h2 { font-size: clamp(28px, 2.78vw, 64px); font-weight: 400; line-height: 1.5; letter-spacing: -0.025em; }
 .reminder-copy h2 strong { font-weight: 800; }
-.reminder-description { margin-top: 2.6vh; font-size: clamp(14px, 1.32vw, 30px); line-height: 1.5; letter-spacing: -0.025em; }
+.reminder-description { margin-top: 20px; font-size: clamp(14px, 1.32vw, 30px); line-height: 1.5; letter-spacing: -0.025em; }
 
 @media (max-width: 767px) {
   .reminder-backdrop { left: 30%; width: 90%; top: -2%; }
@@ -1163,7 +1163,7 @@ img { max-width: 100%; display: block; }
   color: var(--orange);
   font-size: clamp(16px, 1.56vw, 36px);
   font-weight: 600;
-  margin-bottom: clamp(20px, 4vh, 48px);
+  margin-bottom: 34px;
 }
 .s8-eyebrow-dot {
   position: relative;
@@ -1184,7 +1184,7 @@ img { max-width: 100%; display: block; }
   transform: translateX(-50%);
   width: 1px;
   height: clamp(64px, 8vh, 110px);
-  background: var(--orange);
+  background: linear-gradient(180deg, var(--orange) 0%, rgba(255, 75, 17, 0) 100%);
 }
 .s8-heading {
   font-size: clamp(28px, 2.78vw, 64px);
@@ -1192,7 +1192,7 @@ img { max-width: 100%; display: block; }
   line-height: 1.5;
   letter-spacing: -0.025em;
   color: #6b3226;
-  margin-bottom: clamp(20px, 3vh, 32px);
+  margin-bottom: 20px;
 }
 .s8-heading strong { font-weight: 800; }
 .s8-sub {
