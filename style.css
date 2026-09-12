@@ -1377,14 +1377,24 @@ img { max-width: 100%; display: block; }
 .s8c-row-art { display: block; width: 100%; height: auto; }
 .s8c-row-text {
   position: absolute;
-  left: 38%;
   top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: clamp(18px, 1.7vw, 24px);
   color: #8a8a8a;
   white-space: nowrap;
 }
-.s8c-row-text strong { font-weight: 800; color: #2b2323; }
+.s8c-row-text strong { font-weight: 800; color: var(--orange); }
+.s8c-row-1 .s8c-row-text { left: 40%; }
+.s8c-row-2 .s8c-row-text { left: 60%; }
+.s8c-row-3 .s8c-row-text { left: 53%; }
+
+@media (max-width: 640px) {
+  .s8c-row-text { font-size: 11px; white-space: normal; width: 46%; text-align: center; }
+  .s8c-row-1 .s8c-row-text { left: 42%; }
+  .s8c-row-2 .s8c-row-text { left: 58%; }
+  .s8c-row-3 .s8c-row-text { left: 56%; }
+}
 .s8c-closing {
   text-align: center;
   margin-top: clamp(24px, 4vh, 40px);
@@ -1394,6 +1404,18 @@ img { max-width: 100%; display: block; }
 }
 .s8c-less { color: var(--orange); font-weight: 800; }
 .s8c-more { color: #25a9cf; font-weight: 800; }
+
+.s8c-row[data-stage-item],
+.s8c-closing[data-stage-item] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s cubic-bezier(0.22, 0.9, 0.3, 1), transform 0.6s cubic-bezier(0.22, 0.9, 0.3, 1);
+}
+.s8c-row[data-stage-item].is-visible,
+.s8c-closing[data-stage-item].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* =========================================================
    Section 9: Business Cards
@@ -1694,15 +1716,16 @@ img { max-width: 100%; display: block; }
   width: min(720px, 90vw);
 }
 .s10-mascots {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 48px;
+  display: block;
   width: clamp(320px, 82%, 480px);
   height: auto;
-  z-index: 4;                /* in front of the button */
-  pointer-events: none;
+  margin: 0 auto;
 }
+.s10-mascots-clickable {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.s10-mascots-clickable:hover { transform: translateY(-2px); }
 .s10-face::before,
 .s10-face::after {
   content: "";
@@ -1783,25 +1806,6 @@ img { max-width: 100%; display: block; }
 .s10-m-orange .s10-face::before { background: rgba(255, 255, 255, 0.9); }
 .s10-m-orange .s10-face::after  { background: rgba(255, 255, 255, 0.9); }
 
-.s10-btn {
-  position: relative;
-  z-index: 3;
-  top: -9px;          /* lift the button so its top edge meets the characters' feet (no dark seam) */
-  width: 100%;
-  padding: clamp(19px, 2.3vw, 26px);
-  border: none;
-  appearance: none;
-  -webkit-appearance: none;
-  border-radius: 100px;
-  background: var(--orange);
-  color: #fff;
-  font-size: clamp(16px, 1.9vw, 20px);
-  font-weight: 700;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-.s10-btn:hover { background: var(--orange-dark); transform: translateY(-1px); }
-
 /* ---------- Footer (bottom of section 10) ---------- */
 .footer { width: 100%; background: #2c2029; color: #9ea0a5; padding-bottom: clamp(28px, 4vh, 48px); }
 .footer-inner {
@@ -1827,20 +1831,15 @@ img { max-width: 100%; display: block; }
   align-items: stretch;
   gap: 14px;
 }
-.footer-notify-title { color: #fff; font-weight: 700; font-size: clamp(14px, 1.5vw, 17px); }
-.footer-notify-btn {
+.footer-launching-btn {
+  display: block;
   width: 100%;
-  padding: clamp(14px, 1.6vw, 18px);
-  border: none;
-  border-radius: 100px;
-  background: var(--orange);
-  color: #fff;
-  font-weight: 700;
-  font-size: clamp(15px, 1.6vw, 17px);
+  max-width: 340px;
+  height: auto;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: transform 0.2s ease;
 }
-.footer-notify-btn:hover { background: var(--orange-dark); }
+.footer-launching-btn:hover { transform: translateY(-1px); }
 .footer-end .social-icons { align-self: flex-end; margin-top: clamp(18px, 4vh, 40px); }
 .footer-end .copyright { text-align: right; }
 .social-icons { display: block; height: 22px; width: auto; }
@@ -1989,7 +1988,6 @@ img { max-width: 100%; display: block; }
   .footer-inner { flex-direction: column; align-items: center; text-align: center; gap: 24px; }
   .footer-links-group { justify-content: center; gap: 28px; }
   .footer-end { align-items: center; width: 100%; max-width: 360px; }
-  .footer-notify-title { text-align: center; }
   .footer-end .social-icons { align-self: center; }
   .footer-end .copyright { text-align: center; }
 }

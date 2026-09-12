@@ -30,7 +30,8 @@
     initReveal();
     initChatFlow();
     initSection2Scenes();
-    initSection5Reveal();
+    initStageReveal('sec5');
+    initStageReveal('sec8c');
     initSection5dToggle();
     positionS5dBlur();
     window.addEventListener('resize', positionS5dBlur, { passive: true });
@@ -608,15 +609,16 @@
     }
   }
 
-  /* ---------- section 5: scroll-stepped reveal ----------
-   * Arriving at section 5 shows only the title. Each further scroll floats
-   * one more piece in (card 1, card 2, card 3, then the closing line) —
-   * cumulative, nothing already shown goes away. Same entry-swallow /
-   * cooldown / boundary-hold mechanics as section 2's stepper, so a single
-   * scroll gesture's momentum can't skip steps or leak into section 4/6.
-   * Desktop only — mobile already scrolls normally (no fp-scroll snap). */
-  function initSection5Reveal() {
-    const section = document.getElementById('sec5');
+  /* ---------- generic scroll-stepped reveal ----------
+   * Arriving at the section shows only its base content. Each further
+   * scroll floats one more [data-stage-item] in, in order — cumulative,
+   * nothing already shown goes away. Same entry-swallow / cooldown /
+   * boundary-hold mechanics as section 2's stepper, so a single scroll
+   * gesture's momentum can't skip steps or leak into the next section.
+   * Desktop only — mobile already scrolls normally (no fp-scroll snap).
+   * Shared by section 5 (cards) and section 8c (together rows). */
+  function initStageReveal(sectionId) {
+    const section = document.getElementById(sectionId);
     const fp = document.querySelector('.fp-scroll');
     if (!section || !fp) return;
 
