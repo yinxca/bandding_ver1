@@ -1030,8 +1030,7 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-right: 19.5%;
-  font-size: clamp(11px, 1.1vw, 15px);
+  font-size: clamp(12px, 1.25vw, 17px);
   font-weight: 700;
   color: #fff;
   white-space: nowrap;
@@ -1045,7 +1044,7 @@ img { max-width: 100%; display: block; }
   position: absolute;
   left: 23.6%;
   top: 79.7%;
-  width: 19.5%;
+  width: 20.5%;
   height: 6.58%;
   border-radius: 999px;
   background: #fffcf7;
@@ -1065,7 +1064,7 @@ img { max-width: 100%; display: block; }
   mask: url(images/Logo_image.png) center / contain no-repeat;
 }
 .reminder-swipe-wrap.is-on .reminder-swipe-track { opacity: 1; }
-.reminder-swipe-wrap.is-on .reminder-swipe-knob { left: 57.8%; }
+.reminder-swipe-wrap.is-on .reminder-swipe-knob { left: 56.8%; }
 .reminder-backdrop {
   position: absolute;
   top: -5%;

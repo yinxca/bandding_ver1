@@ -53,11 +53,22 @@
     if (!fp || !s1 || !s2 || !s3) return;
     const swipeWrap = document.getElementById('reminderSwipeWrap');
 
-    const getProgress = () => {
+    const sectionBounds = () => {
       const start = s2.offsetTop;
       const end = s2.offsetTop + s2.offsetHeight - fp.clientHeight;
+      return { start, end };
+    };
+    const getProgress = () => {
+      const { start, end } = sectionBounds();
       return Math.max(0, Math.min(1, (fp.scrollTop - start) / Math.max(1, end - start)));
     };
+
+    // one scroll before the zoom would otherwise finish, so the swipe
+    // triggers a beat early instead of waiting for the very last pixel of zoom
+    const SWIPE_THRESHOLD = 0.72;
+    const GATE_COOLDOWN_MS = 700;
+    let swiped = false;
+    let lastGateAt = -Infinity;
 
     const update = () => {
       const progress = getProgress();
@@ -70,55 +81,59 @@
       // actually reads it in its transform, since CSS vars only inherit
       // downward and this section renders the phone either way.
       s2.style.setProperty('--s9-zoom', scale.toFixed(3));
+
+      // Trigger straight off the real scroll position (fires on every
+      // native 'scroll' event, including ones from trackpad/momentum
+      // scrolling that skip past wheel-tick handlers entirely) instead of
+      // depending on catching one exact 'wheel' event — that's what made
+      // the swipe fire inconsistently. Clamp scroll right at the threshold
+      // so a fast flick can't blow straight through into the next section
+      // before the swipe has a chance to show.
+      if (swipeWrap && !swiped && progress >= SWIPE_THRESHOLD) {
+        swiped = true;
+        lastGateAt = performance.now();
+        swipeWrap.classList.add('is-on');
+        fp.scrollTop = sectionBounds().start + (sectionBounds().end - sectionBounds().start) * SWIPE_THRESHOLD;
+      }
     };
     fp.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update, { passive: true });
     update();
 
-    // ---- swipe-to-pay gate: once the continuous zoom is fully in, one
-    // more scroll swipes the "밀어서 송금하기" button to "송금 완료!" before
-    // any further scroll is allowed to leave the section (and symmetrically
-    // un-swipes on the way back up), same cooldown pattern as the other
-    // scroll-gated interactions on this page. ----
+    // ---- swipe-to-pay gate: once swiped (see update() above), hold the
+    // scroll in place for a beat before letting a further scroll continue
+    // on toward the next section (and symmetrically un-swipe on the way
+    // back up), same cooldown pattern as the other scroll-gated
+    // interactions on this page. ----
     if (swipeWrap) {
-      let swiped = false;
-      let lastGateAt = -Infinity;
-      const GATE_COOLDOWN_MS = 700;
-
-      const setSwiped = (on) => {
-        swiped = on;
-        swipeWrap.classList.toggle('is-on', on);
-      };
-
       fp.addEventListener('wheel', (e) => {
-        if (window.innerWidth <= 900) return;
-        const progress = getProgress();
+        if (window.innerWidth <= 900 || !swiped) return;
         const now = performance.now();
         const cooling = now - lastGateAt < GATE_COOLDOWN_MS;
         const down = e.deltaY > 0;
 
-        if (down && progress >= 0.98 && !swiped) {
+        if (!down) {
           e.preventDefault();
           if (cooling) return;
-          setSwiped(true);
+          swiped = false;
+          swipeWrap.classList.remove('is-on');
           lastGateAt = now;
           return;
         }
-        if (!down && swiped) {
-          e.preventDefault();
-          if (cooling) return;
-          setSwiped(false);
-          lastGateAt = now;
-          return;
-        }
-        // already swiped and still scrolling down: let it proceed on to the
-        // next section instead of holding it here indefinitely
-        if (down && swiped && cooling) e.preventDefault();
+        // scrolling further down while swiped: hold briefly, then let it
+        // proceed on to the next section
+        if (cooling) e.preventDefault();
+        else lastGateAt = now;
       }, { passive: false });
 
       if ('IntersectionObserver' in window) {
         new IntersectionObserver((entries) => {
-          entries.forEach((entry) => { if (!entry.isIntersecting) setSwiped(false); });
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting && swiped) {
+              swiped = false;
+              swipeWrap.classList.remove('is-on');
+            }
+          });
         }, { threshold: 0 }).observe(s2);
       }
     }
