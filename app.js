@@ -462,9 +462,10 @@
       });
 
       if (notifyIconWrap) {
+        const isGpt = f.notify.type === 'img' && f.notify.src.includes('GPT');
         notifyIconWrap.innerHTML = f.notify.type === 'mask'
           ? '<span class="s2-notify-icon-mark" aria-hidden="true"></span>'
-          : `<img src="${f.notify.src}" alt="" />`;
+          : `<img src="${f.notify.src}" alt="" class="${isGpt ? 's2-notify-icon-gpt' : ''}" />`;
       }
       if (notifyTitle) notifyTitle.textContent = f.notify.title;
       if (notifyAmount) notifyAmount.textContent = f.notify.amount;
