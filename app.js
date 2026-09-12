@@ -224,19 +224,39 @@
 
   /* ---------- scroll spy ---------- */
   function initScrollSpy() {
-    const links = [...document.querySelectorAll('.nav-link')];
-    const ids = [...new Set(links.map((l) => l.getAttribute('href')).filter((h) => h && h.startsWith('#')))];
-    const sections = ids.map((id) => document.querySelector(id)).filter(Boolean);
-    if (!sections.length || !('IntersectionObserver' in window)) return;
+    const links = [...document.querySelectorAll('.nav-link[data-nav]')];
+    if (!links.length || !('IntersectionObserver' in window)) return;
 
-    const setActive = (id) => links.forEach((l) => l.classList.toggle('active', l.getAttribute('href') === `#${id}`));
+    // every visible section, top to bottom (section numbering the user
+    // gave), mapped to which nav item should read active from there on —
+    // null means none of them yet (still in the hero).
+    const sectionNav = [
+      ['sec1', null],
+      ['sec2', 'why'],
+      ['sec5', 'why'],
+      ['sec5b', 'how'],
+      ['sec5c', 'how'],
+      ['sec5d', 'how'],
+      ['sec7', 'how'],
+      ['sec7-2', 'how'],
+      ['sec8', 'how'],
+      ['sec8b', 'together'],
+      ['sec8c', 'together'],
+      ['sec9', 'together'],
+      ['sec10', 'start'],
+    ];
+    const navFor = new Map(sectionNav);
+    const sections = sectionNav.map(([id]) => document.getElementById(id)).filter(Boolean);
+    if (!sections.length) return;
+
+    const setActive = (navKey) => links.forEach((l) => l.classList.toggle('active', !!navKey && l.dataset.nav === navKey));
 
     const obs = new IntersectionObserver((entries) => {
       entries
         .filter((e) => e.isIntersecting)
         .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
         .slice(0, 1)
-        .forEach((e) => setActive(e.target.id));
+        .forEach((e) => setActive(navFor.get(e.target.id)));
     }, { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.25, 0.5, 1] });
 
     sections.forEach((s) => obs.observe(s));
@@ -245,9 +265,44 @@
   /* ---------- smooth scroll ---------- */
   function initSmoothScroll() {
     const behavior = prefersReducedMotion ? 'auto' : 'smooth';
+    const fp = document.querySelector('.fp-scroll');
     const go = (sel) => {
       const el = typeof sel === 'string' ? document.querySelector(sel) : sel;
-      if (el) el.scrollIntoView({ behavior, block: 'start' });
+      if (!el) return;
+      // scroll-snap-type: mandatory fights a multi-section smooth
+      // scrollIntoView — it keeps trying to snap back toward the nearest
+      // point mid-animation, so a jump of more than one section (e.g. the
+      // "함께 반띵!" nav link from the hero) stalls a few px in and never
+      // reaches the target. Suspend snapping for the jump, then restore it.
+      if (fp && fp.contains(el)) {
+        const prevSnap = fp.style.scrollSnapType;
+        const targetTop = el.offsetTop;
+        fp.style.scrollSnapType = 'none';
+        el.scrollIntoView({ behavior, block: 'start' });
+        // belt-and-suspenders: if the smooth scroll gets interrupted, never
+        // starts, or never completes for any reason, force the exact final
+        // position before handing snapping back — a button that silently
+        // falls short of its target is worse than skipping the animation.
+        // Race scrollend against a flat timeout instead of trusting either
+        // alone (scrollend never fires if the browser never actually
+        // started scrolling in the first place).
+        let done = false;
+        const finish = () => {
+          if (done) return;
+          done = true;
+          // scrollTo(..., {behavior:'instant'}) — not a raw .scrollTop
+          // assignment — because that's what actually supersedes an
+          // in-flight smooth scroll-behavior animation; a plain property
+          // set can get silently overwritten by the animation's own
+          // next frame.
+          fp.scrollTo({ top: targetTop, behavior: 'instant' });
+          fp.style.scrollSnapType = prevSnap;
+        };
+        fp.addEventListener('scrollend', finish, { once: true });
+        setTimeout(finish, prefersReducedMotion ? 50 : 900);
+      } else {
+        el.scrollIntoView({ behavior, block: 'start' });
+      }
     };
 
     document.querySelectorAll('a[href^="#"]').forEach((link) => {

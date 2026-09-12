@@ -165,6 +165,11 @@ img { max-width: 100%; display: block; }
   height: 34px;
   display: block;
   transition: filter 0.3s ease;
+  /* the mark's own PNG has ~2px of empty padding below the visible glyph
+     (the wordmark's crop is tight), so flush box-bottom alignment still
+     leaves the glyph looking a couple px short of the wordmark's baseline
+     — nudge it down to compensate */
+  transform: translateY(2.4px);
 }
 .logo-word {
   height: 31px;
