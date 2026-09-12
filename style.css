@@ -1034,7 +1034,7 @@ img { max-width: 100%; display: block; }
 .reminder-swipe-track {
   position: absolute;
   left: 23.58%;
-  top: 79.3%;
+  top: 80.8%;
   width: 52.7%;
   height: 9.09%;
   /* on_final.png's own aspect ratio differs from the box tuned for the
@@ -1053,7 +1053,7 @@ img { max-width: 100%; display: block; }
   position: absolute;
   left: 21.15%;
   top: 81%;
-  width: calc(26.4% + 1px);
+  width: calc(26.4% + 5px);
   height: 8.27%;
   object-fit: contain;
   transition: left 0.55s cubic-bezier(0.22, 0.9, 0.3, 1), opacity 0.55s ease;
@@ -1306,10 +1306,10 @@ img { max-width: 100%; display: block; }
   content: '';
   position: absolute;
   top: 50%;
-  left: clamp(-520px, -14vw, -320px);
+  left: clamp(-620px, -30vw, -420px);
   transform: translateY(-50%);
-  width: clamp(1300px, 100vw, 1700px);
-  height: clamp(1300px, 100vw, 1700px);
+  width: clamp(1200px, 93vw, 1600px);
+  height: clamp(1200px, 93vw, 1600px);
   border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, #ffffff 0%, #fdf1e6 45%, #fbe4cf 100%);
   z-index: 0;
