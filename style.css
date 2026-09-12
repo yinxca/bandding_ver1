@@ -1020,10 +1020,10 @@ img { max-width: 100%; display: block; }
    image for free via the shared .reminder-swipe-wrap transform/opacity. */
 .reminder-swipe-on {
   position: absolute;
-  left: 22.6%;
-  top: 79.7%;
-  width: 53.7%;
-  height: 6.58%;
+  left: 22.07%;
+  top: 79.59%;
+  width: 54.82%;
+  height: 6.85%;
   z-index: 2;
   opacity: 0;
   transition: opacity 0.5s ease;
