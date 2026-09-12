@@ -160,24 +160,14 @@ img { max-width: 100%; display: block; }
   align-items: flex-end;
   gap: 8px;
 }
-.logo-mark-img {
-  width: 34px;
+.logo-final-img {
   height: 34px;
-  display: block;
-  transition: filter 0.3s ease;
-  /* nudge up so the mark's own bottom lines up with the "B" wordmark's
-     bottom — flush box-bottom alignment alone still read a bit low */
-  transform: translateY(-4px);
-}
-.logo-word {
-  height: 31px;
   width: auto;
   display: block;
   transition: filter 0.3s ease;
 }
 /* over dark sections: flip the logo to white */
-.header.on-dark .logo-word,
-.header.on-dark .logo-mark-img { filter: invert(1) brightness(1.8); }
+.header.on-dark .logo-final-img { filter: invert(1) brightness(1.8); }
 .nav-pills {
   position: absolute;
   left: 50%;
