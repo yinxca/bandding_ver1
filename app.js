@@ -833,7 +833,14 @@
       input: document.getElementById('emailInputCta'),
       button: document.getElementById('emailSubmitCta'),
       hint: document.getElementById('formHintCta'),
-      defaultHint: null,
+      defaultHint: '이메일을 남기면, 선착순 30명에게 Beta 체험 안내를 보내드려요!',
+    });
+    bindForm({
+      form: document.getElementById('emailFormFooter'),
+      input: document.getElementById('emailInputFooter'),
+      button: document.getElementById('emailSubmitFooter'),
+      hint: document.getElementById('formHintFooter'),
+      defaultHint: '',
     });
   }
 

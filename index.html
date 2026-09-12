@@ -345,7 +345,16 @@
       <h2 class="s10-title">다음 달 정산, <span class="s10-accent"><span class="s10-a1">반</span>&nbsp;<span class="s10-a2">띵!</span></span> 해볼까요?</h2>
 
       <div class="s10-stage">
-        <img class="s10-mascots s10-mascots-clickable" src="images/email_friend.png" alt="사전 신청하기" data-scroll="#sec1" />
+        <img class="s10-mascots" src="images/friends.png" alt="" aria-hidden="true" />
+        <form class="s10-email-form" id="emailFormCta" novalidate>
+          <svg class="s10-email-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 6.5C3 5.67157 3.67157 5 4.5 5H19.5C20.3284 5 21 5.67157 21 6.5V17.5C21 18.3284 20.3284 19 19.5 19H4.5C3.67157 19 3 18.3284 3 17.5V6.5Z" stroke="currentColor" stroke-width="1.6" />
+            <path d="M4 6.5L12 13L20 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <input type="email" id="emailInputCta" class="s10-email-input" placeholder="Your@email.com" autocomplete="email" required />
+          <button type="submit" id="emailSubmitCta" class="s10-email-btn">Beta 신청하기</button>
+        </form>
+        <p class="s10-email-hint" id="formHintCta">이메일을 남기면, 선착순 30명에게 Beta 체험 안내를 보내드려요!</p>
       </div>
     </div>
   </section>
@@ -373,7 +382,16 @@
         </div>
 
         <div class="footer-end">
-          <img class="footer-launching-btn" src="images/email.png" alt="반띵 미리 만나보기" data-scroll="#sec1" />
+          <p class="footer-email-caption">선착순 30명에게 반띵 Beta를 먼저 공개해요</p>
+          <form class="footer-email-form" id="emailFormFooter" novalidate>
+            <svg class="footer-email-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 6.5C3 5.67157 3.67157 5 4.5 5H19.5C20.3284 5 21 5.67157 21 6.5V17.5C21 18.3284 20.3284 19 19.5 19H4.5C3.67157 19 3 18.3284 3 17.5V6.5Z" stroke="currentColor" stroke-width="1.6" />
+              <path d="M4 6.5L12 13L20 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <input type="email" id="emailInputFooter" class="footer-email-input" placeholder="Your@email.com" autocomplete="email" required />
+            <button type="submit" id="emailSubmitFooter" class="footer-email-btn">Beta 신청하기</button>
+          </form>
+          <p class="footer-form-hint" id="formHintFooter"></p>
           <img class="social-icons" src="images/sns.png" alt="소셜 채널" />
           <p class="copyright">© 2026 Bandding. All rights reserved.</p>
         </div>
