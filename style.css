@@ -1737,8 +1737,8 @@ img { max-width: 100%; display: block; }
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 100%);
   border-radius: 2px;
 }
-.s10-accent::before { left: -0.55em; transform: rotate(22deg); }
-.s10-accent::after { right: -0.55em; transform: rotate(-22deg); }
+.s10-accent::before { left: -0.55em; transform: rotate(-22deg); }
+.s10-accent::after { right: -0.55em; transform: rotate(22deg); }
 .s10-a1,
 .s10-a2 { display: inline-block; }
 .s10-a1 { transform: rotate(-11deg); }   /* 반 leans left */
@@ -1762,15 +1762,15 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 520px;
+  max-width: 640px;
   margin: -28px auto 0;
   background: #fff;
   border-radius: 999px;
-  padding: 6px 6px 6px 22px;
-  gap: 10px;
+  padding: 8px 8px 8px 28px;
+  gap: 12px;
   box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
 }
-.s10-email-icon { width: 20px; height: 20px; flex-shrink: 0; color: #9aa1a8; }
+.s10-email-icon { width: 24px; height: 24px; flex-shrink: 0; color: #9aa1a8; }
 .s10-email-input {
   flex: 1;
   min-width: 0;
@@ -1778,9 +1778,9 @@ img { max-width: 100%; display: block; }
   outline: none;
   background: transparent;
   font: inherit;
-  font-size: clamp(14px, 1.2vw, 16px);
+  font-size: clamp(16px, 1.4vw, 19px);
   color: var(--ink);
-  padding: 14px 0;
+  padding: 18px 0;
 }
 .s10-email-input::placeholder { color: #b7bcc2; }
 .s10-email-btn {
@@ -1790,8 +1790,8 @@ img { max-width: 100%; display: block; }
   background: var(--orange);
   color: #fff;
   font-weight: 700;
-  font-size: clamp(14px, 1.2vw, 16px);
-  padding: 14px 26px;
+  font-size: clamp(16px, 1.4vw, 19px);
+  padding: 18px 32px;
   cursor: pointer;
   transition: background 0.2s ease;
   white-space: nowrap;
