@@ -1052,11 +1052,10 @@ img { max-width: 100%; display: block; }
 .reminder-swipe-knob {
   position: absolute;
   left: 21.15%;
-  top: 82%;
+  top: 80%;
   width: 26.4%;
   height: 8.27%;
   object-fit: contain;
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
   transition: left 0.55s cubic-bezier(0.22, 0.9, 0.3, 1), opacity 0.2s ease 0.35s;
   z-index: 3;
   pointer-events: none;
@@ -1770,11 +1769,11 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 640px;
-  margin: -38px auto 0;
+  max-width: 700px;
+  margin: -41px auto 0;
   background: #fff;
   border-radius: 12px;
-  padding: 4px 0 4px 18px;
+  padding: 6px 0 6px 18px;
   gap: 12px;
   box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
 }
@@ -1788,7 +1787,7 @@ img { max-width: 100%; display: block; }
   font: inherit;
   font-size: clamp(13px, 1.1vw, 15px);
   color: var(--ink);
-  padding: 11px 0;
+  padding: 13px 0;
 }
 .s10-email-input::placeholder { color: #b7bcc2; }
 /* fills the pill edge-to-edge (stretches over the form's own vertical
@@ -1797,7 +1796,7 @@ img { max-width: 100%; display: block; }
 .s10-email-btn {
   flex-shrink: 0;
   align-self: stretch;
-  margin: -4px 0;
+  margin: -6px 0;
   border: none;
   border-radius: 0 12px 12px 0;
   background: var(--orange);
@@ -2132,7 +2131,7 @@ img { max-width: 100%; display: block; }
   .care-heading { font-size: clamp(26px, 7vw, 36px); }
 
   /* ---- Section 10 ---- */
-  .s10-email-form { margin-top: -20px; }
+  .s10-email-form { margin-top: -23px; }
 }
 
 @media (max-width: 640px) {
