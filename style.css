@@ -1152,7 +1152,7 @@ img { max-width: 100%; display: block; }
 .s8-copy {
   max-width: 620px;
   text-align: left;
-  margin-top: clamp(-220px, -22vh, -140px);
+  margin-top: clamp(-280px, -28vh, -190px);
 }
 .s8-eyebrow {
   position: relative;
@@ -1210,7 +1210,7 @@ img { max-width: 100%; display: block; }
 .s8-friends-wrap {
   position: absolute;
   left: clamp(220px, 25vw, 330px);
-  bottom: -40px;
+  bottom: -80px;
   width: min(460px, 37vw);
 }
 .s8-friends-figs {

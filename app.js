@@ -40,9 +40,30 @@
     }
     setTimeout(positionS5dBlur, 600); // final safety net for any late layout shift
     initSection9Zoom();
+    initFpScrollHandoff();
     initForms();
     renderSignupCount();
   });
+
+  /* .fp-scroll only wraps sections 1-9 (section10 + footer scroll
+     normally in the document below it). Native scroll-chaining should
+     hand wheel input to the document once .fp-scroll hits its own
+     scroll end, but that's not reliable across every browser when
+     combined with scroll-snap-type: mandatory, which can end up
+     swallowing the input instead — making the sections after it seem
+     to disappear. Do the handoff explicitly instead of trusting it. */
+  function initFpScrollHandoff() {
+    const fp = document.querySelector('.fp-scroll');
+    if (!fp) return;
+    fp.addEventListener('wheel', (e) => {
+      const atBottom = fp.scrollTop >= fp.scrollHeight - fp.clientHeight - 1;
+      const atTop = fp.scrollTop <= 0;
+      if ((e.deltaY > 0 && atBottom) || (e.deltaY < 0 && atTop)) {
+        e.preventDefault();
+        window.scrollBy({ top: e.deltaY, behavior: 'auto' });
+      }
+    }, { passive: false });
+  }
 
   /* Section 9: carry the phone scale forward as the three reference frames scroll by. */
   function initSection9Zoom() {
