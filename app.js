@@ -499,7 +499,7 @@
       if (!notifyCard) { if (onClosed) onClosed(); return; }
       notifyCard.style.transition = 'none';
       notifyCard.classList.add('s2-notify-closed');
-      void getComputedStyle(notifyCard).clipPath; // flush the closed/no-transition state (style-only, no layout)
+      void getComputedStyle(notifyCard).transform; // flush the closed/no-transition state (style-only, no layout)
       notifyCard.style.transition = '';
       requestAnimationFrame(() => {
         if (onClosed) onClosed();

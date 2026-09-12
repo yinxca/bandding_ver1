@@ -470,13 +470,17 @@ img { max-width: 100%; display: block; }
   border-radius: 22px;
   background: #1a1b1e;
   box-shadow: 0 16px 34px rgba(20, 16, 12, 0.22);
-  clip-path: inset(0 0 0 0 round 22px);
-  transition: clip-path 0.55s cubic-bezier(0.22, 0.9, 0.3, 1);
-  will-change: clip-path;
+  transform: scaleX(1);
+  transform-origin: left center;
+  transition: transform 0.55s cubic-bezier(0.22, 0.9, 0.3, 1);
+  will-change: transform;
 }
-/* "closed" state — clipped to zero width at the left edge; removing this
-   class slides the card open left-to-right, like a drawer/shutter */
-.s2-notify-card.s2-notify-closed { clip-path: inset(0 100% 0 0 round 22px); }
+/* "closed" state — scaled to zero width from the left edge; removing this
+   class slides the card open left-to-right, like a drawer/shutter.
+   transform (not clip-path) so the animation stays smooth across browsers
+   — Safari in particular can render clip-path transitions as an instant
+   jump instead of an actual animation. */
+.s2-notify-card.s2-notify-closed { transform: scaleX(0); }
 .s2-notify-icon {
   flex-shrink: 0;
   width: 52px;
