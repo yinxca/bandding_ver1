@@ -1205,6 +1205,7 @@ img { max-width: 100%; display: block; }
   position: relative;
   width: min(420px, 34vw);
   margin-top: clamp(72px, 10vh, 110px);
+  margin-left: clamp(40px, 8vw, 110px);
 }
 .s8-friends {
   position: relative;
@@ -1213,19 +1214,17 @@ img { max-width: 100%; display: block; }
   display: block;
   z-index: 1;
 }
-/* the hill the friends stand on — a wide, flat mound just peeking out
-   from under their feet, not a full circle looming over the copy above */
-.s8-friends-wrap::before {
-  content: '';
+/* the hill the friends stand on — real art, positioned so its own top
+   edge lands right at the characters' feet */
+.s8-hill {
   position: absolute;
   left: 50%;
-  bottom: -18px;
+  top: 92%;
   transform: translateX(-50%);
-  width: 145%;
-  aspect-ratio: 2.6 / 1;
-  border-radius: 50%;
-  background: #f6c8a3;
+  width: 150%;
+  height: auto;
   z-index: 0;
+  pointer-events: none;
 }
 .s8-bubble {
   position: absolute;
@@ -1235,19 +1234,32 @@ img { max-width: 100%; display: block; }
   font-weight: 600;
   white-space: nowrap;
   box-shadow: 0 10px 24px rgba(107, 50, 38, 0.12);
+  z-index: 2;
+}
+.s8-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  width: 14px;
+  height: 14px;
+  background: inherit;
+  transform: rotate(45deg);
+  border-radius: 0 0 4px 0;
 }
 .s8-bubble-left {
   left: -6%;
   top: -10%;
-  background: var(--cream);
-  color: #6b3226;
+  background: #aaebff;
+  color: #1f5c73;
 }
+.s8-bubble-left::after { left: 26px; }
 .s8-bubble-right {
   right: -10%;
   top: -24%;
   background: var(--orange);
   color: #fff;
 }
+.s8-bubble-right::after { right: 28px; }
 
 .s8-visual {
   position: absolute;
