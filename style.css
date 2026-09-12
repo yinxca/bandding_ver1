@@ -1013,23 +1013,25 @@ img { max-width: 100%; display: block; }
 }
 
 /* "밀어서 송금하기" swipe button — baked into zoom_off_1.png always showing
-   the gray/off look; once fully zoomed in, one more scroll fades in the
-   real zoom_on.png crop (border, text weight, and everything else exactly
-   as designed — no CSS recreation to keep in sync). Positions are % of the
-   image's own natural size, so they scale and fade together with the phone
-   image for free via the shared .reminder-swipe-wrap transform/opacity. */
+   the gray/off look; once fully zoomed in, one more scroll wipes in the
+   real zoom_on.png crop left-to-right (border, text weight, and everything
+   else exactly as designed — no CSS recreation to keep in sync), same
+   left-to-right shutter reveal as the section2 notify card so it reads as
+   a swipe rather than a plain crossfade. Positions are % of the image's
+   own natural size, so they scale together with the phone image for free
+   via the shared .reminder-swipe-wrap transform. */
 .reminder-swipe-on {
   position: absolute;
   left: 22.07%;
   top: 79.59%;
-  width: 54.82%;
+  width: 57.5%;
   height: 6.85%;
   z-index: 2;
-  opacity: 0;
-  transition: opacity 0.5s ease;
+  clip-path: inset(0 100% 0 0 round 999px);
+  transition: clip-path 0.5s cubic-bezier(0.22, 0.9, 0.3, 1);
   pointer-events: none;
 }
-.reminder-swipe-wrap.is-on .reminder-swipe-on { opacity: 1; }
+.reminder-swipe-wrap.is-on .reminder-swipe-on { clip-path: inset(0 0 0 0 round 999px); }
 .reminder-backdrop {
   position: absolute;
   top: -5%;
