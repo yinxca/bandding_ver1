@@ -1274,11 +1274,15 @@ img { max-width: 100%; display: block; }
   position: absolute;
   right: clamp(24px, 6vw, 90px);
   bottom: 0;
-  width: clamp(340px, 36vw, 480px);
+  /* height- rather than width-constrained: the section itself is a fixed
+     100vh with overflow:hidden, so a width-only cap silently clips the top
+     of any image taller (relative to its width) than the old asset was */
+  height: clamp(480px, 78vh, 680px);
+  width: auto;
 }
 .s8-phone-ui {
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 100%;
   display: block;
   filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.18));
 }
@@ -1906,7 +1910,8 @@ img { max-width: 100%; display: block; }
   .s8-bubble { white-space: normal; max-width: 60%; text-align: center; }
   .s8-bubble-left { left: -4%; top: -16%; }
   .s8-bubble-right { right: -4%; top: -36%; }
-  .s8-visual { position: relative; right: auto; bottom: auto; width: min(320px, 78vw); }
+  .s8-visual { position: relative; right: auto; bottom: auto; width: min(320px, 78vw); height: auto; }
+  .s8-phone-ui { width: 100%; height: auto; }
 }
 
 @media (max-width: 640px) {
