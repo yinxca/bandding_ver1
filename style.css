@@ -1044,7 +1044,8 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: left 0.55s cubic-bezier(0.22, 0.9, 0.3, 1);
+  opacity: 1;
+  transition: left 0.55s cubic-bezier(0.22, 0.9, 0.3, 1), opacity 0.2s ease;
   z-index: 3;
   pointer-events: none;
 }
@@ -1056,7 +1057,15 @@ img { max-width: 100%; display: block; }
   mask: url(images/Logo_image.png) center / contain no-repeat;
 }
 .reminder-swipe-wrap.is-on .reminder-swipe-track { opacity: 1; transition: opacity 0.2s ease 0.35s; }
-.reminder-swipe-wrap.is-on .reminder-swipe-knob { left: 56.74%; }
+/* the CSS knob only needs to carry the slide itself — it fades out in the
+   same 0.35s–0.55s window the real track image fades in, so it's gone by
+   the time anyone could compare its exact size against the baked-in knob
+   in that image, instead of the two sitting on top of each other forever */
+.reminder-swipe-wrap.is-on .reminder-swipe-knob {
+  left: 56.74%;
+  opacity: 0;
+  transition: left 0.55s cubic-bezier(0.22, 0.9, 0.3, 1), opacity 0.2s ease 0.35s;
+}
 .reminder-backdrop {
   position: absolute;
   top: -5%;
@@ -1130,200 +1139,114 @@ img { max-width: 100%; display: block; }
 }
 
 /* =========================================================
-   Section 8: Benefit
+   Section 8: Settlement stays confirmed
 ========================================================= */
-.sec-8-benefit { background: #fdf0e2; overflow: hidden; }
-
-/* heading */
-.s8-head {
+.sec-8-settled { background: linear-gradient(180deg, #fff6ef 0%, #ffe6d5 100%); overflow: hidden; }
+.s8-layout {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: clamp(8px, 1.4vw, 18px);
-  margin-bottom: clamp(36px, 7vh, 84px);
-  font-size: clamp(20px, 2.9vw, 34px);
-  font-weight: 700;
+  justify-content: space-between;
+  gap: clamp(32px, 5vw, 80px);
+  padding: 0 clamp(24px, 5vw, 64px);
 }
-.s8-h-plain { color: rgba(120, 105, 100, 0.5); }
-.s8-h-plain.s8-h-blue { color: rgba(110, 135, 165, 0.5); margin-left: clamp(12px, 1.8vw, 28px); }
-.s8-pill {
-  padding: 0.32em 0.9em;
-  border-radius: 24px;
-  font-weight: 800;
-}
-.s8-pill-orange { background: #f4a68d; color: var(--orange); }
-.s8-pill-blue   { background: #c4ddf5; color: #2b5b8a; }
 
-/* collage stage */
-.s8-stage {
-  --s8-tier: min(130px, 10.52vw);   /* height of blocks 5 & 6, so 5/6/7 stack with no gap */
+.s8-copy {
+  flex: 1;
+  min-width: 300px;
+  text-align: left;
+}
+.s8-eyebrow {
   position: relative;
-  width: min(1200px, 95vw);
-  height: clamp(440px, 60vh, 560px);
-  margin: 0 auto;
-}
-.s8-watermark {                 /* between blocks 1/2 and block 3 */
-  position: absolute;
-  left: 22%;
-  top: 50%;
-  transform: translate(-50%, -50%) rotate(-90deg);
-  font-size: clamp(48px, 6.6vw, 92px);
-  font-weight: 900;
-  letter-spacing: 0.02em;
-  color: #bfe1f0;
-  white-space: nowrap;
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* blocks 1 + 2 — stacked flush, w:210 h:130 rectangles */
-.s8-minis {
-  position: absolute;
-  left: 0;
-  top: auto;
-  bottom: clamp(18px, 3vh, 36px);   /* sit low, level with the panel's "b" mark */
   display: flex;
-  flex-direction: column;
-  z-index: 2;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  color: var(--orange);
+  font-size: clamp(16px, 1.56vw, 36px);
+  font-weight: 600;
+  margin-bottom: clamp(20px, 4vh, 48px);
 }
-.s8-mini {
-  width: min(210px, 17vw);
-  aspect-ratio: 210 / 130;
-  display: grid;
-  place-items: center;
-  border-radius: 20px;
-  font-size: clamp(22px, 2.6vw, 36px);
+.s8-eyebrow-dot {
+  position: relative;
+  width: 0.55em;
+  height: 0.55em;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 0 0 0.4em rgba(255, 75, 17, 0.24);
+  flex-shrink: 0;
+  margin-left: -18px;
 }
-.s8-mini-cart { background: #8f8f96; }
-.s8-mini-bolt { background: #bcd9f2; }
-
-/* recoloured icons — PNG shape via mask, colour via background */
-.s8-ic {
-  display: block;
-  -webkit-mask-repeat: no-repeat;  mask-repeat: no-repeat;
-  -webkit-mask-position: center;   mask-position: center;
-  -webkit-mask-size: contain;      mask-size: contain;
+.s8-eyebrow-text { margin-left: 20px; }
+.s8-eyebrow-dot::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: clamp(64px, 8vh, 110px);
+  background: var(--orange);
 }
-.s8-mini .s8-ic { width: 42%; aspect-ratio: 1; }
-.s8-mini-cart .s8-ic { -webkit-mask-image: url(images/shopping-cart.png); mask-image: url(images/shopping-cart.png); background: #636566; }
-.s8-mini-bolt .s8-ic { -webkit-mask-image: url(images/electronic.png);    mask-image: url(images/electronic.png);    background: #d8efff; }
-
-/* cards */
-.s8-card { position: absolute; border-radius: 22px; }
-
-/* block 3 — centre tall card (never overlaps block 7) */
-.s8-card-center {
-  left: 27%;
-  top: 2%;
-  width: 16%;
-  height: 96%;
-  background: #d7d7db;
-  z-index: 2;
+.s8-heading {
+  font-size: clamp(28px, 2.78vw, 64px);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.025em;
+  color: #6b3226;
+  margin-bottom: clamp(20px, 3vh, 32px);
 }
+.s8-heading strong { font-weight: 800; }
+.s8-sub {
+  font-size: clamp(14px, 1.32vw, 24px);
+  line-height: 1.6;
+  color: #a67c5c;
+}
+.s8-sub strong { font-weight: 700; color: #8a5a3d; }
 
-/* right-side stack: block 5 over block 6 over block 7, no overlaps */
-.s8-card-flame {              /* block 5 — same size as blocks 1/2 */
-  right: 0;
-  left: auto;
-  top: 0;
-  width: min(210px, 17vw);
-  aspect-ratio: 210 / 130;
+.s8-friends-wrap {
+  position: relative;
+  width: min(420px, 34vw);
+  margin-top: clamp(72px, 10vh, 110px);
+}
+.s8-friends {
+  width: 100%;
   height: auto;
+  display: block;
+}
+.s8-bubble {
+  position: absolute;
+  padding: 0.6em 1.1em;
+  border-radius: 999px;
+  font-size: clamp(12px, 1.1vw, 16px);
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 10px 24px rgba(107, 50, 38, 0.12);
+}
+.s8-bubble-left {
+  left: -6%;
+  top: -10%;
+  background: var(--cream);
+  color: #6b3226;
+}
+.s8-bubble-right {
+  right: -10%;
+  top: -24%;
   background: var(--orange);
-  display: grid;
-  place-items: center;
-  font-size: clamp(22px, 2.8vw, 38px);
-  border-radius: 18px;
-  z-index: 1;                 /* behind blocks 6 & 7 so it reads as the back of the stack */
-}
-.s8-card-flame .s8-ic {
-  width: 36%; aspect-ratio: 1;
-  -webkit-mask-image: url(images/fire.png); mask-image: url(images/fire.png);
-  background: #c8452b;
-}
-.s8-card-gray {               /* block 6 — flush below block 5 */
-  left: 57%;
-  right: 0;
-  top: var(--s8-tier);
-  height: var(--s8-tier);
-  background: #dcdce0;
-  border-radius: 18px;
-  z-index: 2;
-}
-.s8-card-logo {               /* block 4 — diamond wedged between blocks 3, 6, 7 (0 gap) */
-  left: 44.7%;                 /* centred on the 43%–57% gap */
-  top: 19.6%;
-  width: 10.6%;                /* slightly wider than the gap so it wedges into 3/6/7 */
-  aspect-ratio: 1;
-  background: var(--orange);
-  border-radius: 24px;
-  transform: rotate(45deg);
-  display: grid;
-  place-items: center;
-  box-shadow: 0 24px 50px rgba(255, 75, 17, 0.3);
-  z-index: 4;
-}
-.s8-card-logo .s8-ic {   /* logo_up mark — parent diamond +45°, child +270° → net 315° absolute */
-  width: 52%; aspect-ratio: 1;
-  -webkit-mask-image: url(images/logo_up.png); mask-image: url(images/logo_up.png);
-  background: #d04a2f;
-  transform: rotate(270deg);
+  color: #fff;
 }
 
-/* main message panel — block 7 */
-.s8-panel {
-  position: absolute;
-  left: 44%;
-  right: 0;
-  top: calc(var(--s8-tier) * 2);   /* flush below block 6 */
-  bottom: 0;
-  background: #e7e7ea;
-  border-radius: 24px;
-  padding: clamp(20px, 2.6vw, 32px) clamp(24px, 3.4vw, 48px);
-  z-index: 3;
-  overflow: hidden;
+.s8-visual {
+  flex-shrink: 0;
+  width: clamp(300px, 30vw, 420px);
 }
-.s8-panel-icons {
-  display: flex;
-  gap: 0;                 /* Figma: no gap between the icons */
-  margin-bottom: clamp(10px, 1.8vh, 20px);
-}
-.s8-panel-icons .s8-ic {
-  width: 20px;
-  height: 20px;
-  background: rgba(26, 27, 30, 0.14);   /* #1A1B1E @ 14% */
-}
-.s8-panel-icons .s8-ic:nth-child(1) { -webkit-mask-image: url(images/electronic.png); mask-image: url(images/electronic.png); }
-.s8-panel-icons .s8-ic:nth-child(2) { -webkit-mask-image: url(images/food.png);       mask-image: url(images/food.png); }
-.s8-panel-icons .s8-ic:nth-child(3) { -webkit-mask-image: url(images/fire.png);       mask-image: url(images/fire.png); }
-.s8-panel-title {
-  font-size: clamp(17px, 2.1vw, 26px);
-  font-weight: 800;
-  color: #2b2323;
-  line-height: 1.4;
-}
-.s8-panel-sub {
-  margin-top: clamp(12px, 2.4vh, 24px);
-  font-size: clamp(12px, 1.35vw, 15px);
-  color: #8b8b90;
-  line-height: 1.55;
-}
-.s8-panel-mark {
-  position: absolute;
-  right: clamp(20px, 3vw, 40px);
-  bottom: clamp(18px, 3vh, 36px);
-  width: clamp(28px, 3.2vw, 40px);
-  height: clamp(28px, 3.2vw, 40px);
-  display: grid;
-  place-items: center;
-  border-radius: 10px;
-  background: #e7e7ea;
-}
-.s8-panel-mark .s8-ic {
-  width: 66%; aspect-ratio: 1;
-  -webkit-mask-image: url(images/logo_up.png); mask-image: url(images/logo_up.png);
-  background: #d8cbba;
+.s8-phone-ui {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.18));
 }
 
 /* =========================================================
@@ -1903,31 +1826,14 @@ img { max-width: 100%; display: block; }
   .s5c-watermark { bottom: auto; top: 44%; font-size: 36vw; }
 
   /* ---- Section 8 ---- */
-  .s8-head { font-size: clamp(18px, 5vw, 24px); margin-bottom: 32px; }
-  .s8-stage { height: auto; width: 100%; padding: 0 4vw 60px; }
-  .s8-watermark,
-  .s8-card-center,
-  .s8-card-gray,
-  .s8-mini { display: none; }
-  .s8-panel {
-    position: relative;
-    left: auto; right: auto; top: auto; bottom: auto;
-    width: 100%;
-    margin-top: 64px;
-    padding: 30px 26px 34px;
-  }
-  .s8-card-logo {
-    left: 7%;
-    top: -30px;
-    width: 78px;
-  }
-  .s8-card-flame {
-    left: auto;
-    right: 6%;
-    top: -28px;
-    width: 100px;
-    height: 66px;
-  }
+  .s8-layout { flex-direction: column; gap: 28px; padding: 0 24px; }
+  .s8-copy { text-align: center; }
+  .s8-eyebrow { justify-content: center; }
+  .s8-friends-wrap { width: min(320px, 78vw); margin: 56px auto 0; }
+  .s8-bubble { white-space: normal; max-width: 60%; text-align: center; }
+  .s8-bubble-left { left: -4%; top: -16%; }
+  .s8-bubble-right { right: -4%; top: -36%; }
+  .s8-visual { width: min(320px, 78vw); }
 }
 
 @media (max-width: 640px) {
