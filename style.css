@@ -1331,9 +1331,12 @@ img { max-width: 100%; display: block; }
   white-space: nowrap;
 }
 .s8c-row-text strong { font-weight: 800; color: var(--orange); }
-.s8c-row-1 .s8c-row-text { left: 40%; }
-.s8c-row-2 .s8c-row-text { left: 60%; }
-.s8c-row-3 .s8c-row-text { left: 53%; }
+/* top% per row matches that row's pill-text vertical center (pills sit at
+   different heights inside each image's own art), so the overlay reads
+   level with the baked-in pill copy instead of the image's raw midpoint */
+.s8c-row-1 .s8c-row-text { top: 66.7%; left: 40%; }
+.s8c-row-2 .s8c-row-text { top: 53%; left: 68%; }
+.s8c-row-3 .s8c-row-text { top: 57.5%; left: 53%; }
 
 @media (max-width: 640px) {
   .s8c-row-text { font-size: 11px; white-space: normal; width: 46%; text-align: center; }
@@ -1651,9 +1654,9 @@ img { max-width: 100%; display: block; }
 }
 .s10-mascots {
   display: block;
-  width: clamp(320px, 82%, 480px);
+  width: clamp(380px, 96%, 580px);
   height: auto;
-  margin: 0 auto;
+  margin: clamp(-90px, -12vh, -50px) auto 0;
 }
 .s10-mascots-clickable {
   cursor: pointer;
@@ -1768,8 +1771,9 @@ img { max-width: 100%; display: block; }
 .footer-launching-btn {
   display: block;
   width: 100%;
-  max-width: 340px;
+  max-width: 420px;
   height: auto;
+  align-self: flex-end;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
@@ -1919,6 +1923,7 @@ img { max-width: 100%; display: block; }
   .footer-inner { flex-direction: column; align-items: center; text-align: center; gap: 24px; }
   .footer-links-group { justify-content: center; gap: 28px; }
   .footer-end { align-items: center; width: 100%; max-width: 360px; }
+  .footer-launching-btn { align-self: center; }
   .footer-end .social-icons { align-self: center; }
   .footer-end .copyright { text-align: center; }
 }
