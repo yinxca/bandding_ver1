@@ -984,6 +984,12 @@ img { max-width: 100%; display: block; }
   top: auto;
   left: auto;
   width: 100%;
+  /* zoom_off_final.png's own ratio is slightly taller than the original
+     zoom_off_1.png crop — pin the box to the original ratio so swapping
+     the asset doesn't change the rendered size, and fit the new image
+     into it without stretching */
+  aspect-ratio: 737 / 1504;
+  object-fit: contain;
   transform: none;
   opacity: 1;
   transition: none;
@@ -1031,6 +1037,9 @@ img { max-width: 100%; display: block; }
   top: 79.59%;
   width: 57.5%;
   height: 6.85%;
+  /* on_final.png's own aspect ratio differs from the box tuned for the
+     original zoom_on_button.png — contain it instead of stretching */
+  object-fit: contain;
   z-index: 2;
   opacity: 0;
   transition: opacity 0.2s ease;
