@@ -1152,6 +1152,7 @@ img { max-width: 100%; display: block; }
 .s8-copy {
   max-width: 620px;
   text-align: left;
+  margin-top: clamp(-220px, -22vh, -140px);
 }
 .s8-eyebrow {
   position: relative;
@@ -1208,7 +1209,7 @@ img { max-width: 100%; display: block; }
    scroll) so it reliably sits on the floor at any viewport size */
 .s8-friends-wrap {
   position: absolute;
-  left: clamp(60px, 12vw, 170px);
+  left: clamp(220px, 25vw, 330px);
   bottom: 0;
   width: min(460px, 37vw);
 }
@@ -1228,6 +1229,7 @@ img { max-width: 100%; display: block; }
 .s8-hill {
   display: block;
   width: 220%;
+  max-width: none;
   margin-left: -60%;
   margin-top: -3%;
   height: auto;
@@ -1859,7 +1861,7 @@ img { max-width: 100%; display: block; }
 
   /* ---- Section 8 ---- */
   .s8-layout { display: flex; flex-direction: column; align-items: center; gap: 28px; padding: 0 24px; }
-  .s8-copy { text-align: center; max-width: none; }
+  .s8-copy { text-align: center; max-width: none; margin-top: 0; }
   .s8-eyebrow { justify-content: center; }
   .s8-friends-wrap { position: relative; left: auto; bottom: auto; width: min(320px, 78vw); margin: 56px auto 0; }
   .s8-bubble { white-space: normal; max-width: 60%; text-align: center; }
