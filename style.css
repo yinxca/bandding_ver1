@@ -1291,6 +1291,61 @@ img { max-width: 100%; display: block; }
    Section 8b: Light transition CTA
 ========================================================= */
 .sec-8b-light { background: linear-gradient(180deg, #fff5e9 0%, #fffcf7 100%); }
+.s8b-inner {
+  align-self: flex-start;
+  max-width: 900px;
+  width: 100%;
+  padding: 0 clamp(24px, 5vw, 64px) 0 clamp(120px, 14vw, 220px);
+  text-align: left;
+}
+.s8b-heading {
+  font-size: clamp(28px, 2.8vw, 44px);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: clamp(20px, 3vh, 28px);
+}
+.s8b-heading .highlight-orange { font-weight: 700; }
+/* a speech bubble, not a plain badge — needs its own tail */
+.s8b-pill {
+  position: relative;
+  display: inline-block;
+  background: #c4ddf5;
+  color: #2b5b8a;
+  font-size: clamp(12px, 1.1vw, 14px);
+  font-weight: 600;
+  padding: 0.55em 1.1em;
+  border-radius: 999px;
+  margin-bottom: clamp(20px, 3vh, 28px);
+}
+.s8b-pill::after {
+  content: '';
+  position: absolute;
+  left: 24px;
+  bottom: -5px;
+  width: 12px;
+  height: 12px;
+  background: inherit;
+  transform: rotate(45deg);
+  border-radius: 0 0 3px 0;
+}
+.s8b-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 463px;
+  max-width: 100%;
+  padding: clamp(14px, 1.6vw, 18px) clamp(24px, 2.6vw, 32px);
+  border: 2px solid var(--orange);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--orange);
+  font-size: clamp(14px, 1.2vw, 16px);
+  font-weight: 700;
+  cursor: pointer;
+}
+.s8b-btn:hover { background: #fff5ef; }
 
 /* =========================================================
    Section 8c: Together rows
@@ -1378,6 +1433,20 @@ img { max-width: 100%; display: block; }
   grid-template-columns: repeat(3, 1fr);
   column-gap: var(--s9-gap);
   padding-bottom: clamp(130px, 21vh, 210px);   /* room for the staggered card 2 + asides */
+}
+
+/* "for Business" — centred in the gap between card 1 and card 3, above card 2 */
+.s9-label {
+  position: absolute;
+  left: 50%;
+  top: clamp(6px, 3vh, 34px);
+  transform: translateX(-50%);
+  margin: 0;
+  color: #b4632c;
+  font-weight: 700;
+  font-size: clamp(14px, 1.5vw, 17px);
+  letter-spacing: 0.4px;
+  white-space: nowrap;
 }
 
 /* faded side headings */
@@ -1912,6 +1981,9 @@ img { max-width: 100%; display: block; }
   .s8-bubble-right { right: -4%; top: -36%; }
   .s8-visual { position: relative; right: auto; bottom: auto; width: min(320px, 78vw); height: auto; }
   .s8-phone-ui { width: 100%; height: auto; }
+
+  /* ---- Section 8b ---- */
+  .s8b-inner { padding: 0 24px; }
 }
 
 @media (max-width: 640px) {
