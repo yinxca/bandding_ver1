@@ -1210,7 +1210,7 @@ img { max-width: 100%; display: block; }
 .s8-friends-wrap {
   position: absolute;
   left: clamp(220px, 25vw, 330px);
-  bottom: 0;
+  bottom: -40px;
   width: min(460px, 37vw);
 }
 .s8-friends-figs {
@@ -1691,7 +1691,7 @@ img { max-width: 100%; display: block; }
 .s10-btn:hover { background: var(--orange-dark); transform: translateY(-1px); }
 
 /* ---------- Footer (bottom of section 10) ---------- */
-.footer { width: 100%; color: #9ea0a5; }
+.footer { width: 100%; background: #2c2029; color: #9ea0a5; padding-bottom: clamp(28px, 4vh, 48px); }
 .footer-inner {
   display: flex;
   justify-content: space-between;
