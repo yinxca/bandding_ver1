@@ -660,10 +660,10 @@ img { max-width: 100%; display: block; }
   background: linear-gradient(180deg, #ffffff 0%, #fdf1e6 55%, #fbe4cf 100%);
 }
 
-/* shared by section5b2 and section8b: a plain eyebrow+heading CTA, but
-   heavier emphasis contrast than .s5b-* — light body text, bold orange
-   highlights */
+/* section5b2: a plain eyebrow+heading CTA with heavier emphasis
+   contrast — light body text, bold orange highlights */
 .care-inner {
+  width: 100%;
   max-width: 960px;
   margin: 0 auto;
   text-align: center;
@@ -680,8 +680,12 @@ img { max-width: 100%; display: block; }
   line-height: 1.45;
   letter-spacing: -0.04em;
   color: var(--ink);
+  margin-bottom: clamp(28px, 4vh, 40px);
 }
 .care-heading .highlight-orange { font-weight: 800; }
+/* reuses .s8b-btn's exact shape/color; just needs centering here since
+   .care-inner is a centered block, not sec8b's left-aligned column */
+.care-btn { margin: 0 auto; }
 
 /* =========================================================
    Section 5c: Amount Check
@@ -2109,6 +2113,10 @@ img { max-width: 100%; display: block; }
 
   /* ---- Section 8b ---- */
   .s8b-inner { padding: 0 24px; }
+
+  /* ---- Section 5b2 (care CTA) ---- */
+  .care-inner { padding: 0 24px; }
+  .care-heading { font-size: clamp(26px, 7vw, 36px); }
 
   /* ---- Section 10 ---- */
   .s10-email-form { margin-top: -12px; }
