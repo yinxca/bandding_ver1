@@ -1013,25 +1013,50 @@ img { max-width: 100%; display: block; }
 }
 
 /* "밀어서 송금하기" swipe button — baked into zoom_off_1.png always showing
-   the gray/off look; once fully zoomed in, one more scroll wipes in the
-   real zoom_on.png crop left-to-right (border, text weight, and everything
-   else exactly as designed — no CSS recreation to keep in sync), same
-   left-to-right shutter reveal as the section2 notify card so it reads as
-   a swipe rather than a plain crossfade. Positions are % of the image's
-   own natural size, so they scale together with the phone image for free
-   via the shared .reminder-swipe-wrap transform. */
-.reminder-swipe-on {
+   the gray/off look (icon knob at left). A plain white knob (same look and
+   same spot, so it's invisible at rest) slides right on trigger — the
+   exact "자동 충전" toggle mechanic — and the real zoom_on.png crop fades
+   in just as the knob finishes its slide, so the hand-off to the exact
+   border/text/weight of the source art is seamless instead of a
+   duplicate knob appearing early. Positions are % of the image's own
+   natural size, so they scale together with the phone image for free via
+   the shared .reminder-swipe-wrap transform. */
+.reminder-swipe-track {
   position: absolute;
   left: 22.07%;
   top: 79.59%;
   width: 57.5%;
   height: 6.85%;
   z-index: 2;
-  clip-path: inset(0 100% 0 0 round 999px);
-  transition: clip-path 0.5s cubic-bezier(0.22, 0.9, 0.3, 1);
+  opacity: 0;
+  transition: opacity 0.2s ease;
   pointer-events: none;
 }
-.reminder-swipe-wrap.is-on .reminder-swipe-on { clip-path: inset(0 0 0 0 round 999px); }
+.reminder-swipe-knob {
+  position: absolute;
+  left: 23.34%;
+  top: 79.59%;
+  width: 20.08%;
+  height: 6.85%;
+  border-radius: 999px;
+  background: #fffcf7;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: left 0.55s cubic-bezier(0.22, 0.9, 0.3, 1);
+  z-index: 3;
+  pointer-events: none;
+}
+.reminder-swipe-icon {
+  width: 46%;
+  aspect-ratio: 1;
+  background: var(--orange);
+  -webkit-mask: url(images/Logo_image.png) center / contain no-repeat;
+  mask: url(images/Logo_image.png) center / contain no-repeat;
+}
+.reminder-swipe-wrap.is-on .reminder-swipe-track { opacity: 1; transition: opacity 0.2s ease 0.35s; }
+.reminder-swipe-wrap.is-on .reminder-swipe-knob { left: 57.26%; }
 .reminder-backdrop {
   position: absolute;
   top: -5%;
