@@ -1201,12 +1201,16 @@ img { max-width: 100%; display: block; }
 }
 .s8-sub strong { font-weight: 700; color: #8a5a3d; }
 
+/* absolutely positioned off the section (not pushed down with margins —
+   that depended on the section being exactly 900px tall and broke on
+   any other viewport height, both hiding the hill and making section8
+   taller than 100vh so scrolling into section9 needed an extra, blank
+   scroll) so it reliably sits on the floor at any viewport size */
 .s8-friends-wrap {
-  position: relative;
-  width: min(420px, 34vw);
-  margin-top: clamp(200px, 37vh, 360px);
-  margin-left: clamp(40px, 8vw, 110px);
-  margin-bottom: -48px; /* cancels the section's own bottom padding so the hill can actually reach the floor */
+  position: absolute;
+  left: clamp(60px, 12vw, 170px);
+  bottom: 0;
+  width: min(460px, 37vw);
 }
 .s8-friends-figs {
   position: relative;
@@ -1258,7 +1262,7 @@ img { max-width: 100%; display: block; }
 .s8-bubble-left::after { left: 26px; }
 .s8-bubble-right {
   right: -10%;
-  top: -24%;
+  top: -16%;
   background: var(--orange);
   color: #fff;
 }
@@ -1857,7 +1861,7 @@ img { max-width: 100%; display: block; }
   .s8-layout { display: flex; flex-direction: column; align-items: center; gap: 28px; padding: 0 24px; }
   .s8-copy { text-align: center; max-width: none; }
   .s8-eyebrow { justify-content: center; }
-  .s8-friends-wrap { width: min(320px, 78vw); margin: 56px auto 0; }
+  .s8-friends-wrap { position: relative; left: auto; bottom: auto; width: min(320px, 78vw); margin: 56px auto 0; }
   .s8-bubble { white-space: normal; max-width: 60%; text-align: center; }
   .s8-bubble-left { left: -4%; top: -16%; }
   .s8-bubble-right { right: -4%; top: -36%; }
