@@ -1273,11 +1273,14 @@ img { max-width: 100%; display: block; }
 .s8-visual {
   position: absolute;
   right: clamp(24px, 6vw, 90px);
-  bottom: 0;
+  /* pushed below the section's own bottom edge on purpose — bigger and
+     lower reads better even though the section's overflow:hidden now
+     clips its bottom */
+  bottom: -60px;
   /* height- rather than width-constrained: the section itself is a fixed
      100vh with overflow:hidden, so a width-only cap silently clips the top
      of any image taller (relative to its width) than the old asset was */
-  height: clamp(480px, 78vh, 680px);
+  height: clamp(560px, 92vh, 800px);
   width: auto;
 }
 .s8-phone-ui {
@@ -1311,8 +1314,8 @@ img { max-width: 100%; display: block; }
 .s8b-pill {
   position: relative;
   display: inline-block;
-  background: #c4ddf5;
-  color: #2b5b8a;
+  background: #a8e1f7;
+  color: #18242b;
   font-size: clamp(12px, 1.1vw, 14px);
   font-weight: 600;
   padding: 0.55em 1.1em;
@@ -1339,13 +1342,14 @@ img { max-width: 100%; display: block; }
   padding: clamp(14px, 1.6vw, 18px) clamp(24px, 2.6vw, 32px);
   border: 2px solid var(--orange);
   border-radius: 999px;
-  background: #fff;
-  color: var(--orange);
+  background: var(--orange);
+  color: #fff;
   font-size: clamp(14px, 1.2vw, 16px);
   font-weight: 700;
   cursor: pointer;
+  transition: background 0.2s ease;
 }
-.s8b-btn:hover { background: #fff5ef; }
+.s8b-btn:hover { background: var(--orange-dark); }
 
 /* =========================================================
    Section 8c: Together rows
