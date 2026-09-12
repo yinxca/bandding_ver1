@@ -1755,7 +1755,7 @@ img { max-width: 100%; display: block; }
   display: block;
   width: clamp(420px, 100%, 640px);
   height: auto;
-  margin: clamp(-90px, -12vh, -50px) auto 0;
+  margin: clamp(-170px, -22vh, -110px) auto 0;
 }
 .s10-email-form {
   position: relative;
@@ -1764,7 +1764,7 @@ img { max-width: 100%; display: block; }
   align-items: center;
   width: 100%;
   max-width: 640px;
-  margin: -70px auto 0;
+  margin: -22px auto 0;
   background: #fff;
   border-radius: 999px;
   padding: 8px 8px 8px 28px;
@@ -1804,7 +1804,7 @@ img { max-width: 100%; display: block; }
   margin-top: 14px;
   text-align: center;
   color: rgba(255, 255, 255, 0.72);
-  font-size: clamp(13px, 1vw, 15px);
+  font-size: clamp(15px, 1.2vw, 17px);
 }
 .s10-email-hint.error { color: #ffb4a8; }
 .s10-face::before,
@@ -2111,7 +2111,7 @@ img { max-width: 100%; display: block; }
   .s8b-inner { padding: 0 24px; }
 
   /* ---- Section 10 ---- */
-  .s10-email-form { margin-top: -36px; }
+  .s10-email-form { margin-top: -12px; }
 }
 
 @media (max-width: 640px) {
