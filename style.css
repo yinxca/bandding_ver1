@@ -1417,6 +1417,23 @@ img { max-width: 100%; display: block; }
   white-space: nowrap;
 }
 .s8c-bar-text strong { font-weight: 800; color: var(--ink); }
+/* rows 2-3: the pill + tail + white bar are now baked into the image
+   itself (share.png / comfortable.png include their own opaque white
+   background), so this row is just the image plus a text overlay —
+   no separate CSS-drawn pill or bar needed. Row 1 (live.png) hasn't
+   been re-exported this way yet, so it still uses .s8c-pill/.s8c-bar. */
+.s8c-row-img { position: relative; }
+.s8c-row-art { display: block; width: 100%; height: auto; }
+.s8c-row-text {
+  position: absolute;
+  left: 38%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: clamp(14px, 1.25vw, 18px);
+  color: #6b6b6b;
+  white-space: nowrap;
+}
+.s8c-row-text strong { font-weight: 800; color: var(--ink); }
 .s8c-closing {
   text-align: center;
   margin-top: clamp(24px, 4vh, 40px);
