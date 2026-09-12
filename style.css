@@ -1042,7 +1042,7 @@ img { max-width: 100%; display: block; }
   object-fit: contain;
   z-index: 2;
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.55s ease;
   pointer-events: none;
 }
 /* same knob element throughout both states — guarantees identical size
@@ -1052,18 +1052,19 @@ img { max-width: 100%; display: block; }
 .reminder-swipe-knob {
   position: absolute;
   left: 21.15%;
-  top: 80%;
+  top: 81%;
   width: 26.4%;
   height: 8.27%;
   object-fit: contain;
-  transition: left 0.55s cubic-bezier(0.22, 0.9, 0.3, 1), opacity 0.2s ease 0.35s;
+  transition: left 0.55s cubic-bezier(0.22, 0.9, 0.3, 1), opacity 0.55s ease;
   z-index: 3;
   pointer-events: none;
 }
-.reminder-swipe-wrap.is-on .reminder-swipe-track { opacity: 1; transition: opacity 0.2s ease 0.35s; }
+.reminder-swipe-wrap.is-on .reminder-swipe-track { opacity: 1; }
 /* the overlay knob only drives the slide animation — on_final.png already
-   bakes in its own knob at rest, so fade this one out as it arrives
-   instead of trying to size-match two separately-authored assets */
+   bakes in its own knob at rest, so crossfade this one out as it slides
+   (same duration as the slide/track fade, no delay) instead of trying to
+   size-match two separately-authored assets or popping the track in late */
 .reminder-swipe-wrap.is-on .reminder-swipe-knob {
   left: 52.3%;
   opacity: 0;
