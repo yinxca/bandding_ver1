@@ -1292,12 +1292,12 @@ img { max-width: 100%; display: block; }
 /* =========================================================
    Section 8b: Light transition CTA
 ========================================================= */
-.sec-8b-light { background: linear-gradient(180deg, #fff8f0 0%, #ffe9d6 100%); }
+.sec-8b-light { background: linear-gradient(180deg, #fff5e9 0%, #fffcf7 100%); }
 .s8b-inner {
   align-self: flex-start;
   max-width: 900px;
   width: 100%;
-  padding: 0 clamp(24px, 5vw, 64px);
+  padding: 0 clamp(24px, 5vw, 64px) 0 clamp(120px, 14vw, 220px);
   text-align: left;
 }
 .s8b-heading {
@@ -1934,6 +1934,9 @@ img { max-width: 100%; display: block; }
   .s8-bubble-left { left: -4%; top: -16%; }
   .s8-bubble-right { right: -4%; top: -36%; }
   .s8-visual { position: relative; right: auto; bottom: auto; width: min(320px, 78vw); }
+
+  /* ---- Section 8b ---- */
+  .s8b-inner { padding: 0 24px; }
 }
 
 @media (max-width: 640px) {
