@@ -1290,6 +1290,52 @@ img { max-width: 100%; display: block; }
 }
 
 /* =========================================================
+   Section 8b: Light transition CTA
+========================================================= */
+.sec-8b-light { background: linear-gradient(180deg, #fff8f0 0%, #ffe9d6 100%); }
+.s8b-inner {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 5vw, 64px);
+  text-align: left;
+}
+.s8b-heading {
+  font-size: clamp(28px, 2.8vw, 44px);
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: clamp(20px, 3vh, 28px);
+}
+.s8b-heading .highlight-orange { font-weight: 800; }
+.s8b-pill {
+  display: inline-block;
+  background: #c4ddf5;
+  color: #2b5b8a;
+  font-size: clamp(12px, 1.1vw, 14px);
+  font-weight: 600;
+  padding: 0.55em 1.1em;
+  border-radius: 999px;
+  margin-bottom: clamp(16px, 2.4vh, 24px);
+}
+.s8b-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: clamp(14px, 1.6vw, 18px) clamp(24px, 2.6vw, 32px);
+  border: 2px solid var(--orange);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--orange);
+  font-size: clamp(14px, 1.2vw, 16px);
+  font-weight: 700;
+  cursor: pointer;
+}
+.s8b-btn:hover { background: rgba(255, 75, 17, 0.06); }
+
+/* =========================================================
    Section 9: Business Cards
 ========================================================= */
 .sec-9-cards {
