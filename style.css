@@ -1204,8 +1204,12 @@ img { max-width: 100%; display: block; }
 .s8-friends-wrap {
   position: relative;
   width: min(420px, 34vw);
-  margin-top: clamp(72px, 10vh, 110px);
+  margin-top: clamp(200px, 37vh, 360px);
   margin-left: clamp(40px, 8vw, 110px);
+  margin-bottom: -48px; /* cancels the section's own bottom padding so the hill can actually reach the floor */
+}
+.s8-friends-figs {
+  position: relative;
 }
 .s8-friends {
   position: relative;
@@ -1214,16 +1218,15 @@ img { max-width: 100%; display: block; }
   display: block;
   z-index: 1;
 }
-/* the hill the friends stand on — real art, positioned so its own top
-   edge lands right at the characters' feet */
+/* the hill the friends stand on — real art, stacked right under them
+   (small negative margin closes the transparent margin baked into the
+   bottom of the friends PNG) */
 .s8-hill {
-  position: absolute;
-  left: 50%;
-  top: 92%;
-  transform: translateX(-50%);
-  width: 150%;
+  display: block;
+  width: 220%;
+  margin-left: -60%;
+  margin-top: -3%;
   height: auto;
-  z-index: 0;
   pointer-events: none;
 }
 .s8-bubble {
