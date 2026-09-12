@@ -31,7 +31,7 @@
     initChatFlow();
     initSection2Scenes();
     initStageReveal('sec5');
-    initStageReveal('sec8c');
+    initStageReveal('sec8c', 1);
     initSection5dToggle();
     positionS5dBlur();
     window.addEventListener('resize', positionS5dBlur, { passive: true });
@@ -617,8 +617,11 @@
    * boundary-hold mechanics as section 2's stepper, so a single scroll
    * gesture's momentum can't skip steps or leak into the next section.
    * Desktop only — mobile already scrolls normally (no fp-scroll snap).
-   * Shared by section 5 (cards) and section 8c (together rows). */
-  function initStageReveal(sectionId) {
+   * Shared by section 5 (cards) and section 8c (together rows).
+   * minStage lets a section start with its first item(s) already shown
+   * (section 8c: row 1 shouldn't require a blind scroll to appear) —
+   * the stepper then only ever ranges between minStage and maxStage. */
+  function initStageReveal(sectionId, minStage = 0) {
     const section = document.getElementById(sectionId);
     const fp = document.querySelector('.fp-scroll');
     if (!section || !fp) return;
@@ -628,7 +631,7 @@
     if (!items.length) return;
     const maxStage = items.length;
 
-    let stage = 0;
+    let stage = minStage;
 
     function applyStage(s) {
       section.dataset.stage = String(s);
@@ -636,7 +639,7 @@
         el.classList.toggle('is-visible', Number(el.dataset.stageItem) <= s);
       });
     }
-    applyStage(0);
+    applyStage(minStage);
 
     const isActive = () => Math.abs(fp.scrollTop - section.offsetTop) < 4;
     const COOLDOWN_MS = 700;
@@ -657,7 +660,7 @@
       }
 
       const down = e.deltaY > 0;
-      const canStep = (down && stage < maxStage) || (!down && stage > 0);
+      const canStep = (down && stage < maxStage) || (!down && stage > minStage);
       const cooling = now - lastStepAt < COOLDOWN_MS;
 
       if (!canStep) {
@@ -676,9 +679,9 @@
     if ('IntersectionObserver' in window) {
       new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting && stage !== 0) {
-            stage = 0;
-            applyStage(0);
+          if (!entry.isIntersecting && stage !== minStage) {
+            stage = minStage;
+            applyStage(minStage);
           }
         });
       }, { threshold: 0 }).observe(section);
