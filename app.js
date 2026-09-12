@@ -40,30 +40,9 @@
     }
     setTimeout(positionS5dBlur, 600); // final safety net for any late layout shift
     initSection9Zoom();
-    initFpScrollHandoff();
     initForms();
     renderSignupCount();
   });
-
-  /* .fp-scroll only wraps sections 1-9 (section10 + footer scroll
-     normally in the document below it). Native scroll-chaining should
-     hand wheel input to the document once .fp-scroll hits its own
-     scroll end, but that's not reliable across every browser when
-     combined with scroll-snap-type: mandatory, which can end up
-     swallowing the input instead — making the sections after it seem
-     to disappear. Do the handoff explicitly instead of trusting it. */
-  function initFpScrollHandoff() {
-    const fp = document.querySelector('.fp-scroll');
-    if (!fp) return;
-    fp.addEventListener('wheel', (e) => {
-      const atBottom = fp.scrollTop >= fp.scrollHeight - fp.clientHeight - 1;
-      const atTop = fp.scrollTop <= 0;
-      if ((e.deltaY > 0 && atBottom) || (e.deltaY < 0 && atTop)) {
-        e.preventDefault();
-        window.scrollBy({ top: e.deltaY, behavior: 'auto' });
-      }
-    }, { passive: false });
-  }
 
   /* Section 9: carry the phone scale forward as the three reference frames scroll by. */
   function initSection9Zoom() {
@@ -110,7 +89,17 @@
       // the swipe fire inconsistently. Clamp scroll right at the threshold
       // so a fast flick can't blow straight through into the next section
       // before the swipe has a chance to show.
-      if (swipeWrap && !swiped && progress >= SWIPE_THRESHOLD) {
+      //
+      // Bug this guards against: getProgress() clamps to 1 for ANY
+      // scrollTop past this section's own end, not just while inside it.
+      // Without the range check below, once `swiped` gets reset to false
+      // on leaving (see the IntersectionObserver below), literally any
+      // later 'scroll' event anywhere further down the page (section8,
+      // section9, ...) would satisfy `progress >= SWIPE_THRESHOLD` again
+      // and yank fp.scrollTop back up into this section — making it look
+      // like scrolling past it was broken.
+      const withinSection = fp.scrollTop <= sectionBounds().end + 20;
+      if (swipeWrap && !swiped && progress >= SWIPE_THRESHOLD && withinSection) {
         swiped = true;
         lastGateAt = performance.now();
         swipeWrap.classList.add('is-on');

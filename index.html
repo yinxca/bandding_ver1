@@ -309,9 +309,9 @@
     </div>
   </section>
 
-  </div><!-- /.fp-scroll -->
-
-  <!-- [Section 10] Bottom CTA — scrolls normally in the document, not part of the snap scroller -->
+  <!-- [Section 10] Bottom CTA — last snap point; footer follows as trailing
+       scrollable content within the same .fp-scroll container, so there's
+       no fragile hand-off between two separate scroll contexts -->
   <section class="section sec-10-cta" id="sec10" data-header-dark>
     <div class="s10-cta" data-reveal>
       <img class="s10-wm s10-wm-a" src="images/background_logo.png" alt="" aria-hidden="true" />
@@ -356,6 +356,8 @@
         </div>
       </div>
     </footer>
+
+  </div><!-- /.fp-scroll -->
 
   </main>
 

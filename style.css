@@ -49,6 +49,12 @@ html {
 }
 .fp-scroll::-webkit-scrollbar { width: 0; height: 0; display: none; }
 .fp-scroll .section { scroll-snap-align: start; scroll-snap-stop: always; }
+/* the footer trails section10 and is shorter than a full viewport, so
+   with scroll-snap-type: mandatory on the container it needs its own
+   snap target too — otherwise there's nowhere for a scroll past
+   section10 to mandatorily rest, and it springs back up before you
+   can actually see it */
+.fp-scroll .footer { scroll-snap-align: end; }
 
 body {
   background-color: var(--cream);
@@ -1210,7 +1216,7 @@ img { max-width: 100%; display: block; }
 .s8-friends-wrap {
   position: absolute;
   left: clamp(220px, 25vw, 330px);
-  bottom: -80px;
+  bottom: -40px;
   width: min(460px, 37vw);
 }
 .s8-friends-figs {
