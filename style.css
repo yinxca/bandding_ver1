@@ -1035,9 +1035,9 @@ img { max-width: 100%; display: block; }
 .reminder-swipe-knob {
   position: absolute;
   left: 23.34%;
-  top: 79.72%;
+  top: 80.02%;
   width: 20.6%;
-  height: 6.6%;
+  height: 6%;
   border-radius: 999px;
   background: #fffcf7;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
@@ -1146,16 +1146,11 @@ img { max-width: 100%; display: block; }
   width: 100%;
   max-width: 1360px;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: clamp(32px, 5vw, 80px);
   padding: 0 clamp(24px, 5vw, 64px);
 }
 
 .s8-copy {
-  flex: 1;
-  min-width: 300px;
+  max-width: 620px;
   text-align: left;
 }
 .s8-eyebrow {
@@ -1212,9 +1207,25 @@ img { max-width: 100%; display: block; }
   margin-top: clamp(72px, 10vh, 110px);
 }
 .s8-friends {
+  position: relative;
   width: 100%;
   height: auto;
   display: block;
+  z-index: 1;
+}
+/* the hill the friends stand on — a wide, flat mound just peeking out
+   from under their feet, not a full circle looming over the copy above */
+.s8-friends-wrap::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -18px;
+  transform: translateX(-50%);
+  width: 145%;
+  aspect-ratio: 2.6 / 1;
+  border-radius: 50%;
+  background: #f6c8a3;
+  z-index: 0;
 }
 .s8-bubble {
   position: absolute;
@@ -1239,8 +1250,10 @@ img { max-width: 100%; display: block; }
 }
 
 .s8-visual {
-  flex-shrink: 0;
-  width: clamp(300px, 30vw, 420px);
+  position: absolute;
+  right: clamp(24px, 6vw, 90px);
+  bottom: 0;
+  width: clamp(340px, 36vw, 480px);
 }
 .s8-phone-ui {
   width: 100%;
@@ -1826,14 +1839,14 @@ img { max-width: 100%; display: block; }
   .s5c-watermark { bottom: auto; top: 44%; font-size: 36vw; }
 
   /* ---- Section 8 ---- */
-  .s8-layout { flex-direction: column; gap: 28px; padding: 0 24px; }
-  .s8-copy { text-align: center; }
+  .s8-layout { display: flex; flex-direction: column; align-items: center; gap: 28px; padding: 0 24px; }
+  .s8-copy { text-align: center; max-width: none; }
   .s8-eyebrow { justify-content: center; }
   .s8-friends-wrap { width: min(320px, 78vw); margin: 56px auto 0; }
   .s8-bubble { white-space: normal; max-width: 60%; text-align: center; }
   .s8-bubble-left { left: -4%; top: -16%; }
   .s8-bubble-right { right: -4%; top: -36%; }
-  .s8-visual { width: min(320px, 78vw); }
+  .s8-visual { position: relative; right: auto; bottom: auto; width: min(320px, 78vw); }
 }
 
 @media (max-width: 640px) {
