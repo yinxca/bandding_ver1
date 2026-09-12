@@ -165,11 +165,9 @@ img { max-width: 100%; display: block; }
   height: 34px;
   display: block;
   transition: filter 0.3s ease;
-  /* the mark's own PNG has ~2px of empty padding below the visible glyph
-     (the wordmark's crop is tight), so flush box-bottom alignment still
-     leaves the glyph looking a couple px short of the wordmark's baseline
-     — nudge it down to compensate */
-  transform: translateY(2.4px);
+  /* nudge up so the mark's own bottom lines up with the "B" wordmark's
+     bottom — flush box-bottom alignment alone still read a bit low */
+  transform: translateY(-4px);
 }
 .logo-word {
   height: 31px;
@@ -1371,57 +1369,10 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
 }
-.s8c-pill {
-  position: relative;
-  z-index: 2;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(18px, 2vw, 26px) clamp(26px, 2.8vw, 36px);
-  background: var(--orange);
-  color: #fff;
-  font-size: clamp(16px, 1.6vw, 21px);
-  font-weight: 800;
-  border-radius: 999px;
-  white-space: nowrap;
-  box-shadow: 0 12px 24px rgba(255, 75, 17, 0.22);
-  margin-right: clamp(-30px, -2.6vw, -22px);
-}
-.s8c-pill::after {
-  content: '';
-  position: absolute;
-  left: clamp(26px, 2.8vw, 36px);
-  top: 100%;
-  border-left: 9px solid transparent;
-  border-right: 9px solid transparent;
-  border-top: 12px solid var(--orange);
-}
-.s8c-bar {
-  position: relative;
-  flex: 1;
-  min-width: 0;
-  border-radius: 999px;
-  background: #fff;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(107, 50, 38, 0.06);
-}
-.s8c-bar-art { display: block; width: 100%; height: auto; }
-.s8c-bar-text {
-  position: absolute;
-  left: clamp(50px, 6vw, 92px);
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: clamp(14px, 1.25vw, 18px);
-  color: #6b6b6b;
-  white-space: nowrap;
-}
-.s8c-bar-text strong { font-weight: 800; color: var(--ink); }
-/* rows 2-3: the pill + tail + white bar are now baked into the image
-   itself (share.png / comfortable.png include their own opaque white
-   background), so this row is just the image plus a text overlay —
-   no separate CSS-drawn pill or bar needed. Row 1 (live.png) hasn't
-   been re-exported this way yet, so it still uses .s8c-pill/.s8c-bar. */
+/* all three rows: the pill + tail + white bar are baked directly into
+   each image now (live/share/comfortable.png each include their own
+   opaque white background), so a row is just the image plus a text
+   overlay — no separate CSS-drawn pill or bar needed. */
 .s8c-row-img { position: relative; }
 .s8c-row-art { display: block; width: 100%; height: auto; }
 .s8c-row-text {
@@ -1429,11 +1380,11 @@ img { max-width: 100%; display: block; }
   left: 38%;
   top: 50%;
   transform: translateY(-50%);
-  font-size: clamp(14px, 1.25vw, 18px);
-  color: #6b6b6b;
+  font-size: clamp(18px, 1.7vw, 24px);
+  color: #8a8a8a;
   white-space: nowrap;
 }
-.s8c-row-text strong { font-weight: 800; color: var(--ink); }
+.s8c-row-text strong { font-weight: 800; color: #2b2323; }
 .s8c-closing {
   text-align: center;
   margin-top: clamp(24px, 4vh, 40px);
@@ -1720,7 +1671,7 @@ img { max-width: 100%; display: block; }
   font-weight: 700;
   color: #e9e3e5;
   letter-spacing: -0.5px;
-  margin-bottom: clamp(150px, 27vh, 312px);
+  margin-bottom: clamp(190px, 33vh, 370px);
   line-height: 1.1;
 }
 .s10-accent {
