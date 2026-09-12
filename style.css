@@ -1359,7 +1359,7 @@ img { max-width: 100%; display: block; }
   max-width: 100%;
   padding: clamp(14px, 1.6vw, 18px) clamp(24px, 2.6vw, 32px);
   border: 2px solid var(--orange);
-  border-radius: 100px;
+  border-radius: 12px;
   background: var(--orange);
   color: #fff;
   font-size: clamp(14px, 1.2vw, 16px);
@@ -1727,7 +1727,7 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.5px;
   vertical-align: middle;
   transform: translateY(-0.14em);
-  margin: 0 0.5em;
+  margin: 0 0.4em;
 }
 /* diagonal slash marks flanking 반띵! */
 .s10-accent::before,
@@ -1768,8 +1768,8 @@ img { max-width: 100%; display: block; }
   max-width: 640px;
   margin: -22px auto 0;
   background: #fff;
-  border-radius: 100px;
-  padding: 8px 8px 8px 28px;
+  border-radius: 12px;
+  padding: 8px 0 8px 28px;
   gap: 12px;
   box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
 }
@@ -1786,15 +1786,20 @@ img { max-width: 100%; display: block; }
   padding: 18px 0;
 }
 .s10-email-input::placeholder { color: #b7bcc2; }
+/* fills the pill edge-to-edge (stretches over the form's own vertical
+   padding) — rounded only on the right, flush/square on the left where
+   it meets the input */
 .s10-email-btn {
   flex-shrink: 0;
+  align-self: stretch;
+  margin: -8px 0;
   border: none;
-  border-radius: 100px;
+  border-radius: 0 12px 12px 0;
   background: var(--orange);
   color: #fff;
   font-weight: 700;
   font-size: clamp(16px, 1.4vw, 19px);
-  padding: 18px 32px;
+  padding: 0 32px;
   cursor: pointer;
   transition: background 0.2s ease;
   white-space: nowrap;
@@ -1931,8 +1936,8 @@ img { max-width: 100%; display: block; }
   width: 100%;
   max-width: 460px;
   background: #fff;
-  border-radius: 100px;
-  padding: 4px 4px 4px 18px;
+  border-radius: 12px;
+  padding: 4px 0 4px 18px;
   gap: 8px;
 }
 .footer-email-icon { width: 18px; height: 18px; flex-shrink: 0; color: #9aa1a8; }
@@ -1950,13 +1955,15 @@ img { max-width: 100%; display: block; }
 .footer-email-input::placeholder { color: #b7bcc2; }
 .footer-email-btn {
   flex-shrink: 0;
+  align-self: stretch;
+  margin: -4px 0;
   border: none;
-  border-radius: 100px;
+  border-radius: 0 12px 12px 0;
   background: var(--orange);
   color: #fff;
   font-weight: 700;
   font-size: clamp(13px, 1.1vw, 15px);
-  padding: 11px 20px;
+  padding: 0 20px;
   cursor: pointer;
   transition: background 0.2s ease;
   white-space: nowrap;
