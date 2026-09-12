@@ -1033,8 +1033,8 @@ img { max-width: 100%; display: block; }
    the shared .reminder-swipe-wrap transform. */
 .reminder-swipe-track {
   position: absolute;
-  left: calc(23.58% + 1px);
-  top: calc(80.8% - 2px);
+  left: calc(23.58% + 2px);
+  top: calc(80.8% - 3px);
   width: 52.7%;
   height: 9.09%;
   /* on_final.png's own aspect ratio differs from the box tuned for the
