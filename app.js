@@ -485,6 +485,7 @@
     // whenever its content actually changes (a different service takes
     // over the card) — skipped when the card's content is unchanged
     // (e.g. the step that only brings in the bottom heading).
+    const notifyMask = section.querySelector('.s2-notify-mask');
     const notifyCard = section.querySelector('.s2-notify-card');
     const notifySignature = (f) => JSON.stringify(f.notify);
     let prevNotifySig = notifySignature(FRAMES[0]);
@@ -495,15 +496,17 @@
     // deferred into the next animation frame instead of running inline in
     // the scroll handler, which was the actual source of the stutter — then
     // the card opens, revealing the new content, one frame after that.
+    // (s2-notify-closed toggles on the mask; the transition:none flush is
+    // on the card itself, since that's the element that actually moves.)
     function slideOpenCard(onClosed) {
-      if (!notifyCard) { if (onClosed) onClosed(); return; }
+      if (!notifyMask || !notifyCard) { if (onClosed) onClosed(); return; }
       notifyCard.style.transition = 'none';
-      notifyCard.classList.add('s2-notify-closed');
+      notifyMask.classList.add('s2-notify-closed');
       void getComputedStyle(notifyCard).transform; // flush the closed/no-transition state (style-only, no layout)
       notifyCard.style.transition = '';
       requestAnimationFrame(() => {
         if (onClosed) onClosed();
-        requestAnimationFrame(() => notifyCard.classList.remove('s2-notify-closed'));
+        requestAnimationFrame(() => notifyMask.classList.remove('s2-notify-closed'));
       });
     }
 

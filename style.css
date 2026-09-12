@@ -461,8 +461,19 @@ img { max-width: 100%; display: block; }
   white-space: nowrap;
 }
 
-.s2-notify-card {
+/* mask sizes itself to the card's natural (untransformed) layout size and
+   clips it — the card then slides across via transform, uncovered
+   left-to-right as it moves, like a panel sliding out from behind a
+   curtain. transform (not clip-path/scaleX) both because it's the most
+   reliably-animated property across browsers and because — unlike scaleX,
+   which visibly squashes the content as it shrinks — a pure translateX
+   keeps the card's contents undistorted the whole time; it just slides. */
+.s2-notify-mask {
   flex-shrink: 0;
+  border-radius: 22px;
+  overflow: hidden;
+}
+.s2-notify-card {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -470,17 +481,12 @@ img { max-width: 100%; display: block; }
   border-radius: 22px;
   background: #1a1b1e;
   box-shadow: 0 16px 34px rgba(20, 16, 12, 0.22);
-  transform: scaleX(1);
-  transform-origin: left center;
+  transform: translateX(0);
   transition: transform 0.55s cubic-bezier(0.22, 0.9, 0.3, 1);
   will-change: transform;
 }
-/* "closed" state — scaled to zero width from the left edge; removing this
-   class slides the card open left-to-right, like a drawer/shutter.
-   transform (not clip-path) so the animation stays smooth across browsers
-   — Safari in particular can render clip-path transitions as an instant
-   jump instead of an actual animation. */
-.s2-notify-card.s2-notify-closed { transform: scaleX(0); }
+/* "closed" state — the card itself parked just off the mask's left edge */
+.s2-notify-mask.s2-notify-closed .s2-notify-card { transform: translateX(-100%); }
 .s2-notify-icon {
   flex-shrink: 0;
   width: 52px;
