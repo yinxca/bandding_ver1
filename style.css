@@ -332,7 +332,7 @@ img { max-width: 100%; display: block; }
   min-height: 74px;
   background: #ff5835;
   color: #fff;
-  border-radius: 17px;
+  border-radius: 100px;
   font: inherit;
   font-size: 20px;
   cursor: pointer;
@@ -1307,17 +1307,19 @@ img { max-width: 100%; display: block; }
    Section 8b: Light transition CTA
 ========================================================= */
 .sec-8b-light { background: linear-gradient(180deg, #fff5e9 0%, #fffcf7 100%); }
-/* soft half-circle bleeding off the left edge, behind the copy */
+/* soft half-circle bleeding off the left edge, behind the copy — sized
+   to fully cover the heading text, colored with the same gradient used
+   on section5b2's background */
 .sec-8b-light::before {
   content: '';
   position: absolute;
   top: 50%;
-  left: clamp(-420px, -18vw, -180px);
+  left: clamp(-520px, -14vw, -320px);
   transform: translateY(-50%);
-  width: clamp(700px, 62vw, 980px);
-  height: clamp(700px, 62vw, 980px);
+  width: clamp(1300px, 100vw, 1700px);
+  height: clamp(1300px, 100vw, 1700px);
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #fffdfa 0%, #ffecd9 55%, #ffe0c1 100%);
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, #fdf1e6 45%, #fbe4cf 100%);
   z-index: 0;
   pointer-events: none;
 }
@@ -1370,7 +1372,7 @@ img { max-width: 100%; display: block; }
   max-width: 100%;
   padding: clamp(14px, 1.6vw, 18px) clamp(24px, 2.6vw, 32px);
   border: 2px solid var(--orange);
-  border-radius: 999px;
+  border-radius: 100px;
   background: var(--orange);
   color: #fff;
   font-size: clamp(14px, 1.2vw, 16px);
@@ -1779,7 +1781,7 @@ img { max-width: 100%; display: block; }
   max-width: 640px;
   margin: -22px auto 0;
   background: #fff;
-  border-radius: 999px;
+  border-radius: 100px;
   padding: 8px 8px 8px 28px;
   gap: 12px;
   box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
@@ -1800,7 +1802,7 @@ img { max-width: 100%; display: block; }
 .s10-email-btn {
   flex-shrink: 0;
   border: none;
-  border-radius: 999px;
+  border-radius: 100px;
   background: var(--orange);
   color: #fff;
   font-weight: 700;
@@ -1927,6 +1929,9 @@ img { max-width: 100%; display: block; }
 }
 .footer-email-caption {
   align-self: flex-end;
+  width: 100%;
+  max-width: 460px;
+  text-align: left;
   color: #fff;
   font-weight: 700;
   font-size: clamp(14px, 1.5vw, 17px);
@@ -1939,7 +1944,7 @@ img { max-width: 100%; display: block; }
   width: 100%;
   max-width: 460px;
   background: #fff;
-  border-radius: 999px;
+  border-radius: 100px;
   padding: 4px 4px 4px 18px;
   gap: 8px;
 }
@@ -1959,7 +1964,7 @@ img { max-width: 100%; display: block; }
 .footer-email-btn {
   flex-shrink: 0;
   border: none;
-  border-radius: 999px;
+  border-radius: 100px;
   background: var(--orange);
   color: #fff;
   font-weight: 700;
@@ -2135,7 +2140,7 @@ img { max-width: 100%; display: block; }
   .footer-inner { flex-direction: column; align-items: center; text-align: center; gap: 24px; }
   .footer-links-group { justify-content: center; gap: 28px; }
   .footer-end { align-items: center; width: 100%; max-width: 360px; }
-  .footer-email-caption { align-self: center; }
+  .footer-email-caption { align-self: center; text-align: center; }
   .footer-email-form { align-self: center; }
   .footer-form-hint { align-self: center; }
   .footer-end .social-icons { align-self: center; }
