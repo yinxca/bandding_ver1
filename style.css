@@ -1033,10 +1033,10 @@ img { max-width: 100%; display: block; }
    the shared .reminder-swipe-wrap transform. */
 .reminder-swipe-track {
   position: absolute;
-  left: 22.07%;
-  top: 79.59%;
-  width: 57.5%;
-  height: 6.85%;
+  left: 24.36%;
+  top: 82.9%;
+  width: 51.14%;
+  height: 6.49%;
   /* on_final.png's own aspect ratio differs from the box tuned for the
      original zoom_on_button.png — contain it instead of stretching */
   object-fit: contain;
@@ -1051,10 +1051,10 @@ img { max-width: 100%; display: block; }
    artwork (gray border -> orange border) as it slides. */
 .reminder-swipe-knob {
   position: absolute;
-  left: 23.34%;
-  top: 80.02%;
-  width: 20.6%;
-  height: 6%;
+  left: 24.92%;
+  top: 83.18%;
+  width: 18.86%;
+  height: 5.91%;
   object-fit: contain;
   filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
   transition: left 0.55s cubic-bezier(0.22, 0.9, 0.3, 1);
@@ -1063,7 +1063,7 @@ img { max-width: 100%; display: block; }
 }
 .reminder-swipe-wrap.is-on .reminder-swipe-track { opacity: 1; transition: opacity 0.2s ease 0.35s; }
 .reminder-swipe-wrap.is-on .reminder-swipe-knob {
-  left: 56.74%;
+  left: 56.07%;
   content: url(images/slide_button2.png);
 }
 .reminder-backdrop {
@@ -1134,6 +1134,7 @@ img { max-width: 100%; display: block; }
   .reminder-member { left: 43%; top: 56%; width: 44%; }
   .reminder-label { font-size: 17px; bottom: calc(100% + 20px); }
   .reminder-full-phone { width: 86vw; }
+  .reminder-swipe-wrap { width: 86vw; }
   .reminder-slide-2 .reminder-full-phone { width: 86vw; }
   .reminder-slide-3 .reminder-full-phone { width: 112vw; top: 15%; }
 }
@@ -1766,7 +1767,7 @@ img { max-width: 100%; display: block; }
   align-items: center;
   width: 100%;
   max-width: 640px;
-  margin: -22px auto 0;
+  margin: -38px auto 0;
   background: #fff;
   border-radius: 12px;
   padding: 8px 0 8px 28px;
@@ -2127,7 +2128,7 @@ img { max-width: 100%; display: block; }
   .care-heading { font-size: clamp(26px, 7vw, 36px); }
 
   /* ---- Section 10 ---- */
-  .s10-email-form { margin-top: -12px; }
+  .s10-email-form { margin-top: -20px; }
 }
 
 @media (max-width: 640px) {
