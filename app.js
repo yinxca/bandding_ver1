@@ -235,7 +235,6 @@
       ['sec1', null],
       ['sec2', 'why'],
       ['sec5', 'why'],
-      ['sec5b', 'how'],
       ['sec5b2', 'how'],
       ['sec5c', 'how'],
       ['sec5d', 'how'],

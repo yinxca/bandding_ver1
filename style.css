@@ -655,42 +655,6 @@ img { max-width: 100%; display: block; }
 .sec-5b-cta {
   background: linear-gradient(180deg, #ffffff 0%, #fdf1e6 55%, #fbe4cf 100%);
 }
-.s5b-inner {
-  max-width: 920px;
-  margin: 0 auto;
-  text-align: center;
-}
-.s5b-eyebrow {
-  font-size: clamp(17px, 1.6vw, 21px);
-  font-weight: 600;
-  color: #6b6b6b;
-  margin-bottom: clamp(12px, 1.8vh, 20px);
-}
-.s5b-heading {
-  font-size: clamp(30px, 3.6vw, 46px);
-  font-weight: 700;
-  line-height: 1.5;
-  letter-spacing: -0.04em;
-  color: var(--ink);
-  margin-bottom: clamp(32px, 4.6vh, 52px);
-}
-.s5b-heading .highlight-orange { font-weight: 800; }
-.s5b-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 320px;
-  max-width: 100%;
-  padding: clamp(18px, 2vw, 22px) 0;
-  border: none;
-  border-radius: 12px;
-  background: var(--orange);
-  color: #fff;
-  font-size: clamp(16px, 1.4vw, 18px);
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 16px 32px rgba(255, 75, 17, 0.24);
-}
 
 /* shared by section5b2 and section8b: a plain eyebrow+heading CTA, but
    heavier emphasis contrast than .s5b-* — light body text, bold orange
