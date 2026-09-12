@@ -1045,39 +1045,26 @@ img { max-width: 100%; display: block; }
   transition: opacity 0.2s ease;
   pointer-events: none;
 }
+/* same knob element throughout both states — guarantees identical size
+   and position between "off" and "on" instead of handing off to a
+   differently-sized button baked into the track image. Swaps its own
+   artwork (gray border -> orange border) as it slides. */
 .reminder-swipe-knob {
   position: absolute;
   left: 23.34%;
   top: 80.02%;
   width: 20.6%;
   height: 6%;
-  border-radius: 999px;
-  background: #fffcf7;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 1;
-  transition: left 0.55s cubic-bezier(0.22, 0.9, 0.3, 1), opacity 0.2s ease;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
+  transition: left 0.55s cubic-bezier(0.22, 0.9, 0.3, 1);
   z-index: 3;
   pointer-events: none;
 }
-.reminder-swipe-icon {
-  width: 46%;
-  aspect-ratio: 1;
-  background: var(--orange);
-  -webkit-mask: url(images/Logo_image.png) center / contain no-repeat;
-  mask: url(images/Logo_image.png) center / contain no-repeat;
-}
 .reminder-swipe-wrap.is-on .reminder-swipe-track { opacity: 1; transition: opacity 0.2s ease 0.35s; }
-/* the CSS knob only needs to carry the slide itself — it fades out in the
-   same 0.35s–0.55s window the real track image fades in, so it's gone by
-   the time anyone could compare its exact size against the baked-in knob
-   in that image, instead of the two sitting on top of each other forever */
 .reminder-swipe-wrap.is-on .reminder-swipe-knob {
   left: 56.74%;
-  opacity: 0;
-  transition: left 0.55s cubic-bezier(0.22, 0.9, 0.3, 1), opacity 0.2s ease 0.35s;
+  content: url(images/slide_button2.png);
 }
 .reminder-backdrop {
   position: absolute;
