@@ -1033,10 +1033,10 @@ img { max-width: 100%; display: block; }
    the shared .reminder-swipe-wrap transform. */
 .reminder-swipe-track {
   position: absolute;
-  left: 24.36%;
-  top: 82.9%;
-  width: 51.14%;
-  height: 6.49%;
+  left: 23.58%;
+  top: 79.3%;
+  width: 52.7%;
+  height: 9.09%;
   /* on_final.png's own aspect ratio differs from the box tuned for the
      original zoom_on_button.png — contain it instead of stretching */
   object-fit: contain;
@@ -1053,7 +1053,7 @@ img { max-width: 100%; display: block; }
   position: absolute;
   left: 21.15%;
   top: 81%;
-  width: 26.4%;
+  width: calc(26.4% + 1px);
   height: 8.27%;
   object-fit: contain;
   transition: left 0.55s cubic-bezier(0.22, 0.9, 0.3, 1), opacity 0.55s ease;
@@ -1758,11 +1758,27 @@ img { max-width: 100%; display: block; }
   z-index: 1;
   width: min(720px, 90vw);
 }
+.s10-mascots-slot {
+  position: relative;
+  width: clamp(420px, 100%, 640px);
+  margin: clamp(-170px, -22vh, -110px) auto 0;
+}
 .s10-mascots {
   display: block;
-  width: clamp(420px, 100%, 640px);
+  width: 100%;
   height: auto;
-  margin: clamp(-170px, -22vh, -110px) auto 0;
+}
+/* duplicate of the same art, clipped to just the leftmost character and
+   layered above the email form — keeps that character's silhouette in
+   front instead of being clipped behind the form's edge */
+.s10-mascots-front {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+  clip-path: inset(0 67% 0 0);
 }
 .s10-email-form {
   position: relative;
@@ -1771,7 +1787,7 @@ img { max-width: 100%; display: block; }
   align-items: center;
   width: 100%;
   max-width: 700px;
-  margin: -41px auto 0;
+  margin: -42px auto 0;
   background: #fff;
   border-radius: 12px;
   padding: 6px 0 6px 18px;
@@ -2132,7 +2148,7 @@ img { max-width: 100%; display: block; }
   .care-heading { font-size: clamp(26px, 7vw, 36px); }
 
   /* ---- Section 10 ---- */
-  .s10-email-form { margin-top: -23px; }
+  .s10-email-form { margin-top: -24px; }
 }
 
 @media (max-width: 640px) {
