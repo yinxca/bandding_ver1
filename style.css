@@ -1718,13 +1718,14 @@ img { max-width: 100%; display: block; }
 }
 .s10-accent {
   position: relative;
+  display: inline-block;
   color: var(--orange);
   font-weight: 900;
-  /* same size as the rest of the heading — was clamp(42px,6vw,74px) */
-  font-size: clamp(22px, 3vw, 34px);
+  font-size: clamp(34px, 4.6vw, 56px);
   letter-spacing: 0.5px;
-  vertical-align: 0;
-  margin: 0 0.34em;
+  vertical-align: middle;
+  transform: translateY(-0.14em);
+  margin: 0 0.5em;
 }
 /* diagonal slash marks flanking 반띵! */
 .s10-accent::before,
@@ -1732,13 +1733,13 @@ img { max-width: 100%; display: block; }
   content: '';
   position: absolute;
   top: 4%;
-  width: 3px;
+  width: 2px;
   height: 92%;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 100%);
   border-radius: 2px;
 }
-.s10-accent::before { left: -0.55em; transform: rotate(-22deg); }
-.s10-accent::after { right: -0.55em; transform: rotate(22deg); }
+.s10-accent::before { left: -0.42em; transform: rotate(-22deg); }
+.s10-accent::after { right: -0.42em; transform: rotate(22deg); }
 .s10-a1,
 .s10-a2 { display: inline-block; }
 .s10-a1 { transform: rotate(-11deg); }   /* 반 leans left */
@@ -1763,7 +1764,7 @@ img { max-width: 100%; display: block; }
   align-items: center;
   width: 100%;
   max-width: 640px;
-  margin: -28px auto 0;
+  margin: -70px auto 0;
   background: #fff;
   border-radius: 999px;
   padding: 8px 8px 8px 28px;
@@ -2108,6 +2109,9 @@ img { max-width: 100%; display: block; }
 
   /* ---- Section 8b ---- */
   .s8b-inner { padding: 0 24px; }
+
+  /* ---- Section 10 ---- */
+  .s10-email-form { margin-top: -36px; }
 }
 
 @media (max-width: 640px) {
