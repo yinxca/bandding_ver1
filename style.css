@@ -491,7 +491,7 @@ img { max-width: 100%; display: block; }
 /* GPT.png's own canvas is exported bigger than the other icon assets, so
    the shared 62% rule reads visibly smaller than it should next to them —
    pin it to the 34px Figma spec instead. */
-.s2-notify-icon img.s2-notify-icon-gpt { width: 34px; height: 34px; }
+.s2-notify-icon img.s2-notify-icon-gpt { width: 42px; height: 42px; }
 .s2-notify-icon-mark {
   width: 76%;
   height: 76%;
