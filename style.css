@@ -1066,7 +1066,7 @@ img { max-width: 100%; display: block; }
    (same duration as the slide/track fade, no delay) instead of trying to
    size-match two separately-authored assets or popping the track in late */
 .reminder-swipe-wrap.is-on .reminder-swipe-knob {
-  left: 56.75%;
+  left: calc(56.75% + 1px);
   opacity: 0;
   content: url(images/slide_button2.png);
 }
