@@ -1033,10 +1033,10 @@ img { max-width: 100%; display: block; }
    the shared .reminder-swipe-wrap transform. */
 .reminder-swipe-track {
   position: absolute;
-  left: 22.5%;
-  top: 78.13%;
-  width: 55.26%;
-  height: 9.23%;
+  left: 21.12%;
+  top: 77.44%;
+  width: 58.03%;
+  height: 10.61%;
   /* on_final.png's own aspect ratio differs from the box tuned for the
      original zoom_on_button.png — contain it instead of stretching */
   object-fit: contain;
