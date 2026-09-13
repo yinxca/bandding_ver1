@@ -13,7 +13,7 @@
    *  - Google Apps Script 웹앱 URL (doPost 로 e.parameter.email 수신)
    *  - 자체 API 엔드포인트 (POST JSON { email } 수신)
    * -------------------------------------------------- */
-  const SIGNUP_ENDPOINT = '';
+  const SIGNUP_ENDPOINT = 'https://formspree.io/f/xdeorkjv';
 
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const STORE_KEY = 'bandding_signups';
@@ -904,6 +904,17 @@
     if (!SIGNUP_ENDPOINT) return new Promise((r) => setTimeout(r, 500));
 
     const isFormspree = /formspree\.io/.test(SIGNUP_ENDPOINT);
+    const isAppsScript = /script\.google/.test(SIGNUP_ENDPOINT);
+
+    if (isAppsScript) {
+      // Apps Script web apps don't send back CORS headers, so a normal
+      // cross-origin fetch's response is opaque — send as a form-encoded
+      // "simple request" (no CORS preflight) and treat a non-throwing
+      // fetch as success instead of inspecting res.ok/status.
+      const body = new URLSearchParams({ email, source: 'landing', ts: new Date().toISOString() });
+      return fetch(SIGNUP_ENDPOINT, { method: 'POST', mode: 'no-cors', body });
+    }
+
     const opts = isFormspree
       ? { method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify({ email, source: 'landing' }) }
       : { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, source: 'landing', ts: new Date().toISOString() }) };
