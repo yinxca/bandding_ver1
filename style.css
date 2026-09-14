@@ -881,30 +881,41 @@ img { max-width: 100%; display: block; }
   color: #a67c5c;
 }
 
-/* ---- visual: gradient card behind + phone screenshot in front ---- */
+/* ---- visual: gradient card behind + phone screenshot in front ----
+   The 680x820 frame is the reference "screen"; the gradient box sits
+   inset 20px left/right, 10px top/bottom within it (radius 20), and the
+   image is scaled to keep ~70px clear above/below and ~80px either side,
+   centered — all expressed as % of the box's own width, since CSS
+   padding percentages always resolve against the containing block's
+   width regardless of side. */
 .s5d-visual {
   position: relative;
   flex-shrink: 0;
   align-self: center;
   width: clamp(320px, 34vw, 420px);
+  aspect-ratio: 680 / 820;
   order: 1;
 }
 .s5d-phone-wrap {
-  position: relative;
+  position: absolute;
   z-index: 1;
-  width: 100%;
-  aspect-ratio: 680 / 820;
-  border-radius: 32px;
+  left: 2.941%;
+  right: 2.941%;
+  top: 1.22%;
+  bottom: 1.22%;
+  border-radius: 20px;
   background: linear-gradient(180deg, #fff6ef 0%, #ffe6d5 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6%;
+  padding: 10.94% 12.5%;
   box-sizing: border-box;
 }
 .s5d-phone-ui {
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
   object-fit: contain;
   display: block;
   filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.18));
