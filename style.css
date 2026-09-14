@@ -1070,8 +1070,6 @@ img { max-width: 100%; display: block; }
   top: -5%;
   left: 42%;
   width: 59%;
-  opacity: 0.25;
-  filter: blur(9px);
   pointer-events: none;
 }
 .reminder-backdrop img { width: 100%; display: block; }
