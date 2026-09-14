@@ -1078,6 +1078,7 @@ img { max-width: 100%; display: block; }
 .reminder-manager { left: 10.4%; top: 56.3%; width: 22.3%; }
 .reminder-manager > img { opacity: 0.8; }
 .reminder-member { left: 31%; top: 32.5%; width: 22.3%; z-index: 2; }
+.reminder-widget { position: absolute; left: 1.5%; top: 59%; width: 8.5%; height: auto; }
 .reminder-label {
   position: absolute;
   bottom: calc(100% + 4.2vh);
@@ -1127,6 +1128,7 @@ img { max-width: 100%; display: block; }
   .reminder-description { font-size: clamp(12px, 3.2vw, 18px); margin-top: 16px; }
   .reminder-manager { left: 9%; top: 72%; width: 39%; }
   .reminder-member { left: 43%; top: 56%; width: 44%; }
+  .reminder-widget { left: 1%; top: 77%; width: 8%; }
   .reminder-label { font-size: 17px; bottom: calc(100% + 20px); }
   .reminder-full-phone { width: 86vw; }
   .reminder-swipe-wrap { width: 86vw; }
