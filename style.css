@@ -817,10 +817,10 @@ img { max-width: 100%; display: block; }
 }
 .s5d-badge-wrap {
   position: absolute;
-  right: 6%;
-  bottom: 100%;
-  margin-bottom: 14px;
-  width: clamp(260px, 25vw, 380px); /* exactly half of .s5d-visual's clamp(520px, 50vw, 760px) */
+  top: 90px; /* same ~10px gap below the header as .s5d-visual */
+  right: 64px;
+  width: auto;
+  height: clamp(600px, 96.47vh, 900px); /* matches .s5d-visual's height exactly */
   aspect-ratio: 700 / 380;
   border-radius: 24px;
   overflow: hidden;
@@ -893,7 +893,7 @@ img { max-width: 100%; display: block; }
 .s5d-visual {
   position: relative;
   top: 46px; /* pulls it down so the gap below the header is ~10px */
-  left: -60px; /* shifts it further left, past the layout's own side padding */
+  left: -160px; /* shifts it further left, past the layout's own side padding */
   flex-shrink: 0;
   align-self: flex-start;
   width: clamp(520px, 50vw, 760px);
@@ -913,7 +913,7 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 6% 8% 0;
+  padding: 2% 8% 0;
   box-sizing: border-box;
 }
 .s5d-phone-ui {
@@ -2024,12 +2024,12 @@ img { max-width: 100%; display: block; }
   .s5c-watermark { bottom: auto; top: 44%; font-size: 36vw; }
 
   .s5d-layout { flex-direction: column; gap: 28px; padding: 0 24px; }
-  .s5d-copy { margin-top: 0; text-align: center; order: 2; }
+  .s5d-copy { margin-top: 0; text-align: center; order: 3; }
   .s5d-eyebrow { justify-content: center; }
   .s5d-visual { width: min(300px, 78vw); height: auto; aspect-ratio: 680 / 820; align-self: center; top: 0; left: 0; order: 1; }
   .s5d-phone-wrap { align-items: center; padding: 10% 12%; }
   .s5d-phone-ui { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
-  .s5d-badge-wrap { position: static; width: min(260px, 78vw); margin: 0 auto 16px; }
+  .s5d-badge-wrap { position: static; width: min(260px, 78vw); height: auto; margin: 0 auto 16px; order: 2; }
 
   /* ---- Section 8 ---- */
   .s8-layout { display: flex; flex-direction: column; align-items: center; gap: 28px; padding: 0 24px; }
