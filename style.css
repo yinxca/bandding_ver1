@@ -1070,13 +1070,11 @@ img { max-width: 100%; display: block; }
   top: -5%;
   left: 42%;
   width: 59%;
-  display: flex;
-  gap: 1.5%;
   opacity: 0.25;
   filter: blur(9px);
   pointer-events: none;
 }
-.reminder-backdrop img { width: 32.3%; flex: 0 0 32.3%; }
+.reminder-backdrop img { width: 100%; display: block; }
 .reminder-phone { position: absolute; margin: 0; }
 .reminder-phone > img { width: 100%; height: auto; }
 .reminder-manager { left: 10.4%; top: 56.3%; width: 22.3%; }
