@@ -819,8 +819,8 @@ img { max-width: 100%; display: block; }
   position: absolute;
   top: 90px; /* same ~10px gap below the header as .s5d-visual */
   right: 64px;
-  width: clamp(650px, 58vw, 920px); /* grows leftward since `right` stays anchored */
-  height: clamp(380px, 58vh, 560px); /* grows downward since `top` stays anchored */
+  width: clamp(555px, 49.6vw, 785px); /* grows leftward since `right` stays anchored */
+  height: clamp(330px, 50vh, 480px); /* grows downward since `top` stays anchored */
   border-radius: 24px;
   overflow: hidden;
   background: linear-gradient(180deg, #fff6ef 0%, #ffe6d5 100%);
