@@ -32,13 +32,6 @@
     initSection2Scenes();
     initStageReveal('sec5');
     initStageReveal('sec8c', 1);
-    positionS5dBlur();
-    window.addEventListener('resize', positionS5dBlur, { passive: true });
-    window.addEventListener('load', positionS5dBlur); // re-measure once images have settled
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(positionS5dBlur); // re-measure once the webfont has actually applied
-    }
-    setTimeout(positionS5dBlur, 600); // final safety net for any late layout shift
     initSection9Zoom();
     initForms();
     renderSignupCount();
@@ -693,23 +686,6 @@
         });
       }, { threshold: 0 }).observe(section);
     }
-  }
-
-  /* ---------- section 5d: blur backdrop position ----------
-   * Pinned with a precise gap above the "정산할 때마다 챙기지 않도록,"
-   * heading line — the two sit in different flex columns (visual is
-   * bottom-anchored, copy is vertically centered), so getting an exact
-   * pixel gap between them needs a real measurement rather than a
-   * percentage guess. */
-  function positionS5dBlur() {
-    const blur = document.querySelector('.s5d-blur');
-    const heading = document.querySelector('.s5d-heading');
-    const visual = document.querySelector('.s5d-visual');
-    if (!blur || !heading || !visual) return;
-    const headingRect = heading.getBoundingClientRect();
-    const visualRect = visual.getBoundingClientRect();
-    const top = headingRect.top - visualRect.top - blur.offsetHeight - 34;
-    blur.style.top = `${top}px`;
   }
 
   /* ---------- forms ---------- */

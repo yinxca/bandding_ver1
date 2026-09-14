@@ -813,15 +813,26 @@ img { max-width: 100%; display: block; }
   margin-top: clamp(220px, 32vh, 400px);
   order: 2;
 }
-.s5d-badge {
+.s5d-badge-wrap {
   position: absolute;
   right: 6%;
   bottom: 100%;
-  width: clamp(110px, 12vw, 170px);
-  height: auto;
+  margin-bottom: 14px;
+  width: clamp(200px, 22vw, 320px);
+  aspect-ratio: 700 / 380;
+  border-radius: 24px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fff6ef 0%, #ffe6d5 100%);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
   z-index: 0;
   pointer-events: none;
-  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15));
+}
+.s5d-badge {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
 }
 .s5d-eyebrow {
   position: relative;
@@ -870,33 +881,31 @@ img { max-width: 100%; display: block; }
   color: #a67c5c;
 }
 
-/* ---- visual: blurred card behind + phone screenshot in front ---- */
+/* ---- visual: gradient card behind + phone screenshot in front ---- */
 .s5d-visual {
   position: relative;
   flex-shrink: 0;
-  align-self: flex-end;
-  margin-bottom: -220px; /* pushes the phone down past the section edge, clipping the "송금하기" button off the bottom */
-  width: clamp(320px, 38vw, 460px);
+  align-self: center;
+  width: clamp(320px, 34vw, 420px);
   order: 1;
-}
-.s5d-blur {
-  position: absolute;
-  left: -70%;
-  width: 60%;
-  height: auto;
-  z-index: 0;
-  pointer-events: none;
 }
 .s5d-phone-wrap {
   position: relative;
   z-index: 1;
   width: 100%;
+  aspect-ratio: 680 / 820;
+  border-radius: 32px;
+  background: linear-gradient(180deg, #fff6ef 0%, #ffe6d5 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6%;
+  box-sizing: border-box;
 }
 .s5d-phone-ui {
-  position: relative;
-  z-index: 1;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
   display: block;
   filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.18));
 }
@@ -2004,8 +2013,8 @@ img { max-width: 100%; display: block; }
   .s5d-layout { flex-direction: column; gap: 28px; padding: 0 24px; }
   .s5d-copy { margin-top: 0; text-align: center; order: 2; }
   .s5d-eyebrow { justify-content: center; }
-  .s5d-visual { width: min(320px, 78vw); margin-bottom: 0; align-self: center; order: 1; }
-  .s5d-badge { position: static; display: block; width: min(140px, 34vw); margin: 0 auto 16px; }
+  .s5d-visual { width: min(300px, 78vw); align-self: center; order: 1; }
+  .s5d-badge-wrap { position: static; width: min(260px, 78vw); margin: 0 auto 16px; }
 
   /* ---- Section 8 ---- */
   .s8-layout { display: flex; flex-direction: column; align-items: center; gap: 28px; padding: 0 24px; }
