@@ -47,21 +47,20 @@
 
   /* Section 9: carry the phone scale forward as the three reference frames scroll by. */
   function initSection9Zoom() {
-    const fp = document.querySelector('.fp-scroll');
     const s1 = document.getElementById('sec7');
     const s2 = document.getElementById('sec7-2');
     const s3 = document.getElementById('sec7-3');
-    if (!fp || !s1 || !s2 || !s3) return;
+    if (!s1 || !s2 || !s3) return;
     const swipeWrap = document.getElementById('reminderSwipeWrap');
 
     const sectionBounds = () => {
       const start = s2.offsetTop;
-      const end = s2.offsetTop + s2.offsetHeight - fp.clientHeight;
+      const end = s2.offsetTop + s2.offsetHeight - window.innerHeight;
       return { start, end };
     };
     const getProgress = () => {
       const { start, end } = sectionBounds();
-      return Math.max(0, Math.min(1, (fp.scrollTop - start) / Math.max(1, end - start)));
+      return Math.max(0, Math.min(1, (window.scrollY - start) / Math.max(1, end - start)));
     };
 
     // one scroll before the zoom would otherwise finish, so the swipe
@@ -73,7 +72,7 @@
 
     const update = () => {
       const progress = getProgress();
-      const transition = Math.max(0, Math.min(1, (fp.scrollTop - s1.offsetTop) / Math.max(1, s1.offsetHeight)));
+      const transition = Math.max(0, Math.min(1, (window.scrollY - s1.offsetTop) / Math.max(1, s1.offsetHeight)));
       s1.style.setProperty('--s9-story-fade', (1 - transition).toFixed(3));
       s2.style.setProperty('--s9-story-image', transition.toFixed(3));
       const scale = 1 + progress * 0.42;
@@ -97,17 +96,17 @@
       // on leaving (see the IntersectionObserver below), literally any
       // later 'scroll' event anywhere further down the page (section8,
       // section9, ...) would satisfy `progress >= SWIPE_THRESHOLD` again
-      // and yank fp.scrollTop back up into this section — making it look
-      // like scrolling past it was broken.
-      const withinSection = fp.scrollTop <= sectionBounds().end + 20;
+      // and yank the scroll position back up into this section — making it
+      // look like scrolling past it was broken.
+      const withinSection = window.scrollY <= sectionBounds().end + 20;
       if (swipeWrap && !swiped && progress >= SWIPE_THRESHOLD && withinSection) {
         swiped = true;
         lastGateAt = performance.now();
         swipeWrap.classList.add('is-on');
-        fp.scrollTop = sectionBounds().start + (sectionBounds().end - sectionBounds().start) * SWIPE_THRESHOLD;
+        window.scrollTo(0, sectionBounds().start + (sectionBounds().end - sectionBounds().start) * SWIPE_THRESHOLD);
       }
     };
-    fp.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update, { passive: true });
     update();
 
@@ -117,7 +116,7 @@
     // back up), same cooldown pattern as the other scroll-gated
     // interactions on this page. ----
     if (swipeWrap) {
-      fp.addEventListener('wheel', (e) => {
+      window.addEventListener('wheel', (e) => {
         if (window.innerWidth <= 900 || !swiped) return;
         const now = performance.now();
         const cooling = now - lastGateAt < GATE_COOLDOWN_MS;
@@ -177,14 +176,11 @@
   function initHeader() {
     const header = document.getElementById('header');
     if (!header) return;
-    const fp = document.querySelector('.fp-scroll');
     const onScroll = () => {
-      const scrolled = window.scrollY > 12 || (fp && fp.scrollTop > 12);
-      header.classList.toggle('scrolled', scrolled);
+      header.classList.toggle('scrolled', window.scrollY > 12);
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    if (fp) fp.addEventListener('scroll', onScroll, { passive: true });
   }
 
   /* ---------- header colour vs. dark sections ---------- */
@@ -266,7 +262,6 @@
   /* ---------- smooth scroll ---------- */
   function initSmoothScroll() {
     const behavior = prefersReducedMotion ? 'auto' : 'smooth';
-    const fp = document.querySelector('.fp-scroll');
     const go = (sel) => {
       const el = typeof sel === 'string' ? document.querySelector(sel) : sel;
       if (!el) return;
@@ -275,35 +270,32 @@
       // point mid-animation, so a jump of more than one section (e.g. the
       // "함께 반띵!" nav link from the hero) stalls a few px in and never
       // reaches the target. Suspend snapping for the jump, then restore it.
-      if (fp && fp.contains(el)) {
-        const prevSnap = fp.style.scrollSnapType;
-        const targetTop = el.offsetTop;
-        fp.style.scrollSnapType = 'none';
-        el.scrollIntoView({ behavior, block: 'start' });
-        // belt-and-suspenders: if the smooth scroll gets interrupted, never
-        // starts, or never completes for any reason, force the exact final
-        // position before handing snapping back — a button that silently
-        // falls short of its target is worse than skipping the animation.
-        // Race scrollend against a flat timeout instead of trusting either
-        // alone (scrollend never fires if the browser never actually
-        // started scrolling in the first place).
-        let done = false;
-        const finish = () => {
-          if (done) return;
-          done = true;
-          // scrollTo(..., {behavior:'instant'}) — not a raw .scrollTop
-          // assignment — because that's what actually supersedes an
-          // in-flight smooth scroll-behavior animation; a plain property
-          // set can get silently overwritten by the animation's own
-          // next frame.
-          fp.scrollTo({ top: targetTop, behavior: 'instant' });
-          fp.style.scrollSnapType = prevSnap;
-        };
-        fp.addEventListener('scrollend', finish, { once: true });
-        setTimeout(finish, prefersReducedMotion ? 50 : 900);
-      } else {
-        el.scrollIntoView({ behavior, block: 'start' });
-      }
+      const html = document.documentElement;
+      const prevSnap = html.style.scrollSnapType;
+      const targetTop = el.offsetTop;
+      html.style.scrollSnapType = 'none';
+      el.scrollIntoView({ behavior, block: 'start' });
+      // belt-and-suspenders: if the smooth scroll gets interrupted, never
+      // starts, or never completes for any reason, force the exact final
+      // position before handing snapping back — a button that silently
+      // falls short of its target is worse than skipping the animation.
+      // Race scrollend against a flat timeout instead of trusting either
+      // alone (scrollend never fires if the browser never actually
+      // started scrolling in the first place).
+      let done = false;
+      const finish = () => {
+        if (done) return;
+        done = true;
+        // scrollTo(..., {behavior:'instant'}) — not a raw .scrollTop
+        // assignment — because that's what actually supersedes an
+        // in-flight smooth scroll-behavior animation; a plain property
+        // set can get silently overwritten by the animation's own
+        // next frame.
+        window.scrollTo({ top: targetTop, behavior: 'instant' });
+        html.style.scrollSnapType = prevSnap;
+      };
+      window.addEventListener('scrollend', finish, { once: true });
+      setTimeout(finish, prefersReducedMotion ? 50 : 900);
     };
 
     document.querySelectorAll('a[href^="#"]').forEach((link) => {
@@ -389,12 +381,11 @@
    * through the scenes one at a time instead of leaving the section;
    * only once the last scene is reached does the next scroll continue
    * on to section 3 (and symmetrically in reverse on the way back up).
-   * Desktop only — mobile already scrolls normally (no fp-scroll snap). */
+   * Desktop only — mobile already scrolls normally (no snap-scrolling). */
   function initSection2Scenes() {
     const section = document.getElementById('sec2');
     const track = document.getElementById('s2Track');
-    const fp = document.querySelector('.fp-scroll');
-    if (!section || !track || !fp) return;
+    if (!section || !track) return;
 
     const slots = {};
     track.querySelectorAll('[data-slot]').forEach((el) => { slots[el.dataset.slot] = el; });
@@ -533,7 +524,7 @@
 
     applyFrame(0);
 
-    const isSection2Active = () => Math.abs(fp.scrollTop - section.offsetTop) < 4;
+    const isSection2Active = () => Math.abs(window.scrollY - section.offsetTop) < 4;
 
     // Cooldown is measured against a real clock (performance.now()) rather
     // than a setTimeout-driven flag, so it can't be thrown off by timer
@@ -559,7 +550,7 @@
     // deterministic timeline instead of racing an async observer callback.
     let wasActiveOnLastWheel = false;
 
-    fp.addEventListener('wheel', (e) => {
+    window.addEventListener('wheel', (e) => {
       if (window.innerWidth <= 900) return; // mobile: plain scroll, no scene-stepping
       const active = isSection2Active();
       if (!active) { wasActiveOnLastWheel = false; return; }
@@ -634,15 +625,14 @@
    * nothing already shown goes away. Same entry-swallow / cooldown /
    * boundary-hold mechanics as section 2's stepper, so a single scroll
    * gesture's momentum can't skip steps or leak into the next section.
-   * Desktop only — mobile already scrolls normally (no fp-scroll snap).
+   * Desktop only — mobile already scrolls normally (no snap-scrolling).
    * Shared by section 5 (cards) and section 8c (together rows).
    * minStage lets a section start with its first item(s) already shown
    * (section 8c: row 1 shouldn't require a blind scroll to appear) —
    * the stepper then only ever ranges between minStage and maxStage. */
   function initStageReveal(sectionId, minStage = 0) {
     const section = document.getElementById(sectionId);
-    const fp = document.querySelector('.fp-scroll');
-    if (!section || !fp) return;
+    if (!section) return;
 
     const items = [...section.querySelectorAll('[data-stage-item]')]
       .sort((a, b) => Number(a.dataset.stageItem) - Number(b.dataset.stageItem));
@@ -659,12 +649,12 @@
     }
     applyStage(minStage);
 
-    const isActive = () => Math.abs(fp.scrollTop - section.offsetTop) < 4;
+    const isActive = () => Math.abs(window.scrollY - section.offsetTop) < 4;
     const COOLDOWN_MS = 700;
     let lastStepAt = -Infinity;
     let wasActiveOnLastWheel = false;
 
-    fp.addEventListener('wheel', (e) => {
+    window.addEventListener('wheel', (e) => {
       if (window.innerWidth <= 900) return;
       const active = isActive();
       if (!active) { wasActiveOnLastWheel = false; return; }
@@ -712,15 +702,14 @@
    * a matching-green mask covers the image's static knob so nothing
    * ghosts); a further scroll continues on to section 6, same
    * entry-swallow / cooldown / boundary-hold mechanics as the other
-   * section steppers. Desktop only — mobile has no fp-scroll snap. */
+   * section steppers. Desktop only — mobile has no snap-scrolling. */
   function initSection5dToggle() {
     const section = document.getElementById('sec5d');
     const wrap = document.getElementById('s5dPhoneWrap');
     const phone = document.querySelector('.s5d-phone-ui');
     const track = document.getElementById('s5dToggleTrack');
     const knob = document.getElementById('s5dToggleKnob');
-    const fp = document.querySelector('.fp-scroll');
-    if (!section || !wrap || !phone || !track || !knob || !fp) return;
+    if (!section || !wrap || !phone || !track || !knob) return;
 
     // exact pixel measurements taken from images/second_UI.png at its
     // native 424×864 size — scaled to whatever size the image actually
@@ -759,12 +748,12 @@
       knob.style.left = `${(stage === 1 ? KNOB.onLeft : KNOB.offLeft) * scale}px`;
     }
 
-    const isActive = () => Math.abs(fp.scrollTop - section.offsetTop) < 4;
+    const isActive = () => Math.abs(window.scrollY - section.offsetTop) < 4;
     const COOLDOWN_MS = 700;
     let lastStepAt = -Infinity;
     let wasActiveOnLastWheel = false;
 
-    fp.addEventListener('wheel', (e) => {
+    window.addEventListener('wheel', (e) => {
       if (window.innerWidth <= 900) return;
       const active = isActive();
       if (!active) { wasActiveOnLastWheel = false; return; }
