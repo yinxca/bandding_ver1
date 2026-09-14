@@ -819,8 +819,8 @@ img { max-width: 100%; display: block; }
   position: absolute;
   top: 90px; /* same ~10px gap below the header as .s5d-visual */
   right: 64px;
-  width: clamp(500px, 46vw, 760px); /* grows leftward since `right` stays anchored */
-  height: clamp(280px, 45vh, 420px); /* grows downward since `top` stays anchored */
+  width: clamp(650px, 58vw, 920px); /* grows leftward since `right` stays anchored */
+  height: clamp(380px, 58vh, 560px); /* grows downward since `top` stays anchored */
   border-radius: 24px;
   overflow: hidden;
   background: linear-gradient(180deg, #fff6ef 0%, #ffe6d5 100%);
@@ -830,7 +830,7 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6%;
+  padding: clamp(60px, 9vw, 140px); /* px, not %: padding % on an absolutely-positioned box resolves against the containing block's width, not its own */
   box-sizing: border-box;
 }
 .s5d-badge {
@@ -2033,7 +2033,7 @@ img { max-width: 100%; display: block; }
   .s5d-visual { width: min(300px, 78vw); height: auto; aspect-ratio: 680 / 820; align-self: center; top: 0; left: 0; order: 1; }
   .s5d-phone-wrap { align-items: center; padding: 10% 12%; }
   .s5d-phone-ui { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
-  .s5d-badge-wrap { position: static; width: min(260px, 78vw); height: auto; aspect-ratio: 700 / 380; margin: 0 auto 16px; order: 2; padding: 4%; }
+  .s5d-badge-wrap { position: static; width: min(260px, 78vw); height: auto; aspect-ratio: 700 / 380; margin: 0 auto 16px; order: 2; padding: 18px; }
 
   /* ---- Section 8 ---- */
   .s8-layout { display: flex; flex-direction: column; align-items: center; gap: 28px; padding: 0 24px; }
