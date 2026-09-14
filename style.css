@@ -890,9 +890,11 @@ img { max-width: 100%; display: block; }
    width regardless of side. */
 .s5d-visual {
   position: relative;
+  top: -19px; /* pulls it up so the gap below the header is ~10px */
   flex-shrink: 0;
-  align-self: center;
-  width: clamp(320px, 34vw, 420px);
+  align-self: flex-start;
+  width: auto;
+  height: clamp(500px, 82vh, 760px);
   aspect-ratio: 680 / 820;
   order: 1;
 }
@@ -2024,7 +2026,7 @@ img { max-width: 100%; display: block; }
   .s5d-layout { flex-direction: column; gap: 28px; padding: 0 24px; }
   .s5d-copy { margin-top: 0; text-align: center; order: 2; }
   .s5d-eyebrow { justify-content: center; }
-  .s5d-visual { width: min(300px, 78vw); align-self: center; order: 1; }
+  .s5d-visual { width: min(300px, 78vw); height: auto; align-self: center; top: 0; order: 1; }
   .s5d-badge-wrap { position: static; width: min(260px, 78vw); margin: 0 auto 16px; }
 
   /* ---- Section 8 ---- */
