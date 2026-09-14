@@ -1713,7 +1713,7 @@ img { max-width: 100%; display: block; }
   font-weight: 700;
   color: #e9e3e5;
   letter-spacing: 0.5px;
-  margin-bottom: clamp(190px, 33vh, 370px);
+  margin-bottom: 60px;
   line-height: 1.1;
 }
 .s10-accent {
@@ -1759,14 +1759,18 @@ img { max-width: 100%; display: block; }
 }
 .s10-store-btns {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
   width: clamp(360px, 46vw, 560px);
   margin: 28px auto 0;
 }
 .s10-store-btn {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  width: 100%;
   padding: 14px 30px;
   border-radius: 100px;
   background: #fff;
