@@ -806,10 +806,22 @@ img { max-width: 100%; display: block; }
 }
 
 .s5d-copy {
+  position: relative;
   flex: 1;
   min-width: 260px;
   text-align: left;
   margin-top: clamp(220px, 32vh, 400px);
+  order: 2;
+}
+.s5d-badge {
+  position: absolute;
+  right: 6%;
+  bottom: 100%;
+  width: clamp(110px, 12vw, 170px);
+  height: auto;
+  z-index: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15));
 }
 .s5d-eyebrow {
   position: relative;
@@ -865,6 +877,7 @@ img { max-width: 100%; display: block; }
   align-self: flex-end;
   margin-bottom: -220px; /* pushes the phone down past the section edge, clipping the "송금하기" button off the bottom */
   width: clamp(320px, 38vw, 460px);
+  order: 1;
 }
 .s5d-blur {
   position: absolute;
@@ -887,51 +900,6 @@ img { max-width: 100%; display: block; }
   display: block;
   filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.18));
 }
-/* the auto-charge toggle baked into the screenshot always shows "off"
-   (gray, knob right); the ON.png toggle graphic (different layout —
-   knob left, text right) sits over it, hidden, and scrolling once swipes
-   it in from the right, sliding left into place */
-/* the real knob baked into the screenshot is the thing that has to look
-   like it travels — a green track mask fades in over the whole pill
-   (covering the base image's static gray track + text, re-labelled here),
-   and a separate white knob starts exactly on top of the baked-in one and
-   slides left to the "on" spot, so it reads as that same circle moving,
-   not a whole new graphic swapping in */
-.s5d-toggle-track {
-  position: absolute;
-  /* left/top/width/height/font-size set in px by JS (positionS5dToggle),
-     inset just inside the screenshot's own border so that border is left
-     completely alone — this only fills the track color + label */
-  border-radius: 999px;
-  background: #9bf542;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 5%;
-  box-sizing: border-box;
-  font-weight: 700;
-  color: #1f6b1f;
-  white-space: nowrap;
-  overflow: hidden;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  z-index: 2;
-  pointer-events: none;
-}
-.s5d-toggle-knob {
-  position: absolute;
-  /* left/top/width/height set in px by JS to exactly match the real knob
-     baked into the screenshot; JS also swaps `left` between its measured
-     off/on spots on toggle, so this transition animates the actual move */
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-  transition: left 0.55s cubic-bezier(0.22, 0.9, 0.3, 1);
-  z-index: 3;
-  pointer-events: none;
-}
-.s5d-phone-wrap.is-on .s5d-toggle-track { opacity: 1; }
-
 /* =========================================================
    Section 7: Home and widget reminders
 ========================================================= */
@@ -2032,6 +2000,12 @@ img { max-width: 100%; display: block; }
   .s5c-copy { text-align: center; }
   .s5c-eyebrow { justify-content: center; }
   .s5c-watermark { bottom: auto; top: 44%; font-size: 36vw; }
+
+  .s5d-layout { flex-direction: column; gap: 28px; padding: 0 24px; }
+  .s5d-copy { margin-top: 0; text-align: center; order: 2; }
+  .s5d-eyebrow { justify-content: center; }
+  .s5d-visual { width: min(320px, 78vw); margin-bottom: 0; align-self: center; order: 1; }
+  .s5d-badge { position: static; display: block; width: min(140px, 34vw); margin: 0 auto 16px; }
 
   /* ---- Section 8 ---- */
   .s8-layout { display: flex; flex-direction: column; align-items: center; gap: 28px; padding: 0 24px; }

@@ -32,7 +32,6 @@
     initSection2Scenes();
     initStageReveal('sec5');
     initStageReveal('sec8c', 1);
-    initSection5dToggle();
     positionS5dBlur();
     window.addEventListener('resize', positionS5dBlur, { passive: true });
     window.addEventListener('load', positionS5dBlur); // re-measure once images have settled
@@ -691,101 +690,6 @@
             stage = minStage;
             applyStage(minStage);
           }
-        });
-      }, { threshold: 0 }).observe(section);
-    }
-  }
-
-  /* ---------- section 5d: auto-charge toggle swipe ----------
-   * The toggle baked into the screenshot always shows "off" (knob at the
-   * left). One scroll inside section 5d swipes it "on" (knob slides right,
-   * a matching-green mask covers the image's static knob so nothing
-   * ghosts); a further scroll continues on to section 6, same
-   * entry-swallow / cooldown / boundary-hold mechanics as the other
-   * section steppers. Desktop only — mobile has no snap-scrolling. */
-  function initSection5dToggle() {
-    const section = document.getElementById('sec5d');
-    const wrap = document.getElementById('s5dPhoneWrap');
-    const phone = document.querySelector('.s5d-phone-ui');
-    const track = document.getElementById('s5dToggleTrack');
-    const knob = document.getElementById('s5dToggleKnob');
-    if (!section || !wrap || !phone || !track || !knob) return;
-
-    // exact pixel measurements taken from images/second_UI.png at its
-    // native 424×864 size — scaled to whatever size the image actually
-    // renders at, so the overlay lines up with the baked-in toggle at
-    // any viewport width, not just the one it was eyeballed at.
-    const NATURAL_W = 424;
-    const TRACK = { left: 229, top: 590, right: 386, bottom: 638 }; // inset inside the image's own border — that border is left untouched
-    const KNOB = { top: 593, size: 41, offLeft: 342, onLeft: 232 };
-    const TRACK_FONT = 19; // natural px, matching the baked-in off-state label's measured glyph height
-
-    function positionToggle() {
-      const scale = phone.getBoundingClientRect().width / NATURAL_W;
-      track.style.left = `${TRACK.left * scale}px`;
-      track.style.top = `${TRACK.top * scale}px`;
-      track.style.width = `${(TRACK.right - TRACK.left) * scale}px`;
-      track.style.height = `${(TRACK.bottom - TRACK.top) * scale}px`;
-      track.style.fontSize = `${TRACK_FONT * scale}px`;
-      knob.style.top = `${KNOB.top * scale}px`;
-      knob.style.width = `${KNOB.size * scale}px`;
-      knob.style.height = `${KNOB.size * scale}px`;
-      knob.style.left = `${(wrap.classList.contains('is-on') ? KNOB.onLeft : KNOB.offLeft) * scale}px`;
-    }
-    positionToggle();
-    window.addEventListener('resize', positionToggle, { passive: true });
-    window.addEventListener('load', positionToggle);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(positionToggle);
-    setTimeout(positionToggle, 600);
-
-    let stage = 0;
-    const maxStage = 1;
-
-    function setStage(s) {
-      stage = s;
-      wrap.classList.toggle('is-on', stage === 1);
-      const scale = phone.getBoundingClientRect().width / NATURAL_W;
-      knob.style.left = `${(stage === 1 ? KNOB.onLeft : KNOB.offLeft) * scale}px`;
-    }
-
-    const isActive = () => Math.abs(window.scrollY - section.offsetTop) < 4;
-    const COOLDOWN_MS = 700;
-    let lastStepAt = -Infinity;
-    let wasActiveOnLastWheel = false;
-
-    window.addEventListener('wheel', (e) => {
-      if (window.innerWidth <= 900) return;
-      const active = isActive();
-      if (!active) { wasActiveOnLastWheel = false; return; }
-
-      const now = performance.now();
-      if (!wasActiveOnLastWheel) {
-        wasActiveOnLastWheel = true;
-        lastStepAt = now;
-        e.preventDefault();
-        return;
-      }
-
-      const down = e.deltaY > 0;
-      const canStep = (down && stage < maxStage) || (!down && stage > 0);
-      const cooling = now - lastStepAt < COOLDOWN_MS;
-
-      if (!canStep) {
-        if (cooling) e.preventDefault();
-        return;
-      }
-
-      e.preventDefault();
-      if (cooling) return;
-
-      setStage(stage + (down ? 1 : -1));
-      lastStepAt = now;
-    }, { passive: false });
-
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting && stage !== 0) setStage(0);
         });
       }, { threshold: 0 }).observe(section);
     }
