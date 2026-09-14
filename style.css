@@ -1075,10 +1075,10 @@ img { max-width: 100%; display: block; }
 .reminder-backdrop img { width: 100%; display: block; }
 .reminder-phone { position: absolute; margin: 0; }
 .reminder-phone > img { width: 100%; height: auto; }
-.reminder-manager { left: 10.4%; top: 56.3%; width: 22.3%; }
+.reminder-manager { left: 10.4%; top: 38%; width: 22.3%; }
 .reminder-manager > img { opacity: 0.8; }
 .reminder-member { left: 31%; top: 32.5%; width: 22.3%; z-index: 2; }
-.reminder-widget { position: absolute; left: 1.5%; top: 59%; width: 8.5%; height: auto; }
+.reminder-widget { position: absolute; z-index: 1; left: 1.5%; top: 41%; width: 240px; height: 165px; }
 .reminder-label {
   position: absolute;
   bottom: calc(100% + 4.2vh);
@@ -1086,7 +1086,7 @@ img { max-width: 100%; display: block; }
   transform: translateX(-50%);
   padding: 0.55em 0.85em;
   border-radius: 0.5em;
-  background: #fff;
+  background: #AAEBFF;
   color: #30232c;
   font-size: clamp(18px, 1.56vw, 36px);
   line-height: 1.2;
@@ -1100,7 +1100,7 @@ img { max-width: 100%; display: block; }
   transform: translateX(-50%);
   border-left: 0.34em solid transparent;
   border-right: 0.34em solid transparent;
-  border-top: 0.45em solid #fff;
+  border-top: 0.45em solid #AAEBFF;
 }
 .reminder-copy { position: absolute; top: 58%; right: 8%; text-align: right; z-index: 3; }
 .reminder-eyebrow {
@@ -1126,9 +1126,9 @@ img { max-width: 100%; display: block; }
   .reminder-eyebrow span::after { height: 45px; }
   .reminder-copy h2 { font-size: clamp(25px, 6.6vw, 42px); }
   .reminder-description { font-size: clamp(12px, 3.2vw, 18px); margin-top: 16px; }
-  .reminder-manager { left: 9%; top: 72%; width: 39%; }
+  .reminder-manager { left: 9%; top: 54%; width: 39%; }
   .reminder-member { left: 43%; top: 56%; width: 44%; }
-  .reminder-widget { left: 1%; top: 77%; width: 8%; }
+  .reminder-widget { left: 1%; top: 57%; width: 90px; height: 62px; }
   .reminder-label { font-size: 17px; bottom: calc(100% + 20px); }
   .reminder-full-phone { width: 86vw; }
   .reminder-swipe-wrap { width: 86vw; }
@@ -1768,7 +1768,7 @@ img { max-width: 100%; display: block; }
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: 196px;
+  width: 230px;
   padding: 14px 30px;
   border-radius: 100px;
   background: #fff;
