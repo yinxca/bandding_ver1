@@ -882,43 +882,40 @@ img { max-width: 100%; display: block; }
 }
 
 /* ---- visual: gradient card behind + phone screenshot in front ----
-   The 680x820 frame is the reference "screen"; the gradient box sits
-   inset 20px left/right, 10px top/bottom within it (radius 20), and the
-   image is scaled to keep ~70px clear above/below and ~80px either side,
-   centered — all expressed as % of the box's own width, since CSS
-   padding percentages always resolve against the containing block's
-   width regardless of side. */
+   The box now sizes independently on each axis (roughly half the
+   screen wide, nearly the full screen tall) instead of following the
+   680x820 reference aspect ratio, so the phone image is scaled to fill
+   the box's width and deliberately overflows/clips at the bottom
+   (overflow: hidden on the box, image top-anchored) rather than being
+   letterboxed to fit. */
 .s5d-visual {
   position: relative;
   top: -19px; /* pulls it up so the gap below the header is ~10px */
   flex-shrink: 0;
   align-self: flex-start;
-  width: auto;
-  height: clamp(500px, 96.47vh, 900px); /* 820/850 from the Figma 1440x850 reference frame */
-  aspect-ratio: 680 / 820;
+  width: clamp(520px, 50vw, 760px);
+  height: clamp(600px, 96.47vh, 900px); /* 820/850 from the Figma 1440x850 reference frame */
   order: 1;
 }
 .s5d-phone-wrap {
   position: absolute;
   z-index: 1;
-  left: 2.941%;
-  right: 2.941%;
-  top: 1.22%;
-  bottom: 1.22%;
+  left: 20px;
+  right: 20px;
+  top: 10px;
+  bottom: 10px;
   border-radius: 20px;
   background: linear-gradient(180deg, #fff6ef 0%, #ffe6d5 100%);
+  overflow: hidden;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 10.94% 12.5%;
+  padding: 6% 8% 0;
   box-sizing: border-box;
 }
 .s5d-phone-ui {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
+  width: 100%;
   height: auto;
-  object-fit: contain;
   display: block;
   filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.18));
 }
@@ -2026,7 +2023,9 @@ img { max-width: 100%; display: block; }
   .s5d-layout { flex-direction: column; gap: 28px; padding: 0 24px; }
   .s5d-copy { margin-top: 0; text-align: center; order: 2; }
   .s5d-eyebrow { justify-content: center; }
-  .s5d-visual { width: min(300px, 78vw); height: auto; align-self: center; top: 0; order: 1; }
+  .s5d-visual { width: min(300px, 78vw); height: auto; aspect-ratio: 680 / 820; align-self: center; top: 0; order: 1; }
+  .s5d-phone-wrap { align-items: center; padding: 10% 12%; }
+  .s5d-phone-ui { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
   .s5d-badge-wrap { position: static; width: min(260px, 78vw); margin: 0 auto 16px; }
 
   /* ---- Section 8 ---- */
