@@ -894,7 +894,7 @@ img { max-width: 100%; display: block; }
   flex-shrink: 0;
   align-self: flex-start;
   width: auto;
-  height: clamp(500px, 82vh, 760px);
+  height: clamp(500px, 96.47vh, 900px); /* 820/850 from the Figma 1440x850 reference frame */
   aspect-ratio: 680 / 820;
   order: 1;
 }
