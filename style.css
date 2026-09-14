@@ -1077,8 +1077,8 @@ img { max-width: 100%; display: block; }
 .reminder-phone > img { width: 100%; height: auto; }
 .reminder-manager { left: 10.4%; top: 38%; width: 22.3%; }
 .reminder-manager > img { opacity: 0.8; }
-.reminder-member { left: 31%; top: 10.5%; width: 22.3%; z-index: 2; }
-.reminder-widget { position: absolute; left: 1.5%; bottom: 100px; width: 240px; height: 165px; }
+.reminder-member { left: 31%; top: 22%; width: 22.3%; z-index: 2; }
+.reminder-widget { position: absolute; left: 1.5%; bottom: 140px; width: 240px; height: 165px; }
 .reminder-label {
   position: absolute;
   bottom: calc(100% + 4.2vh);
@@ -1127,8 +1127,8 @@ img { max-width: 100%; display: block; }
   .reminder-copy h2 { font-size: clamp(25px, 6.6vw, 42px); }
   .reminder-description { font-size: clamp(12px, 3.2vw, 18px); margin-top: 16px; }
   .reminder-manager { left: 9%; top: 54%; width: 39%; }
-  .reminder-member { left: 43%; top: 34%; width: 44%; }
-  .reminder-widget { left: 1%; bottom: 40px; width: 90px; height: 62px; }
+  .reminder-member { left: 43%; top: 45%; width: 44%; }
+  .reminder-widget { left: 1%; bottom: 60px; width: 90px; height: 62px; }
   .reminder-label { font-size: 17px; bottom: calc(100% + 20px); }
   .reminder-full-phone { width: 86vw; }
   .reminder-swipe-wrap { width: 86vw; }
