@@ -915,7 +915,7 @@ img { max-width: 100%; display: block; }
   background: linear-gradient(180deg, #fff6ef 0%, #ffe6d5 100%);
   overflow: hidden;
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: center;
   padding: 2% 8% 0;
   box-sizing: border-box;
