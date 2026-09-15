@@ -861,7 +861,7 @@ img { max-width: 100%; display: block; }
   flex-shrink: 0;
   margin-left: -18px;
 }
-.s5d-eyebrow-text { margin-left: 20px; }
+.s5d-eyebrow-text { margin-left: 10px; }
 .s5d-eyebrow-dot::after {
   content: '';
   position: absolute;
@@ -920,13 +920,47 @@ img { max-width: 100%; display: block; }
   padding: 2% 8% 0;
   box-sizing: border-box;
 }
-.s5d-phone-ui {
+.s5d-phone-frame {
+  position: relative;
   width: 65%;
+  transform: translateY(13vh); /* pushed down; overflow: hidden on the wrap crops it, but keep the auto-charge toggle in view */
+}
+.s5d-phone-ui {
+  width: 100%;
   height: auto;
   display: block;
-  transform: translateY(13vh); /* pushed down; overflow: hidden on the wrap crops it, but keep the auto-charge toggle in view */
   filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.18));
 }
+/* the "자동 정산" toggle baked into second_UI1.png always shows "off"
+   (gray, knob left) — these two overlays sit exactly on top of it,
+   measured from the source image's own pixels (see ON_final.png /
+   OFF_final.png), and only activate via .s5d-phone-frame.toggle-on. */
+.s5d-toggle-on {
+  position: absolute;
+  left: 53.14%;
+  top: 66.44%;
+  width: 35.81%;
+  height: auto;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.s5d-toggle-knob {
+  position: absolute;
+  left: 56.51%;
+  top: 67.75%;
+  width: 8%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  z-index: 3;
+  transition: left 0.5s cubic-bezier(0.22, 0.9, 0.3, 1), opacity 0.5s ease;
+  pointer-events: none;
+}
+.s5d-phone-frame.toggle-on .s5d-toggle-on { opacity: 1; }
+.s5d-phone-frame.toggle-on .s5d-toggle-knob { left: 77.43%; opacity: 0; }
 /* pops in like an incoming phone notification once the section scrolls
    into view (reuses the site-wide [data-reveal] observer, just with a
    bouncier "ding" curve instead of the default fade-up) */
@@ -2055,7 +2089,9 @@ img { max-width: 100%; display: block; }
   .s5d-eyebrow { justify-content: center; }
   .s5d-visual { width: min(300px, 78vw); height: auto; aspect-ratio: 680 / 820; align-self: center; top: 0; left: 0; order: 1; }
   .s5d-phone-wrap { align-items: center; padding: 10% 12%; }
+  .s5d-phone-frame { display: contents; } /* mobile keeps the simpler contain-sizing below, no crop/toggle overlay */
   .s5d-phone-ui { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+  .s5d-toggle-on, .s5d-toggle-knob { display: none; }
   .s5d-badge-wrap { position: static; width: min(260px, 78vw); height: auto; aspect-ratio: 700 / 380; margin: 0 auto 16px; order: 2; padding: 18px; }
 
   /* ---- Section 8 ---- */

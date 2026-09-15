@@ -28,6 +28,7 @@
     initScrollSpy();
     initSmoothScroll();
     initReveal();
+    initSection5dToggle();
     initChatFlow();
     initSection2Scenes();
     initStageReveal('sec5');
@@ -316,7 +317,11 @@
     }
   }
 
-  /* ---------- reveal ---------- */
+  /* ---------- reveal ----------
+   * [data-reveal] elements normally reveal once and stay revealed. An
+   * element additionally marked [data-reveal-repeat] (e.g. the section 5d
+   * notification card) instead toggles in-view on/off with each entry/exit
+   * so it replays every time the section is scrolled back into view. */
   function initReveal() {
     const items = [...document.querySelectorAll('[data-reveal]')];
     if (!items.length) return;
@@ -328,8 +333,12 @@
 
     const obs = new IntersectionObserver((entries, o) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
         const el = entry.target;
+        if (el.hasAttribute('data-reveal-repeat')) {
+          el.classList.toggle('in-view', entry.isIntersecting);
+          return;
+        }
+        if (!entry.isIntersecting) return;
         const sibs = [...(el.parentElement?.children || [])].filter((c) => c.hasAttribute('data-reveal'));
         const idx = Math.max(0, sibs.indexOf(el));
         el.style.transitionDelay = `${Math.min(idx * 80, 320)}ms`;
@@ -339,6 +348,34 @@
     }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
 
     items.forEach((el) => obs.observe(el));
+  }
+
+  /* ---------- section 5d: auto-charge toggle switches on ----------
+   * Replays each time the phone frame scrolls into view (mirrors the
+   * notification card's repeat-reveal), with a short delay so the toggle
+   * visibly reacts after the "ding" rather than firing at the same instant. */
+  function initSection5dToggle() {
+    const frame = document.querySelector('.s5d-phone-frame');
+    if (!frame) return;
+
+    if (!('IntersectionObserver' in window) || prefersReducedMotion) {
+      frame.classList.add('toggle-on');
+      return;
+    }
+
+    let timer = null;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          timer = setTimeout(() => frame.classList.add('toggle-on'), 900);
+        } else {
+          clearTimeout(timer);
+          frame.classList.remove('toggle-on');
+        }
+      });
+    }, { threshold: 0.4 });
+
+    obs.observe(frame);
   }
 
   /* ---------- chat flow ---------- */
