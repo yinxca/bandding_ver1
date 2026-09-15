@@ -251,7 +251,7 @@ img { max-width: 100%; display: block; }
   margin-left: clamp(28px, 7vw, 132px);
   align-self: center;
   position: relative;
-  top: 112px;
+  top: 150px;
   z-index: 2;
 }
 
@@ -320,17 +320,17 @@ img { max-width: 100%; display: block; }
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: clamp(960px, 98vw, 1700px);
+  width: clamp(1020px, 104vw, 1800px);
   height: auto;
   z-index: 0;
   pointer-events: none;
 }
 
-/* mascots peeking up, stuck to the phone mockup's left edge — deliberately
+/* mascots peeking up, tucked in under the phone mockup — deliberately
    allowed to clip against the section's own overflow: hidden */
 .hero-friend {
   position: absolute;
-  right: calc(clamp(24px, 6vw, 120px) + clamp(300px, 24vw, 400px));
+  right: calc(clamp(24px, 6vw, 120px) + clamp(300px, 24vw, 400px) - 50px);
   bottom: -48px;
   width: clamp(220px, 20vw, 360px);
   height: auto;
@@ -342,7 +342,7 @@ img { max-width: 100%; display: block; }
   position: absolute;
   right: clamp(24px, 6vw, 120px);
   top: auto;
-  bottom: 0;
+  bottom: -40px;
   transform: none;
   width: clamp(300px, 24vw, 400px);
   pointer-events: none;
@@ -374,7 +374,7 @@ img { max-width: 100%; display: block; }
     margin: 16px auto 0;
   }
   .hero-friend { width: min(200px, 44vw); left: 4vw; bottom: -24px; }
-  .hero-letter-bg { width: min(1200px, 170vw); }
+  .hero-letter-bg { width: min(1300px, 180vw); }
 }
 
 /* =========================================================
@@ -1808,7 +1808,7 @@ img { max-width: 100%; display: block; }
     margin: 16px auto 0;
   }
   .hero-friend { width: min(200px, 44vw); left: 4vw; bottom: -24px; }
-  .hero-letter-bg { width: min(1200px, 170vw); }
+  .hero-letter-bg { width: min(1300px, 180vw); }
 
   .s2-fade-line { font-size: 18px; }
   .s2-pill { padding: 14px 20px; font-size: 15px; }
