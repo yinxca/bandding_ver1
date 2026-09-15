@@ -1404,12 +1404,29 @@ img { max-width: 100%; display: block; }
   user-select: none;
   -webkit-user-drag: none;
 }
+/* plain "완료" pill (no text, knob already baked in on the right) —
+   crossfades in over the base track once the drag completes, instead
+   of leaving the base track's own left-side knob visible underneath */
+.s8b-slide-track-done {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: opacity 0.3s ease;
+}
+.s8b-slide-wrap.is-complete .s8b-slide-track-done { opacity: 1; }
 .s8b-slide-knob {
   position: absolute;
   top: 0;
   left: 0;
   width: 50%;
   height: 100%;
+  z-index: 2;
   cursor: grab;
   touch-action: none;
   user-select: none;
