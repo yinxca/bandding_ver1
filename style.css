@@ -964,9 +964,9 @@ img { max-width: 100%; display: block; }
 }
 .s5d-phone-frame.toggle-on .s5d-toggle-on { opacity: 1; }
 .s5d-phone-frame.toggle-on .s5d-toggle-knob { left: 77.43%; opacity: 0; }
-/* pops in like an incoming phone notification once the section scrolls
-   into view (reuses the site-wide [data-reveal] observer, just with a
-   bouncier "ding" curve instead of the default fade-up) */
+/* pops in like an incoming phone notification after the toggle switches
+   on (initSection5dToggle drives .in-view directly, on its own delay),
+   with a bouncier "ding" curve instead of the default fade-up */
 .s5d-alarm {
   position: absolute;
   top: 23px;
@@ -976,13 +976,11 @@ img { max-width: 100%; display: block; }
   z-index: 2;
   pointer-events: none;
   filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.14));
-}
-.s5d-alarm[data-reveal] {
   opacity: 0;
   transform: translate(-50%, -18px) scale(0.82);
   transition: opacity 0.45s ease, transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.s5d-alarm[data-reveal].in-view {
+.s5d-alarm.in-view {
   opacity: 1;
   transform: translate(-50%, 0) scale(1);
 }

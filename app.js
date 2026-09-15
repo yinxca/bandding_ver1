@@ -350,16 +350,18 @@
     items.forEach((el) => obs.observe(el));
   }
 
-  /* ---------- section 5d: auto-charge toggle switches on ----------
-   * Replays each time the phone frame scrolls into view (mirrors the
-   * notification card's repeat-reveal), with a short delay so the toggle
-   * visibly reacts after the "ding" rather than firing at the same instant. */
+  /* ---------- section 5d: toggle switches on, then the notification arrives ----------
+   * Replays each time the phone frame scrolls into view. The toggle flips on
+   * as soon as the section is visible; the "ding" notification pops in on a
+   * short delay afterward, as if it's confirming what the toggle just did. */
   function initSection5dToggle() {
     const frame = document.querySelector('.s5d-phone-frame');
+    const alarm = document.querySelector('.s5d-alarm');
     if (!frame) return;
 
     if (!('IntersectionObserver' in window) || prefersReducedMotion) {
       frame.classList.add('toggle-on');
+      if (alarm) alarm.classList.add('in-view');
       return;
     }
 
@@ -367,10 +369,12 @@
     const obs = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          timer = setTimeout(() => frame.classList.add('toggle-on'), 900);
+          frame.classList.add('toggle-on');
+          timer = setTimeout(() => alarm && alarm.classList.add('in-view'), 900);
         } else {
           clearTimeout(timer);
           frame.classList.remove('toggle-on');
+          if (alarm) alarm.classList.remove('in-view');
         }
       });
     }, { threshold: 0.4 });
