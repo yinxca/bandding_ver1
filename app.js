@@ -403,12 +403,17 @@
     knob.addEventListener('pointerdown', (e) => {
       dragging = true;
       knob.classList.add('is-dragging');
-      try { knob.setPointerCapture(e.pointerId); } catch (err) { /* no active pointer to capture — keep dragging via bubbled events */ }
+      try { knob.setPointerCapture(e.pointerId); } catch (err) { /* no active pointer to capture — keep dragging via window-level events below */ }
       startX = e.clientX;
       startLeftPx = currentLeftPx();
     });
 
-    knob.addEventListener('pointermove', (e) => {
+    // Tracked on window, not the knob itself — a fast drag can easily carry
+    // the pointer past the knob's own (shrinking-relative-to-cursor) bounds,
+    // and pointer capture isn't guaranteed to catch every input method, so
+    // listening on the element alone can silently stop updating mid-drag
+    // and leave the knob stranded short of the right edge.
+    window.addEventListener('pointermove', (e) => {
       if (!dragging) return;
       const max = maxLeftPx();
       const next = Math.max(0, Math.min(max, startLeftPx + (e.clientX - startX)));
@@ -424,8 +429,8 @@
       knob.style.left = progress > SNAP_THRESHOLD ? '50%' : '0%';
       wrap.classList.toggle('is-complete', progress > SNAP_THRESHOLD);
     }
-    knob.addEventListener('pointerup', release);
-    knob.addEventListener('pointercancel', release);
+    window.addEventListener('pointerup', release);
+    window.addEventListener('pointercancel', release);
   }
 
   /* ---------- chat flow ---------- */
