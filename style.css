@@ -921,10 +921,10 @@ img { max-width: 100%; display: block; }
   box-sizing: border-box;
 }
 .s5d-phone-ui {
-  width: 100%;
+  width: 65%;
   height: auto;
   display: block;
-  transform: translateY(8vh); /* pushed down; overflow: hidden on the wrap crops it, but keep the auto-charge toggle in view */
+  transform: translateY(13vh); /* pushed down; overflow: hidden on the wrap crops it, but keep the auto-charge toggle in view */
   filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.18));
 }
 /* =========================================================
