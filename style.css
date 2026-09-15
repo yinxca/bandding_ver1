@@ -880,12 +880,14 @@ img { max-width: 100%; display: block; }
   letter-spacing: -0.025em;
   color: #6b3226;
   margin-bottom: 20px;
+  white-space: nowrap;
 }
 .s5d-heading strong { font-weight: 800; }
 .s5d-sub {
   font-size: clamp(13px, 1.2vw, 21px);
   line-height: 1.45;
   color: #a67c5c;
+  white-space: nowrap;
 }
 
 /* ---- visual: gradient card behind + phone screenshot in front ----
