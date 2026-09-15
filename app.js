@@ -232,7 +232,6 @@
       ['sec8', 'how'],
       ['sec8b', 'together'],
       ['sec8c', 'together'],
-      ['sec9', 'together'],
       ['sec10', 'start'],
     ];
     const navFor = new Map(sectionNav);
