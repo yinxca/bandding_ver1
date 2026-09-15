@@ -1023,7 +1023,7 @@ img { max-width: 100%; display: block; }
 .reminder-swipe-track {
   position: absolute;
   left: 21.12%;
-  top: 80%;
+  top: 78.7%;
   width: 58.03%;
   height: 10.61%;
   /* on_final.png's own aspect ratio differs from the box tuned for the
@@ -1040,9 +1040,9 @@ img { max-width: 100%; display: block; }
    artwork (gray border -> orange border) as it slides. */
 .reminder-swipe-knob {
   position: absolute;
-  left: 18.8%;
-  top: 81%;
-  width: 32%;
+  left: 20.3%;
+  top: 79.5%;
+  width: 29%;
   height: 9.7%;
   object-fit: contain;
   transition: left 0.55s cubic-bezier(0.22, 0.9, 0.3, 1), opacity 0.55s ease;
