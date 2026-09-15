@@ -921,7 +921,7 @@ img { max-width: 100%; display: block; }
   box-sizing: border-box;
 }
 .s5d-phone-ui {
-  width: 50%;
+  width: 100%;
   height: auto;
   display: block;
   transform: translateY(18vh); /* pushed down well past the box; overflow: hidden on the wrap crops it */
