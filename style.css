@@ -817,7 +817,7 @@ img { max-width: 100%; display: block; }
 }
 .s5d-badge-wrap {
   position: absolute;
-  top: 70px; /* extended upward a bit from the previous 90px */
+  top: 90px; /* matches .s5d-visual's rendered top so both boxes align */
   right: 64px;
   width: clamp(555px, 49.6vw, 785px); /* grows leftward since `right` stays anchored */
   height: clamp(300px, 44vh, 440px); /* grows downward since `top` stays anchored */
