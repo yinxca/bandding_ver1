@@ -330,7 +330,7 @@ img { max-width: 100%; display: block; }
    allowed to clip against the section's own overflow: hidden */
 .hero-friend {
   position: absolute;
-  right: calc(clamp(24px, 6vw, 120px) + clamp(325px, 26vw, 425px) + 40px);
+  right: calc(clamp(24px, 6vw, 120px) + clamp(325px, 26vw, 425px) + 15px);
   bottom: -65px;
   width: clamp(220px, 20vw, 360px);
   height: auto;
