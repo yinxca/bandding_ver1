@@ -1023,7 +1023,7 @@ img { max-width: 100%; display: block; }
 .reminder-swipe-track {
   position: absolute;
   left: 21.12%;
-  top: calc(78.7% - 1px);
+  top: calc(78.7% - 2px);
   width: 58.03%;
   height: 10.61%;
   /* on_final.png's own aspect ratio differs from the box tuned for the
