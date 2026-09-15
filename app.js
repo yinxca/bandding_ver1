@@ -29,6 +29,7 @@
     initSmoothScroll();
     initReveal();
     initSection5dToggle();
+    initSlideDownload();
     initChatFlow();
     initSection2Scenes();
     initStageReveal('sec5');
@@ -375,6 +376,56 @@
     }, { threshold: 0.4 });
 
     obs.observe(frame);
+  }
+
+  /* ---------- section 8b: drag-to-slide download button ----------
+   * Not a click target — the knob only moves while the pointer is down
+   * and actually dragging it. Release past 70% of the way and it snaps
+   * to the end; short of that, it springs back to the start. */
+  function initSlideDownload() {
+    const wrap = document.getElementById('s8bSlideWrap');
+    const knob = document.getElementById('s8bSlideKnob');
+    if (!wrap || !knob) return;
+
+    const SNAP_THRESHOLD = 0.7;
+    let dragging = false;
+    let startX = 0;
+    let startLeftPx = 0;
+
+    function maxLeftPx() {
+      return wrap.getBoundingClientRect().width - knob.getBoundingClientRect().width;
+    }
+
+    function currentLeftPx() {
+      return knob.getBoundingClientRect().left - wrap.getBoundingClientRect().left;
+    }
+
+    knob.addEventListener('pointerdown', (e) => {
+      dragging = true;
+      knob.classList.add('is-dragging');
+      try { knob.setPointerCapture(e.pointerId); } catch (err) { /* no active pointer to capture — keep dragging via bubbled events */ }
+      startX = e.clientX;
+      startLeftPx = currentLeftPx();
+    });
+
+    knob.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      const max = maxLeftPx();
+      const next = Math.max(0, Math.min(max, startLeftPx + (e.clientX - startX)));
+      knob.style.left = `${next}px`;
+    });
+
+    function release(e) {
+      if (!dragging) return;
+      dragging = false;
+      knob.classList.remove('is-dragging');
+      const max = maxLeftPx();
+      const progress = max > 0 ? currentLeftPx() / max : 0;
+      knob.style.left = progress > SNAP_THRESHOLD ? '50%' : '0%';
+      wrap.classList.toggle('is-complete', progress > SNAP_THRESHOLD);
+    }
+    knob.addEventListener('pointerup', release);
+    knob.addEventListener('pointercancel', release);
   }
 
   /* ---------- chat flow ---------- */

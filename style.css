@@ -1384,32 +1384,40 @@ img { max-width: 100%; display: block; }
   transform: rotate(45deg);
   border-radius: 0 0 3px 0;
 }
-/* looks like a slide toggle (white pill + app-icon knob) as a visual
-   nod to the in-app swipe interactions, but is just a regular CTA button */
-.s8b-slide-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
-  border: none;
-  background: #fff;
-  border-radius: 999px;
-  padding: 6px clamp(24px, 2.4vw, 36px) 6px 6px;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
-  cursor: pointer;
-  transition: transform 0.15s ease;
+/* an actual drag-to-slide control, not a click target — the knob only
+   moves while the pointer is down and dragging it (see initSlideDownload
+   in app.js); past a 70% drag it snaps to the end, otherwise it springs
+   back to the start. Both images share the same natural height and the
+   knob is exactly half the track's natural width, so plain %-based
+   sizing keeps them pixel-aligned at any size without extra JS math. */
+.s8b-slide-wrap {
+  position: relative;
+  width: clamp(260px, 24vw, 360px);
+  touch-action: none;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.28));
 }
-.s8b-slide-btn:hover { transform: translateY(-2px); }
-.s8b-slide-icon {
-  width: clamp(40px, 3.6vw, 52px);
-  height: clamp(40px, 3.6vw, 52px);
+.s8b-slide-track {
   display: block;
-  border-radius: 12px;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
-.s8b-slide-btn span {
-  font-size: clamp(14px, 1.3vw, 18px);
-  font-weight: 600;
-  color: #8d8d8d;
+.s8b-slide-knob {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: left 0.3s cubic-bezier(0.22, 0.9, 0.3, 1);
 }
+.s8b-slide-knob:active { cursor: grabbing; }
+.s8b-slide-knob.is-dragging { transition: none; }
 
 /* =========================================================
    Section 8c: Together rows
