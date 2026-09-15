@@ -927,6 +927,28 @@ img { max-width: 100%; display: block; }
   transform: translateY(13vh); /* pushed down; overflow: hidden on the wrap crops it, but keep the auto-charge toggle in view */
   filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.18));
 }
+/* pops in like an incoming phone notification once the section scrolls
+   into view (reuses the site-wide [data-reveal] observer, just with a
+   bouncier "ding" curve instead of the default fade-up) */
+.s5d-alarm {
+  position: absolute;
+  top: 23px;
+  left: 50%;
+  width: 78%;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.14));
+}
+.s5d-alarm[data-reveal] {
+  opacity: 0;
+  transform: translate(-50%, -18px) scale(0.82);
+  transition: opacity 0.45s ease, transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.s5d-alarm[data-reveal].in-view {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
 /* =========================================================
    Section 7: Home and widget reminders
 ========================================================= */
